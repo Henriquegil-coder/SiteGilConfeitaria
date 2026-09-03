@@ -1,0 +1,241 @@
+/* Reset Básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.confeitaria-home {
+  font-family: 'Georgia', serif;
+  color: #2c2c2c;
+  background-color: #ffffff;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Header Customizado (Logo) --- */
+.confeitaria-header-custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #ffffff;
+  width: 100%;
+}
+
+.header-img {
+  max-height: 110px;
+  width: auto;
+  display: block;
+  cursor: pointer;
+}
+
+/* --- Barra de Menu --- */
+.confeitaria-menu-bar {
+  background-color: #b2d8d8;
+  padding: 12px 40px;
+  width: 100%;
+}
+
+.menu-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+}
+
+.menu-left, .menu-right {
+  display: flex;
+  gap: 40px;
+}
+
+.confeitaria-menu-bar a {
+  text-decoration: none;
+  color: #333333;
+  font-family: 'Arial', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.confeitaria-menu-bar a:hover {
+  color: #ffffff;
+}
+
+/* --- Carrossel / Banner --- */
+.confeitaria-banner-custom {
+  width: 100%;
+  background-color: #fdfbf7;
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-image-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.banner-img-responsive {
+  width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Setas do Carrossel */
+.carousel-arrow {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: 15px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  z-index: 10;
+  border-radius: 4px;
+}
+
+.carousel-arrow:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.left-arrow {
+  left: 20px;
+}
+
+.right-arrow {
+  right: 20px;
+}
+
+/* --- Seção de Destaques (Grid de Produtos) --- */
+.confeitaria-destaques {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  text-align: center;
+  flex: 1;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas lado a lado */
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.card-img-placeholder {
+  width: 100%;
+  height: 250px;
+  background-color: #d9d9d9;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.card-img-placeholder::before,
+.card-img-placeholder::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background-color: #ffffff;
+  transform: rotate(45deg);
+}
+.card-img-placeholder::after {
+  transform: rotate(-45deg);
+}
+
+.card-title {
+  font-family: 'Arial', sans-serif;
+  color: #555555;
+  font-size: 15px;
+  font-weight: 400;
+  text-align: left;
+  width: 100%;
+}
+
+/* --- Rodapé --- */
+.confeitaria-footer-custom {
+  background-color: #b2d8d8;
+  color: #333333;
+  text-align: center;
+  padding: 30px 20px;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  width: 100%;
+  margin-top: auto;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.footer-links span {
+  cursor: pointer;
+}
+.footer-links span:hover {
+  text-decoration: underline;
+}
+
+/* --- Ajuste das Setas do Carrossel com ícones personalizados --- */
+.carousel-arrow {
+  position: absolute;
+  background-color: transparent; /* Remove o fundo cinza/preto antigo se preferir */
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  transition: transform 0.2s;
+}
+
+.carousel-arrow:hover {
+  transform: scale(1.1); /* Efeito suave de zoom ao passar o mouse */
+}
+
+/* Tamanho do ícone vetorizado */
+.arrow-icon {
+  width: 100px;  /* Ajuste a largura conforme o tamanho desejado */
+  height: auto;
+  display: block;
+}
+
+.left-arrow {
+  left: 30px;
+}
+
+.right-arrow {
+  right: 30px;
+}
