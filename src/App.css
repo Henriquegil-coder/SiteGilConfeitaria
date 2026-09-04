@@ -1,184 +1,304 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+/* =========================================
+   ESTILOS GLOBAIS DA HOME (TELA CHEIA)
+   ========================================= */
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  overflow-x: hidden;
 }
 
-#center {
+.confeitaria-home {
+  font-family: 'Georgia', serif;
+  color: #2c2c2c;
+  background-color: #ffffff;
+  min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
 }
 
-#next-steps {
+/* --- Header Customizado (Logo) --- */
+.confeitaria-header-custom {
   display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
-  position: relative;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #ffffff;
   width: 100%;
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
+.header-img {
+  max-height: 110px;
+  width: auto;
+  display: block;
+  cursor: pointer;
+}
+
+/* --- Barra de Menu (100% de ponta a ponta) --- */
+.confeitaria-menu-bar {
+  background-color: #b2d8d8;
+  padding: 12px 0;
+  width: 100%;
+}
+
+.menu-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-left, .menu-right {
+  display: flex;
+  gap: 40px;
+}
+
+.confeitaria-menu-bar a {
+  text-decoration: none;
+  color: #333333;
+  font-family: 'Arial', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.confeitaria-menu-bar a:hover {
+  color: #ffffff;
+}
+
+/* --- Carrossel / Banner --- */
+.confeitaria-banner-custom {
+  width: 100%;
+  background-color: #fdfbf7;
+  position: relative;
+  margin: 15px 0 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-image-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-img-responsive {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Setas do Carrossel */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  transition: transform 0.2s;
+}
+
+.carousel-arrow:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.arrow-icon {
+  width: 35px;
+  height: auto;
+  display: block;
+}
+
+.left-arrow {
+  left: 40px;
+}
+
+.right-arrow {
+  right: 40px;
+  transform: translateY(-50%) scaleX(-1);
+}
+
+/* --- Seção de Destaques (Grid de Produtos) --- */
+.confeitaria-destaques {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 0 40px;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.cards-grid {
+  width: 100%;
+  max-width: 1300px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.card-img-placeholder {
+  width: 100%;
+  height: 250px;
+  background-color: #d9d9d9;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.card-img-placeholder::before,
+.card-img-placeholder::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background-color: #ffffff;
+  transform: rotate(45deg);
+}
+.card-img-placeholder::after {
+  transform: rotate(-45deg);
+}
+
+.card-title {
+  font-family: 'Arial', sans-serif;
+  color: #555555;
+  font-size: 15px;
+  font-weight: 400;
+  text-align: left;
+  width: 100%;
+}
+
+/* --- Rodapé (100% de ponta a ponta) --- */
+.confeitaria-footer-custom {
+  background-color: #b2d8d8;
+  color: #333333;
+  text-align: center;
+  padding: 30px 20px;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  width: 100%;
+  margin-top: auto;
+}
+
+.footer-links {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.footer-links span {
+  cursor: pointer;
+}
+.footer-links span:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================
+   MEDIA QUERIES (RESPONSIVIDADE)
+   ========================================= */
+
+@media screen and (max-width: 1024px) {
+  .menu-container, .confeitaria-destaques, .footer-links {
+    padding: 0 20px;
+  }
+  
+  .menu-left, .menu-right {
+    gap: 20px;
   }
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+}
+
+@media screen and (max-width: 768px) {
+  .header-img {
+    max-height: 80px; 
+  }
+
+  .menu-container {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .menu-left, .menu-right {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .confeitaria-banner-custom {
+    margin: 10px 0 20px 0;
+  }
+
+  .banner-img-responsive {
+    max-height: 220px;
+  }
+
+  .left-arrow {
+    left: 10px;
+  }
+
+  .right-arrow {
+    right: 10px;
+  }
+
+  .arrow-icon {
+    width: 25px;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .card-img-placeholder {
+    height: 200px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 15px;
   }
 }

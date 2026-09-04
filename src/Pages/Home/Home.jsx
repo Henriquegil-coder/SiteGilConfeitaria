@@ -1,23 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
 import headerImage from '../../assets/logo.png';
 import banner1 from '../../assets/banner-principal.png';
-// Se futuramente quiser adicionar mais banners, basta importar aqui:
-// import banner2 from '../../assets/banner-2.png';
+import banner2 from '../../assets/bisc_aman_bic_3.png';
+import banner3 from '../../assets/logo.png'; 
 
-// Trocamos a ordem aqui:
-import leftArrowIcon from '../../assets/seta-direita.svg';  // Agora a esquerda recebe o ícone que estava na direita
-import rightArrowIcon from '../../assets/seta-esquerda.svg'; // E a direita recebe o que estava na esquerda
+import leftArrowIcon from '../../assets/seta-direita.svg';  
+import rightArrowIcon from '../../assets/seta-esquerda.svg'; 
 
 export default function Home() {
   const banners = [
     banner1,
-    // banner2,
+    banner2,
+    banner3
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Transição automática das fotos a cada 4 segundos
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => 
+        prevIndex === banners.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 4000); 
+
+    return () => clearInterval(timer);
+  }, [banners.length]);
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => 
@@ -37,7 +48,7 @@ export default function Home() {
       {/* Cabeçalho */}
       <header className="confeitaria-header-custom">
         <Link to="/">
-          <img src={headerImage} alt="G&L Confeitaria" className="header-img" />
+          <img src={headerImage} alt="GiL Confeitaria" className="header-img" />
         </Link>
       </header>
 
@@ -58,7 +69,6 @@ export default function Home() {
 
       {/* Carrossel do Banner Principal */}
       <section className="confeitaria-banner-custom">
-        {/* Botão Esquerdo com o seu ícone vetorizado */}
         <button className="carousel-arrow left-arrow" onClick={prevSlide}>
           <img src={leftArrowIcon} alt="Anterior" className="arrow-icon" />
         </button>
@@ -71,7 +81,6 @@ export default function Home() {
           />
         </div>
 
-        {/* Botão Direito com o seu ícone vetorizado */}
         <button className="carousel-arrow right-arrow" onClick={nextSlide}>
           <img src={rightArrowIcon} alt="Próximo" className="arrow-icon" />
         </button>
