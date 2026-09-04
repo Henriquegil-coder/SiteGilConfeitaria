@@ -4,17 +4,17 @@ import './Home.css';
 
 import headerImage from '../../assets/logo.png';
 import banner1 from '../../assets/banner-principal.png';
-import banner2 from '../../assets/bisc_aman_bic_3.png';
-import banner3 from '../../assets/logo.png'; 
+/*import banner2 from '../../assets/bisc_aman_bic_3.png';*/
+/*import banner3 from '../../assets/logo.png';*/
 
 import leftArrowIcon from '../../assets/seta-direita.svg';  
-import rightArrowIcon from '../../assets/seta-esquerda.svg'; 
+import rightArrowIcon from '../../assets/seta-esquerda.svg';
 
 export default function Home() {
   const banners = [
     banner1,
-    banner2,
-    banner3
+    /*banner2,*/
+    /*banner3*/
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
