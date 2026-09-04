@@ -43,7 +43,7 @@ export default function Home() {
   };
 
   return (
-    <div className="confeitaria-home">
+    <div className="confeitaria-site-wrapper">
       
       {/* Cabeçalho */}
       <header className="confeitaria-header-custom">
@@ -52,7 +52,7 @@ export default function Home() {
         </Link>
       </header>
 
-      {/* Menu de navegação */}
+      {/* Menu de navegação (De ponta a ponta, sem faixa colorida) */}
       <nav className="confeitaria-menu-bar">
         <div className="menu-container">
           <div className="menu-left">
@@ -67,56 +67,61 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Carrossel do Banner Principal */}
-      <section className="confeitaria-banner-custom">
-        <button className="carousel-arrow left-arrow" onClick={prevSlide}>
-          <img src={leftArrowIcon} alt="Anterior" className="arrow-icon" />
-        </button>
+      {/* Miolo do site (Banner e Produtos centralizados) */}
+      <main className="confeitaria-main-content">
         
-        <div className="banner-image-container">
-          <img 
-            src={banners[currentIndex]} 
-            alt="Banner G&L Confeitaria" 
-            className="banner-img-responsive" 
-          />
-        </div>
+        {/* Carrossel do Banner Principal */}
+        <section className="confeitaria-banner-custom">
+          <button className="carousel-arrow left-arrow" onClick={prevSlide}>
+            <img src={leftArrowIcon} alt="Anterior" className="arrow-icon" />
+          </button>
+          
+          <div className="banner-image-container">
+            <img 
+              src={banners[currentIndex]} 
+              alt="Banner GiL Confeitaria" 
+              className="banner-img-responsive" 
+            />
+          </div>
 
-        <button className="carousel-arrow right-arrow" onClick={nextSlide}>
-          <img src={rightArrowIcon} alt="Próximo" className="arrow-icon" />
-        </button>
-      </section>
+          <button className="carousel-arrow right-arrow" onClick={nextSlide}>
+            <img src={rightArrowIcon} alt="Próximo" className="arrow-icon" />
+          </button>
+        </section>
 
-      {/* Seção de Destaques (Produtos Grid) */}
-      <section className="confeitaria-destaques">
-        <div className="cards-grid">
-          <div className="card">
-            <div className="card-img-placeholder"></div>
-            <p className="card-title">Nome do produto - R$ 00,00</p>
+        {/* Seção de Destaques (Produtos Grid) */}
+        <section className="confeitaria-destaques">
+          <div className="cards-grid">
+            <div className="card">
+              <div className="card-img-placeholder"></div>
+              <p className="card-title">Nome do produto - R$ 00,00</p>
+            </div>
+            <div className="card">
+              <div className="card-img-placeholder"></div>
+              <p className="card-title">Nome do produto - R$ 00,00</p>
+            </div>
+            <div className="card">
+              <div className="card-img-placeholder"></div>
+              <p className="card-title">Nome do produto - R$ 00,00</p>
+            </div>
+            <div className="card">
+              <div className="card-img-placeholder"></div>
+              <p className="card-title">Nome do produto - R$ 00,00</p>
+            </div>
+            <div className="card">
+              <div className="card-img-placeholder"></div>
+              <p className="card-title">Nome do produto - R$ 00,00</p>
+            </div>
+            <div className="card">
+              <div className="card-img-placeholder"></div>
+              <p className="card-title">Nome do produto - R$ 00,00</p>
+            </div>
           </div>
-          <div className="card">
-            <div className="card-img-placeholder"></div>
-            <p className="card-title">Nome do produto - R$ 00,00</p>
-          </div>
-          <div className="card">
-            <div className="card-img-placeholder"></div>
-            <p className="card-title">Nome do produto - R$ 00,00</p>
-          </div>
-          <div className="card">
-            <div className="card-img-placeholder"></div>
-            <p className="card-title">Nome do produto - R$ 00,00</p>
-          </div>
-          <div className="card">
-            <div className="card-img-placeholder"></div>
-            <p className="card-title">Nome do produto - R$ 00,00</p>
-          </div>
-          <div className="card">
-            <div className="card-img-placeholder"></div>
-            <p className="card-title">Nome do produto - R$ 00,00</p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Rodapé */}
+      </main>
+
+      {/* Rodapé (De ponta a ponta, sem faixa colorida) */}
       <footer className="confeitaria-footer-custom">
         <div className="footer-links">
           <span>Redes sociais</span>
@@ -126,6 +131,7 @@ export default function Home() {
           <span>Blog</span>
         </div>
       </footer>
+
     </div>
   );
 }

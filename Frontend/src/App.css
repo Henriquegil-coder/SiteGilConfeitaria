@@ -1,6 +1,12 @@
 /* =========================================
    ESTILOS GLOBAIS DA HOME (TELA CHEIA)
    ========================================= */
+body {
+  background-color: #fdfbf7; /* <-- COR DO FUNDO GERAL (Altere aqui para testar) */
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
 
 * {
   margin: 0;
@@ -13,18 +19,20 @@ html, body, #root {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background-color: #ffffff;
   overflow-x: hidden;
 }
 
 .confeitaria-home {
   font-family: 'Georgia', serif;
   color: #2c2c2c;
-  background-color: #ffffff;
   min-height: 100vh;
   width: 100%;
+  max-width: 1400px; /* Limita a largura máxima para o fundo geral aparecer nas laterais */
+  margin: 0 auto;    /* Centraliza o site na tela */
+  background-color: #fdfbf7; /* Fundo interno acompanhando o geral */
   display: flex;
   flex-direction: column;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.03); /* Sombra suave destacando o miolo do site */
 }
 
 /* --- Header Customizado (Logo) --- */
@@ -33,7 +41,6 @@ html, body, #root {
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background-color: #ffffff;
   width: 100%;
 }
 
@@ -82,7 +89,6 @@ html, body, #root {
 /* --- Carrossel / Banner --- */
 .confeitaria-banner-custom {
   width: 100%;
-  background-color: #fdfbf7;
   position: relative;
   margin: 15px 0 40px 0;
   display: flex;
@@ -142,7 +148,6 @@ html, body, #root {
 /* --- Seção de Destaques (Grid de Produtos) --- */
 .confeitaria-destaques {
   width: 100%;
-  background-color: #ffffff;
   padding: 0 40px;
   text-align: center;
   flex: 1;
@@ -201,7 +206,7 @@ html, body, #root {
   width: 100%;
 }
 
-/* --- Rodapé (100% de ponta a ponta) --- */
+/* --- Rodapé --- */
 .confeitaria-footer-custom {
   background-color: #b2d8d8;
   color: #333333;
@@ -252,6 +257,11 @@ html, body, #root {
 }
 
 @media screen and (max-width: 768px) {
+  .confeitaria-home {
+    max-width: 100%; /* Em celulares ocupa 100% sem margens laterais sobrando */
+    box-shadow: none;
+  }
+
   .header-img {
     max-height: 80px; 
   }
@@ -301,4 +311,4 @@ html, body, #root {
     flex-direction: column;
     gap: 15px;
   }
-}
+} 

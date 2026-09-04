@@ -1,4 +1,12 @@
-/*   ESTILOS GLOBAIS DA HOME  */
+/* =========================================
+   ESTILOS GLOBAIS DA HOME (TELA CHEIA)
+   ========================================= */
+body {
+  background-color: #fdf7f7; /* <-- COR DO FUNDO GERAL ÚNICO */
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
 
 * {
   margin: 0;
@@ -6,19 +14,31 @@
   box-sizing: border-box;
 }
 
-html, body {
+html, body, #root {
   width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
   overflow-x: hidden;
 }
 
 .confeitaria-home {
   font-family: 'Georgia', serif;
   color: #2c2c2c;
-  background-color: #fcf6e0;
   min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
+  background-color: transparent; /* Remove qualquer fundo próprio, herdando o global */
+}
+
+.confeitaria-main-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 /* --- Header Customizado (Logo) --- */
@@ -27,8 +47,8 @@ html, body {
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background-color: #fcf6e0;
   width: 100%;
+  background-color: transparent;
 }
 
 .header-img {
@@ -38,16 +58,16 @@ html, body {
   cursor: pointer;
 }
 
-/* --- Barra de Menu --- */
+/* --- Barra de Menu (Sem faixa colorida) --- */
 .confeitaria-menu-bar {
-  background-color: #b2d8d8; /* Fundo verde-água esticado de ponta a ponta */
-  padding: 12px 0;
+  background-color: transparent; /* Removida a faixa colorida */
+  padding: 15px 0;
   width: 100%;
 }
 
 .menu-container {
   width: 100%;
-  max-width: 1300px; /* Conteúdo interno centralizado com limite profissional */
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0 40px;
   display: flex;
@@ -70,23 +90,18 @@ html, body {
 }
 
 .confeitaria-menu-bar a:hover {
-  color: #ffffff;
+  color: #ffffff; /* Tom interativo combinando com o tema */
 }
 
-/* --- Carrossel / Banner de Ponta a Ponta --- */
+/* --- Carrossel / Banner --- */
 .confeitaria-banner-custom {
-  width: 100vw; /* Ocupa 100% da largura da janela do navegador */
+  width: 100%;
   position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  background-color: #fcf6e0;
-  margin-top: 15px;
-  margin-bottom: 40px;
+  margin: 15px 0 40px 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: transparent;
 }
 
 .banner-image-container {
@@ -94,34 +109,23 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0; /* Remove as margens internas para a imagem colar nas bordas */
 }
 
 .banner-img-responsive {
   width: 100%;
-  height: 400px; /* Altura fixa ou máxima para manter a faixa uniforme */
-  object-fit: cover; /* Faz a imagem cobrir toda a extensão da faixa sem distorcer */
+  max-height: 400px;
+  object-fit: contain;
   display: block;
-  transition: opacity 0.4s ease-in-out;
 }
 
-/* Ajuste das setas para ficarem nas extremidades reais da tela/faixa */
-.left-arrow {
-  left: 30px; 
-}
-
-.right-arrow {
-  right: 30px;
-  transform: translateY(-50%) scaleX(-1);
-}
-/* Setas do Carrossel (Botões flutuantes sobrepostos) */
+/* Setas do Carrossel */
 .carousel-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.7); /* Fundo branco translúcido para destacar */
+  background-color: rgba(255, 255, 255, 0.7);
   border: none;
-  border-radius: 50%; /* Deixa o botão redondo */
+  border-radius: 50%;
   cursor: pointer;
   z-index: 10;
   display: flex;
@@ -129,56 +133,45 @@ html, body {
   justify-content: center;
   width: 50px;
   height: 50px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Sombra elegante para destacar da imagem */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   transition: all 0.2s ease;
 }
 
 .carousel-arrow:hover {
-  opacity: 0.5; /* Deixa o elemento com 50% de transparência */
-  background-color: fcf6e0; /* Fundo quase opaco ao passar o mouse */
-  transform: translateY(-50%) scale(1.08); /* Leve efeito de zoom ao focar */
+  background-color: rgba(255, 255, 255, 0.95);
+  transform: translateY(-50%) scale(1.08);
 }
 
 .arrow-icon {
-  width: 62px;
-  height: 62px;
+  width: 22px;
+  height: 22px;
   object-fit: contain;
-  opacity: 0.5; /* Deixa o elemento com 50% de transparência */
   display: block;
 }
 
 .left-arrow {
-  left: 90px; /* Distância da borda esquerda da tela */
-  transform: translateY(-50%) scaleX(-1);
+  left: 40px;
 }
 
 .right-arrow {
-  right: 90px; /* Distância da borda direita da tela */
+  right: 40px;
   transform: translateY(-50%) scaleX(-1);
-}
-
-.carousel-arrow:hover .arrow-icon {
-  transform: scale(1.1);
-}
-
-.right-arrow:hover .arrow-icon {
-  transform: scaleX(-1) scale(1.1);
 }
 
 /* --- Seção de Destaques (Grid de Produtos) --- */
 .confeitaria-destaques {
   width: 100%;
-  background-color: #fcf6e0;
   padding: 0 40px;
   text-align: center;
   flex: 1;
   display: flex;
   justify-content: center;
+  background-color: transparent;
 }
 
 .cards-grid {
   width: 100%;
-  max-width: 1300px; /* Evita que os cards estiquem demais em telas gigantes */
+  max-width: 1300px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
@@ -186,19 +179,19 @@ html, body {
 }
 
 .card {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
+  background: transparent; /* Removido o fundo branco quadrado */
+  border: none; /* Removidas as bordas duras */
   padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
 }
 
 .card-img-placeholder {
   width: 100%;
   height: 250px;
-  background-color: #d9d9d9;
+  background-color: rgba(0, 0, 0, 0.04); /* Fundo mais suave e integrado */
+  border-radius: 8px; /* Cantos levemente arredondados para leveza */
   margin-bottom: 15px;
   position: relative;
 }
@@ -211,7 +204,7 @@ html, body {
   left: 50%;
   width: 2px;
   height: 100%;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.5);
   transform: rotate(45deg);
 }
 .card-img-placeholder::after {
@@ -227,17 +220,27 @@ html, body {
   width: 100%;
 }
 
-/* --- Rodapé --- */
+/* --- Rodapé (Sem faixa colorida) --- */
 .confeitaria-footer-custom {
-  background-color: #b2d8d8; /* Fundo verde-água esticado de ponta a ponta */
-  color: #333333;
+  background-color: transparent; /* Removida a faixa colorida do rodapé */
+  color: #7a3030;
   text-align: center;
-  padding: 30px 20px;
+  padding: 40px 20px;
   font-family: 'Arial', sans-serif;
   font-size: 14px;
   font-weight: bold;
   width: 100%;
   margin-top: auto;
+}
+.confeitaria-menu-bar {
+  background-color: rgba(1, 209, 224, 0.233); /* Um leve toque translúcido */
+  padding: 15px 0;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
 .footer-links {
@@ -248,14 +251,17 @@ html, body {
   justify-content: center;
   gap: 80px;
   flex-wrap: wrap;
-  padding: 0 40px;
 }
 
 .footer-links span {
   cursor: pointer;
+  background-color: transparent; /* Removida a faixa colorida do rodapé */
+  color: #333333;
 }
 .footer-links span:hover {
   text-decoration: underline;
+  background-color: transparent; /* Removida a faixa colorida do rodapé */
+  color: #333333;
 }
 
 
@@ -264,7 +270,7 @@ html, body {
    ========================================= */
 
 @media screen and (max-width: 1024px) {
-  .menu-container, .confeitaria-destaques, .banner-image-container, .footer-links {
+  .menu-container, .confeitaria-destaques, .footer-links {
     padding: 0 20px;
   }
   
@@ -275,14 +281,6 @@ html, body {
   .cards-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-  }
-
-  .left-arrow {
-    left: 20px;
-  }
-
-  .right-arrow {
-    right: 20px;
   }
 }
 
@@ -320,8 +318,7 @@ html, body {
   }
 
   .arrow-icon {
-    width: 20px;
-    height: 20px;
+    width: 25px;
   }
 
   .cards-grid {
@@ -336,6 +333,5 @@ html, body {
   .footer-links {
     flex-direction: column;
     gap: 15px;
-    padding: 0 20px;
   }
 }
