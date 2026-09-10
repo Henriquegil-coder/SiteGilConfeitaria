@@ -1,0 +1,249 @@
+@font-face {
+  font-family: 'Allura';
+  src: url('../../assets/Fonts/Allura-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.artigos-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #fdf7f7;
+  color: #2f2b2b;
+}
+
+.blog-simple-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 28px 20px 18px;
+}
+
+.blog-simple-logo-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease;
+}
+
+.blog-simple-logo-link:hover,
+.blog-simple-logo-link:focus-visible {
+  transform: scale(1.04);
+  outline: none;
+}
+
+.blog-simple-logo {
+  display: block;
+  width: auto;
+  max-width: 190px;
+  max-height: 125px;
+  object-fit: contain;
+}
+
+.artigos-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 45px 30px 100px;
+}
+
+.artigos-introduction {
+  max-width: 800px;
+  margin: 0 auto 70px;
+  text-align: center;
+}
+
+.artigos-eyebrow {
+  margin: 0 0 14px;
+  color: #315b5d;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.artigos-introduction h1 {
+  margin: 0;
+  color: #2f2b2b;
+  font-family: Georgia, serif;
+  font-size: clamp(42px, 7vw, 78px);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.artigos-divider {
+  width: 90px;
+  height: 1px;
+  margin: 28px auto 24px;
+  background-color: #b58b52;
+}
+
+.artigos-lead {
+  max-width: 690px;
+  margin: 0 auto;
+  color: #315b5d;
+  font-family: 'Allura', cursive;
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.15;
+}
+
+.artigos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 45px 30px;
+}
+
+.artigo-card {
+  min-width: 0;
+}
+
+.artigo-image-placeholder {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  margin-bottom: 22px;
+  overflow: hidden;
+  background-color: #e2d9d2;
+}
+
+.artigo-image-placeholder::before,
+.artigo-image-placeholder::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 145%;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.artigo-image-placeholder::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.artigo-image-placeholder::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.artigo-image-placeholder span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(181, 139, 82, 0.7);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.artigo-content {
+  padding: 0 4px;
+}
+
+.artigo-category {
+  margin: 0 0 10px;
+  color: #b58b52;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.artigo-content h2 {
+  margin: 0 0 12px;
+  color: #315b5d;
+  font-family: Georgia, serif;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.artigo-summary {
+  margin: 0;
+  color: #5c5653;
+  font-family: Georgia, serif;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.artigo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #315b5d;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.artigo-link span {
+  font-size: 18px;
+  transition: transform 0.2s ease;
+}
+
+.artigo-link:hover,
+.artigo-link:focus-visible {
+  color: #b58b52;
+  outline: none;
+}
+
+.artigo-link:hover span,
+.artigo-link:focus-visible span {
+  transform: translateX(5px);
+}
+
+@media screen and (max-width: 900px) {
+  .artigos-main {
+    padding: 35px 25px 75px;
+  }
+
+  .artigos-introduction {
+    margin-bottom: 50px;
+  }
+
+  .artigos-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 25px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .blog-simple-header {
+    padding-top: 20px;
+  }
+
+  .blog-simple-logo {
+    max-width: 150px;
+    max-height: 100px;
+  }
+
+  .artigos-main {
+    padding: 25px 20px 65px;
+  }
+
+  .artigos-lead {
+    font-size: 34px;
+  }
+
+  .artigos-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .artigo-content h2 {
+    font-size: 23px;
+  }
+}

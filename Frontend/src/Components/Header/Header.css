@@ -1,0 +1,224 @@
+.site-header {
+  width: 100%;
+  background-color: #fdf7f7;
+}
+
+.site-logo-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.site-logo {
+  display: block;
+  width: auto;
+  max-height: 110px;
+}
+
+.site-navigation {
+  position: relative;
+  z-index: 20;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 15px 40px;
+  background-color: #b2d8d8;
+}
+
+.navigation-left,
+.navigation-right {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.header-nav-link,
+.products-menu-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  color: #333333;
+  background-color: transparent;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.header-nav-link:hover,
+.header-nav-link:focus-visible,
+.products-menu-trigger:hover,
+.products-menu-trigger:focus-visible {
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.12);
+  outline: none;
+}
+
+.header-nav-link.active,
+.products-menu-trigger.active {
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.22);
+  font-weight: 700;
+}
+
+.products-menu {
+  position: relative;
+}
+
+.products-menu-trigger {
+  appearance: none;
+}
+
+.products-menu-arrow {
+  font-size: 10px;
+  transition: transform 0.2s ease;
+}
+
+.products-menu.is-open .products-menu-arrow {
+  transform: rotate(180deg);
+}
+
+.products-submenu {
+  position: absolute;
+  top: calc(100% + 15px);
+  left: 0;
+  min-width: 190px;
+  margin: 0;
+  padding: 8px;
+  border-radius: 0 0 6px 6px;
+  background-color: #b2d8d8;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  list-style: none;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.products-menu::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 15px;
+}
+
+.products-menu:hover .products-submenu,
+.products-menu:focus-within .products-submenu,
+.products-menu.is-open .products-submenu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.submenu-link {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 4px;
+  color: #333333;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.submenu-link:hover,
+.submenu-link:focus-visible,
+.submenu-link.active {
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.18);
+  outline: none;
+}
+
+@media screen and (max-width: 768px) {
+  .site-navigation {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px 20px;
+  }
+
+  .navigation-left,
+  .navigation-right {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .products-menu {
+    width: auto;
+  }
+
+  .products-submenu {
+    position: static;
+    width: 100%;
+    max-height: 0;
+    min-width: 0;
+    margin-top: 8px;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: none;
+    opacity: 1;
+    pointer-events: none;
+    transform: none;
+    transition:
+      max-height 0.25s ease,
+      padding 0.25s ease;
+  }
+
+  .products-menu:hover .products-submenu,
+  .products-menu:focus-within .products-submenu {
+    max-height: 0;
+    padding: 0;
+    pointer-events: none;
+  }
+
+  .products-menu.is-open .products-submenu {
+    max-height: 400px;
+    padding: 8px;
+    pointer-events: auto;
+  }
+
+  .products-menu::after {
+    display: none;
+  }
+
+  .submenu-link {
+    text-align: center;
+  }
+
+  .site-logo {
+    max-height: 80px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .navigation-left,
+  .navigation-right {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .header-nav-link,
+  .products-menu,
+  .products-menu-trigger {
+    width: 100%;
+    justify-content: center;
+  }
+}

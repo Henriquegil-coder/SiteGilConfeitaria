@@ -1,0 +1,100 @@
+.bolos-page {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px;
+  color: #333333;
+}
+
+.bolos-header {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.bolos-header h1 {
+  margin: 0 0 12px;
+  font-family: Georgia, serif;
+  font-size: 42px;
+  font-weight: 500;
+}
+
+.bolos-header p {
+  margin: 0;
+  color: #666666;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+.bolos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+}
+
+.bolo-card {
+  min-width: 0;
+}
+
+.bolo-image-placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  margin-bottom: 14px;
+  background-color: #d9d9d9;
+  position: relative;
+  overflow: hidden;
+}
+
+.bolo-image-placeholder::before,
+.bolo-image-placeholder::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 125%;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.bolo-image-placeholder::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.bolo-image-placeholder::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.bolo-information h2 {
+  margin: 0 0 5px;
+  color: #555555;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.bolo-information p {
+  margin: 0;
+  color: #555555;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 900px) {
+  .bolos-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .bolos-page {
+    padding: 30px 20px;
+  }
+
+  .bolos-header h1 {
+    font-size: 34px;
+  }
+
+  .bolos-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+}

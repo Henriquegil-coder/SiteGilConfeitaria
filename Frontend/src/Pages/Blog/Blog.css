@@ -1,0 +1,210 @@
+@font-face {
+  font-family: 'Allura';
+  src: url('../../assets/Fonts/Allura-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.blog-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #fdf7f7;
+  color: #2f2b2b;
+}
+
+.blog-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 30px 130px;
+}
+
+.blog-entrance {
+  width: 100%;
+  max-width: 1600px;
+}
+
+.blog-logo-navigation {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Elementos mais próximos */
+  gap: clamp(10px, 3vw, 55px);
+
+  min-height: 720px;
+}
+
+/* Área clicável de cada elemento */
+.blog-logo-option {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 330px;
+  height: 620px;
+  padding: 20px;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Elementos SVG */
+.blog-logo-element {
+  display: block;
+  width: auto;
+  object-fit: contain;
+  transform-origin: center;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* Todos partem da mesma altura visual */
+.blog-logo-element {
+  display: block;
+  width: auto;
+  height: clamp(440px, 48vw, 620px);
+  object-fit: contain;
+  transform-origin: center;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* G e L ficam visualmente maiores */
+.blog-option-historia .blog-logo-element,
+.blog-option-artigos .blog-logo-element {
+  transform: scale(1.28);
+}
+
+/* A espátula permanece como referência */
+.blog-option-producao .blog-logo-element {
+  transform: scale(1);
+}
+
+
+/* Palavra única, centralizada abaixo da espátula */
+.blog-option-label {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  z-index: 3;
+  width: max-content;
+  max-width: 90%;
+  margin: 0;
+  color: #000000;
+  font-family: 'Allura', cursive;
+  font-size: clamp(44px, 4vw, 68px);
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+  transform: translateX(-50%);
+  transition:
+    color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* Elemento selecionado */
+.blog-logo-option.is-selected {
+  transform: translateY(-5px);
+}
+
+.blog-logo-option.is-selected .blog-logo-element {
+  transform: scale(1.04);
+  filter: drop-shadow(0 16px 12px rgba(47, 43, 43, 0.22));
+}
+
+/* Elementos não selecionados ficam com 55% de opacidade */
+.blog-logo-navigation:has(.blog-logo-option.is-selected)
+  .blog-logo-option:not(.is-selected)
+  .blog-logo-element {
+  opacity: 0.55;
+}
+
+/* Tablets */
+@media screen and (max-width: 1100px) {
+  .blog-main {
+    padding: 20px 20px 110px;
+  }
+
+  .blog-logo-navigation {
+    gap: 8px;
+    min-height: 600px;
+  }
+
+  .blog-logo-option {
+    width: 250px;
+    height: 520px;
+  }
+
+  /* G e L continuam maiores */
+  .blog-option-historia .blog-logo-element,
+  .blog-option-artigos .blog-logo-element {
+    width: 270px;
+    height: 470px;
+  }
+
+  /* Espátula mantém seu tamanho proporcional */
+  .blog-option-producao .blog-logo-element {
+    width: 145px;
+    height: 480px;
+  }
+
+  .blog-option-label {
+    bottom: -45px;
+  }
+}
+
+/* Celulares */
+@media screen and (max-width: 700px) {
+  .blog-main {
+    padding: 30px 20px 90px;
+  }
+
+  .blog-logo-navigation {
+    flex-direction: column;
+    gap: 20px;
+    min-height: auto;
+    padding-bottom: 60px;
+  }
+
+  .blog-logo-option {
+    width: min(100%, 330px);
+    height: 250px;
+  }
+
+  /* G e L */
+  .blog-option-historia .blog-logo-element,
+  .blog-option-artigos .blog-logo-element {
+    width: 240px;
+    height: 210px;
+  }
+
+  /* Espátula */
+  .blog-option-producao .blog-logo-element {
+    width: 115px;
+    height: 210px;
+  }
+
+  .blog-option-label {
+    bottom: -35px;
+    font-size: 25px;
+  }
+
+  /* Em telas de toque, mantemos os três elementos visíveis */
+  .blog-logo-navigation:has(.blog-logo-option.is-selected)
+    .blog-logo-option:not(.is-selected)
+    .blog-logo-element {
+    opacity: 1;
+  }
+}
