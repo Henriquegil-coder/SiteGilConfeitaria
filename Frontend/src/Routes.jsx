@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Home from './Pages/Home/Home';
+
 import Produtos from './Pages/Produtos/Produtos';
 import Bolos from './Pages/Bolos/Bolos';
 import Tortas from './Pages/Tortas/Tortas';
@@ -11,7 +12,11 @@ import Salgados from './Pages/Salgados/Salgados';
 import Blog from './Pages/Blog/Blog';
 import NossaHistoria from './Pages/NossaHistoria/NossaHistoria';
 import ProducaoArtesanal from './Pages/ProducaoArtesanal/ProducaoArtesanal';
+
 import Artigos from './Pages/Artigos/Artigos';
+import EditarArtigo from './Pages/Artigos/EditarArtigo';
+import VisualizarArtigo from './Pages/Artigos/VisualizarArtigo';
+
 
 import Cliente from './Pages/Cliente/Cliente';
 import Login from './Pages/Cliente/Login';
@@ -25,10 +30,15 @@ import RedesSociais from './Pages/RedesSociais/RedesSociais';
 import NaoEncontrada from './Pages/Error/NaoEncontrada';
 
 export function AppRoutes() {
+
   return (
     <BrowserRouter>
       <Routes>
+        {/* Home */}
+
         <Route path="/" element={<Home />} />
+
+        {/* Produtos */}
 
         <Route path="/produtos" element={<Produtos />} />
         <Route path="/produtos/bolos" element={<Bolos />} />
@@ -37,46 +47,35 @@ export function AppRoutes() {
         <Route path="/produtos/geleias" element={<Geleias />} />
         <Route path="/produtos/salgados" element={<Salgados />} />
 
+        {/* Blog */}
+
         <Route path="/blog" element={<Blog />} />
-        <Route
-          path="/blog/nossa-historia"
-          element={<NossaHistoria />}
-        />
-        <Route
-          path="/blog/producao-artesanal"
-          element={<ProducaoArtesanal />}
-        />
+        <Route path="/blog/nossa-historia" element={<NossaHistoria />} />
+        <Route path="/blog/producao-artesanal" element={<ProducaoArtesanal />} />
+
+        {/* Artigos */}
+
         <Route path="/blog/artigos" element={<Artigos />} />
+        <Route path="/blog/artigos/editar/:id" element={<EditarArtigo />} />
+        <Route path="/blog/artigos/visualizar/:id" element={<VisualizarArtigo />} />
+
+        {/* Área do cliente */}
 
         <Route path="/area-cliente" element={<Login />} />
-        <Route
-          path="/area-cliente/cadastro"
-          element={<Cadastro />}
-        />
-        <Route
-          path="/area-cliente/painel"
-          element={<Cliente />}
-        />
+        <Route path="/area-cliente/cadastro" element={<Cadastro />} />
+        <Route path="/area-cliente/painel" element={<Cliente />} />
+
+        {/* Páginas institucionais */}
 
         <Route path="/contato" element={<Contato />} />
+        <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
+        <Route path="/trabalhe-conosco" element={<TrabalheConosco />} />
+        <Route path="/redes-sociais" element={<RedesSociais />} />
 
-        <Route
-          path="/politica-de-privacidade"
-          element={<PoliticaPrivacidade />}
-        />
+        {/* Página 404 — deve ser sempre a última rota */}
 
-        <Route
-          path="/trabalhe-conosco"
-          element={<TrabalheConosco />}
-        />
-
-        <Route
-          path="/redes-sociais"
-          element={<RedesSociais />}
-        />
-
-        {/* Deve ser sempre a última rota */}
         <Route path="*" element={<NaoEncontrada />} />
+
       </Routes>
     </BrowserRouter>
   );

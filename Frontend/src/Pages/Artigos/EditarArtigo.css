@@ -1,0 +1,249 @@
+.editar-artigo-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #fdf7f7;
+  color: #2f2b2b;
+}
+
+.editar-artigo-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 55px 30px 100px;
+}
+
+.editar-artigo-topbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 42px;
+}
+
+.editar-artigo-eyebrow {
+  margin: 0 0 12px;
+  color: #b58b52;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.editar-artigo-topbar h1 {
+  margin: 0;
+  color: #315b5d;
+  font-family: Georgia, serif;
+  font-size: clamp(40px, 6vw, 68px);
+  font-weight: 400;
+  line-height: 1.08;
+}
+
+.editar-artigo-back-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid #315b5d;
+  border-radius: 24px;
+  color: #315b5d;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.editar-artigo-back-link:hover,
+.editar-artigo-back-link:focus-visible {
+  background-color: #315b5d;
+  color: #ffffff;
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.editar-artigo-card {
+  padding: 38px;
+  border: 1px solid rgba(49, 91, 93, 0.12);
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 12px 35px rgba(47, 43, 43, 0.06);
+}
+
+.editar-artigo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.editar-artigo-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.editar-artigo-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.editar-artigo-field label {
+  color: #315b5d;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.editar-artigo-field input,
+.editar-artigo-field select,
+.editar-artigo-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #cbd8d8;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #2f2b2b;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  outline: none;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.editar-artigo-field input,
+.editar-artigo-field select {
+  height: 48px;
+  padding: 0 14px;
+}
+
+.editar-artigo-field textarea {
+  min-height: 110px;
+  padding: 14px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.editar-artigo-field textarea[name='conteudo'] {
+  min-height: 280px;
+}
+
+.editar-artigo-field input::placeholder,
+.editar-artigo-field textarea::placeholder {
+  color: #a4aeae;
+}
+
+.editar-artigo-field input:focus,
+.editar-artigo-field select:focus,
+.editar-artigo-field textarea:focus {
+  border-color: #5d9ba4;
+  box-shadow: 0 0 0 3px rgba(93, 155, 164, 0.16);
+}
+
+.editar-artigo-field small {
+  color: #8c9999;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+
+.editar-artigo-success {
+  margin: 0;
+  padding: 14px 16px;
+  border: 1px solid #b9ddcc;
+  border-radius: 8px;
+  background-color: #edf8f2;
+  color: #38745d;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.editar-artigo-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  padding-top: 8px;
+}
+
+.editar-artigo-preview-button,
+.editar-artigo-save-button {
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.editar-artigo-preview-button {
+  border: 1px solid #315b5d;
+  background-color: #ffffff;
+  color: #315b5d;
+}
+
+.editar-artigo-save-button {
+  border: 1px solid #315b5d;
+  background-color: #315b5d;
+  color: #ffffff;
+}
+
+.editar-artigo-preview-button:hover,
+.editar-artigo-preview-button:focus-visible {
+  background-color: #edf4f4;
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.editar-artigo-save-button:hover,
+.editar-artigo-save-button:focus-visible {
+  border-color: #244749;
+  background-color: #244749;
+  outline: none;
+  transform: translateY(-2px);
+}
+
+@media screen and (max-width: 700px) {
+  .editar-artigo-main {
+    padding: 35px 20px 65px;
+  }
+
+  .editar-artigo-topbar {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 32px;
+  }
+
+  .editar-artigo-back-link {
+    width: 100%;
+  }
+
+  .editar-artigo-card {
+    padding: 25px 20px;
+  }
+
+  .editar-artigo-form-row {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .editar-artigo-actions {
+    flex-direction: column-reverse;
+  }
+
+  .editar-artigo-preview-button,
+  .editar-artigo-save-button {
+    width: 100%;
+  }
+}
