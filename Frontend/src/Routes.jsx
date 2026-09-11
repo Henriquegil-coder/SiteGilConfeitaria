@@ -16,11 +16,13 @@ import Artigos from './Pages/Artigos/Artigos';
 import Cliente from './Pages/Cliente/Cliente';
 import Login from './Pages/Cliente/Login';
 import Cadastro from './Pages/Cliente/Cadastro';
+
 import Contato from './Pages/Contato/Contato';
 import PoliticaPrivacidade from './Pages/PoliticaPrivacidade/PoliticaPrivacidade';
 import TrabalheConosco from './Pages/TrabalheConosco/TrabalheConosco';
+import RedesSociais from './Pages/RedesSociais/RedesSociais';
 
-
+import NaoEncontrada from './Pages/Error/NaoEncontrada';
 
 export function AppRoutes() {
   return (
@@ -36,17 +38,45 @@ export function AppRoutes() {
         <Route path="/produtos/salgados" element={<Salgados />} />
 
         <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/nossa-historia" element={<NossaHistoria />}/>
-        <Route path="/blog/producao-artesanal" element={<ProducaoArtesanal />}/>
+        <Route
+          path="/blog/nossa-historia"
+          element={<NossaHistoria />}
+        />
+        <Route
+          path="/blog/producao-artesanal"
+          element={<ProducaoArtesanal />}
+        />
         <Route path="/blog/artigos" element={<Artigos />} />
 
         <Route path="/area-cliente" element={<Login />} />
-        <Route path="/area-cliente/cadastro"element={<Cadastro />}/>
-        <Route path="/area-cliente/painel" element={<Cliente />}/>
+        <Route
+          path="/area-cliente/cadastro"
+          element={<Cadastro />}
+        />
+        <Route
+          path="/area-cliente/painel"
+          element={<Cliente />}
+        />
+
         <Route path="/contato" element={<Contato />} />
-        <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
-        <Route path="/trabalhe-conosco" element={<TrabalheConosco />} />
-        
+
+        <Route
+          path="/politica-de-privacidade"
+          element={<PoliticaPrivacidade />}
+        />
+
+        <Route
+          path="/trabalhe-conosco"
+          element={<TrabalheConosco />}
+        />
+
+        <Route
+          path="/redes-sociais"
+          element={<RedesSociais />}
+        />
+
+        {/* Deve ser sempre a última rota */}
+        <Route path="*" element={<NaoEncontrada />} />
       </Routes>
     </BrowserRouter>
   );
