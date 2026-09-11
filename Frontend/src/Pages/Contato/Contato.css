@@ -1,0 +1,353 @@
+.contato-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #fdf7f7;
+  color: #2f2b2b;
+}
+
+.contato-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 60px 30px 100px;
+}
+
+.contato-introduction {
+  max-width: 750px;
+  margin: 0 auto 65px;
+  text-align: center;
+}
+
+.contato-eyebrow {
+  margin: 0 0 13px;
+  color: #b58b52;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.contato-introduction h1 {
+  margin: 0;
+  color: #315b5d;
+  font-family: Georgia, serif;
+  font-size: clamp(44px, 7vw, 78px);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.contato-divider {
+  width: 90px;
+  height: 1px;
+  margin: 28px auto 23px;
+  background-color: #b58b52;
+}
+
+.contato-lead {
+  margin: 0 0 12px;
+  color: #315b5d;
+  font-family: 'Allura', cursive;
+  font-size: clamp(32px, 4vw, 50px);
+  line-height: 1.15;
+}
+
+.contato-description {
+  max-width: 560px;
+  margin: 0 auto;
+  color: #687778;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.contato-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.75fr) minmax(0, 1.25fr);
+  gap: 70px;
+  align-items: start;
+}
+
+.contato-information {
+  padding-top: 12px;
+}
+
+.contato-information h2 {
+  margin: 0 0 15px;
+  color: #315b5d;
+  font-family: Georgia, serif;
+  font-size: 34px;
+  font-weight: 400;
+}
+
+.contato-information > p {
+  max-width: 340px;
+  margin: 0;
+  color: #687778;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.contato-information-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 42px;
+}
+
+.contato-information-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.contato-information-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(181, 139, 82, 0.7);
+  border-radius: 50%;
+  color: #315b5d;
+  font-family: Georgia, serif;
+  font-size: 17px;
+}
+
+.contato-information-item h3 {
+  margin: 0 0 5px;
+  color: #315b5d;
+  font-family: Georgia, serif;
+  font-size: 19px;
+  font-weight: 400;
+}
+
+.contato-information-item p,
+.contato-information-item a {
+  margin: 0;
+  color: #687778;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.contato-information-item a:hover,
+.contato-information-item a:focus-visible {
+  color: #b58b52;
+  text-decoration: underline;
+  outline: none;
+}
+
+.contato-form-section {
+  padding: 35px;
+  border: 1px solid rgba(49, 91, 93, 0.1);
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 12px 35px rgba(47, 43, 43, 0.06);
+}
+
+.contato-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.contato-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.contato-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contato-form-field label {
+  color: #315b5d;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.contato-form-field input,
+.contato-form-field select,
+.contato-form-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #cbd8d8;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #2f2b2b;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  outline: none;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.contato-form-field input,
+.contato-form-field select {
+  height: 48px;
+  padding: 0 14px;
+}
+
+.contato-form-field textarea {
+  min-height: 145px;
+  padding: 14px;
+  resize: vertical;
+}
+
+.contato-form-field input::placeholder,
+.contato-form-field textarea::placeholder {
+  color: #a4aeae;
+}
+
+.contato-form-field select {
+  color: #687778;
+  cursor: pointer;
+}
+
+.contato-form-field input:focus,
+.contato-form-field select:focus,
+.contato-form-field textarea:focus {
+  border-color: #5d9ba4;
+  box-shadow: 0 0 0 3px rgba(93, 155, 164, 0.16);
+}
+
+.contato-submit-button,
+.contato-success-message button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  align-self: flex-start;
+  padding: 14px 23px;
+  border: none;
+  border-radius: 25px;
+  background-color: #315b5d;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.contato-submit-button span {
+  font-size: 19px;
+  font-weight: 400;
+  transition: transform 0.25s ease;
+}
+
+.contato-submit-button:hover,
+.contato-submit-button:focus-visible,
+.contato-success-message button:hover,
+.contato-success-message button:focus-visible {
+  background-color: #244749;
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.contato-submit-button:hover span {
+  transform: translateX(5px);
+}
+
+.contato-success-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 390px;
+  text-align: center;
+}
+
+.contato-success-message > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 22px;
+  border-radius: 50%;
+  background-color: #e9f6f0;
+  color: #43856f;
+  font-size: 28px;
+}
+
+.contato-success-message h2 {
+  margin: 0 0 12px;
+  color: #315b5d;
+  font-family: Georgia, serif;
+  font-size: 31px;
+  font-weight: 400;
+}
+
+.contato-success-message p {
+  max-width: 330px;
+  margin: 0 0 25px;
+  color: #687778;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media screen and (max-width: 850px) {
+  .contato-main {
+    padding: 45px 25px 75px;
+  }
+
+  .contato-layout {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .contato-information {
+    padding-top: 0;
+    text-align: center;
+  }
+
+  .contato-information > p {
+    margin: 0 auto;
+  }
+
+  .contato-information-list {
+    align-items: center;
+  }
+
+  .contato-information-item {
+    width: 280px;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .contato-main {
+    padding: 35px 20px 65px;
+  }
+
+  .contato-introduction {
+    margin-bottom: 45px;
+  }
+
+  .contato-form-section {
+    padding: 25px 20px;
+  }
+
+  .contato-form-row {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .contato-submit-button {
+    width: 100%;
+  }
+}

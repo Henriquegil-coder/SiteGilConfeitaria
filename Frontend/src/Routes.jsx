@@ -16,6 +16,11 @@ import Artigos from './Pages/Artigos/Artigos';
 import Cliente from './Pages/Cliente/Cliente';
 import Login from './Pages/Cliente/Login';
 import Cadastro from './Pages/Cliente/Cadastro';
+import Contato from './Pages/Contato/Contato';
+import PoliticaPrivacidade from './Pages/PoliticaPrivacidade/PoliticaPrivacidade';
+import TrabalheConosco from './Pages/TrabalheConosco/TrabalheConosco';
+
+
 
 export function AppRoutes() {
   return (
@@ -38,7 +43,10 @@ export function AppRoutes() {
         <Route path="/area-cliente" element={<Login />} />
         <Route path="/area-cliente/cadastro"element={<Cadastro />}/>
         <Route path="/area-cliente/painel" element={<Cliente />}/>
-
+        <Route path="/contato" element={<Contato />} />
+        <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
+        <Route path="/trabalhe-conosco" element={<TrabalheConosco />} />
+        
       </Routes>
     </BrowserRouter>
   );
