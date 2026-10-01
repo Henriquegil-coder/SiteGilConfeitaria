@@ -1,11 +1,3 @@
-@font-face {
-  font-family: 'Allura';
-  src: url('../../assets/Fonts/Allura-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 .artigos-page {
   min-height: 100vh;
   display: flex;
@@ -14,64 +6,35 @@
   color: #2f2b2b;
 }
 
-.blog-simple-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 28px 20px 18px;
-}
-
-.blog-simple-logo-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.25s ease;
-}
-
-.blog-simple-logo-link:hover,
-.blog-simple-logo-link:focus-visible {
-  transform: scale(1.04);
-  outline: none;
-}
-
-.blog-simple-logo {
-  display: block;
-  width: auto;
-  max-width: 190px;
-  max-height: 125px;
-  object-fit: contain;
-}
-
 .artigos-main {
   flex: 1;
   width: 100%;
-  max-width: 1300px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 45px 30px 100px;
+  padding: 60px 30px 100px;
 }
 
 .artigos-introduction {
-  max-width: 800px;
-  margin: 0 auto 70px;
+  max-width: 760px;
+  margin: 0 auto 65px;
   text-align: center;
 }
 
 .artigos-eyebrow {
   margin: 0 0 14px;
-  color: #315b5d;
+  color: #b58b52;
   font-family: Arial, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .artigos-introduction h1 {
   margin: 0;
-  color: #2f2b2b;
+  color: #315b5d;
   font-family: Georgia, serif;
-  font-size: clamp(42px, 7vw, 78px);
+  font-size: clamp(44px, 7vw, 76px);
   font-weight: 400;
   line-height: 1.05;
 }
@@ -79,171 +42,267 @@
 .artigos-divider {
   width: 90px;
   height: 1px;
-  margin: 28px auto 24px;
+  margin: 28px auto 23px;
   background-color: #b58b52;
 }
 
 .artigos-lead {
-  max-width: 690px;
-  margin: 0 auto;
+  margin: 0 0 14px;
   color: #315b5d;
   font-family: 'Allura', cursive;
-  font-size: clamp(30px, 4vw, 48px);
+  font-size: clamp(32px, 4vw, 50px);
   line-height: 1.15;
 }
 
-.artigos-grid {
+.artigos-description {
+  max-width: 610px;
+  margin: 0 auto;
+  color: #687778;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.artigos-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 45px 30px;
+  gap: 28px;
 }
 
 .artigo-card {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
-}
-
-.artigo-image-placeholder {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  margin-bottom: 22px;
   overflow: hidden;
-  background-color: #e2d9d2;
+  border: 1px solid rgba(49, 91, 93, 0.12);
+  border-radius: 14px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 24px rgba(47, 43, 43, 0.04);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
 }
 
-.artigo-image-placeholder::before,
-.artigo-image-placeholder::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 1px;
-  height: 145%;
-  background-color: rgba(255, 255, 255, 0.75);
+.artigo-card:hover {
+  border-color: rgba(181, 139, 82, 0.65);
+  box-shadow: 0 14px 30px rgba(47, 43, 43, 0.1);
+  transform: translateY(-5px);
 }
 
-.artigo-image-placeholder::before {
-  transform: translate(-50%, -50%) rotate(45deg);
+.artigo-card-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  padding: 24px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(49, 91, 93, 0.96),
+      rgba(93, 155, 164, 0.78)
+    );
+  color: #ffffff;
 }
 
-.artigo-image-placeholder::after {
-  transform: translate(-50%, -50%) rotate(-45deg);
+.artigo-card-image span {
+  font-family: Georgia, serif;
+  font-size: clamp(54px, 6vw, 80px);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 0.9;
 }
 
-.artigo-image-placeholder span {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 46px;
-  height: 46px;
-  border: 1px solid rgba(181, 139, 82, 0.7);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
+.artigo-card-image small {
+  margin-top: 14px;
+  font-family: 'Allura', cursive;
+  font-size: 29px;
 }
 
-.artigo-content {
-  padding: 0 4px;
+.artigo-card-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 26px 25px 25px;
 }
 
-.artigo-category {
-  margin: 0 0 10px;
+.artigo-card-category {
+  margin: 0 0 12px;
   color: #b58b52;
   font-family: Arial, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
-.artigo-content h2 {
-  margin: 0 0 12px;
+.artigo-card h2 {
+  margin: 0;
   color: #315b5d;
   font-family: Georgia, serif;
-  font-size: 25px;
+  font-size: 26px;
   font-weight: 400;
   line-height: 1.2;
 }
 
-.artigo-summary {
-  margin: 0;
-  color: #5c5653;
-  font-family: Georgia, serif;
-  font-size: 16px;
+.artigo-card-summary {
+  margin: 17px 0 20px;
+  color: #687778;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
   line-height: 1.65;
 }
 
-.artigo-link {
+.artigo-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 17px;
+  border-top: 1px solid rgba(181, 139, 82, 0.3);
+  color: #8c9999;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+
+.artigo-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 22px;
+}
+
+.artigo-read-link {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 18px;
-  padding: 0;
-  border: none;
-  background: transparent;
+  gap: 9px;
   color: #315b5d;
-  cursor: pointer;
   font-family: Arial, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  text-decoration: none;
 }
 
-.artigo-link span {
-  font-size: 18px;
-  transition: transform 0.2s ease;
+.artigo-read-link span {
+  font-size: 19px;
+  transition: transform 0.25s ease;
 }
 
-.artigo-link:hover,
-.artigo-link:focus-visible {
+.artigo-read-link:hover,
+.artigo-read-link:focus-visible {
   color: #b58b52;
   outline: none;
 }
 
-.artigo-link:hover span,
-.artigo-link:focus-visible span {
+.artigo-read-link:hover span,
+.artigo-read-link:focus-visible span {
   transform: translateX(5px);
 }
 
-@media screen and (max-width: 900px) {
+.artigo-edit-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0 13px;
+  border: 1px solid rgba(49, 91, 93, 0.45);
+  border-radius: 18px;
+  color: #315b5d;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.artigo-edit-link:hover,
+.artigo-edit-link:focus-visible {
+  background-color: #315b5d;
+  color: #ffffff;
+  outline: none;
+}
+
+@media screen and (max-width: 950px) {
   .artigos-main {
-    padding: 35px 25px 75px;
+    padding: 50px 25px 80px;
   }
 
-  .artigos-introduction {
-    margin-bottom: 50px;
-  }
-
-  .artigos-grid {
+  .artigos-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 40px 25px;
+  }
+
+  .artigo-card:last-child {
+    grid-column: 1 / -1;
+    max-width: calc(50% - 14px);
+    margin: 0 auto;
   }
 }
 
-@media screen and (max-width: 700px) {
-  .blog-simple-header {
-    padding-top: 20px;
-  }
-
-  .blog-simple-logo {
-    max-width: 150px;
-    max-height: 100px;
-  }
-
+@media screen and (max-width: 620px) {
   .artigos-main {
-    padding: 25px 20px 65px;
+    padding: 35px 20px 65px;
+  }
+
+  .artigos-introduction {
+    margin-bottom: 45px;
   }
 
   .artigos-lead {
     font-size: 34px;
   }
 
-  .artigos-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+  .artigos-description {
+    font-size: 15px;
   }
 
-  .artigo-content h2 {
-    font-size: 23px;
+  .artigos-list {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .artigo-card:last-child {
+    grid-column: auto;
+    max-width: none;
+  }
+
+  .artigo-card-image {
+    min-height: 190px;
+  }
+
+  .artigo-card-content {
+    padding: 24px 20px 22px;
+  }
+
+  .artigo-card h2 {
+    font-size: 24px;
+  }
+
+  .artigo-card-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .artigo-read-link {
+    justify-content: center;
+    min-height: 42px;
+    border-radius: 22px;
+    background-color: #315b5d;
+    color: #ffffff;
+  }
+
+  .artigo-read-link:hover,
+  .artigo-read-link:focus-visible {
+    background-color: #244749;
+    color: #ffffff;
+  }
+
+  .artigo-edit-link {
+    width: 100%;
+    box-sizing: border-box;
   }
 }

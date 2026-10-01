@@ -151,6 +151,7 @@ html, body, #root {
 
 .left-arrow {
   left: 40px;
+  transform: translateY(-50%) scaleX(-1);
 }
 
 .right-arrow {

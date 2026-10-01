@@ -1,0 +1,124 @@
+.error-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #fdf7f7;
+  color: #2f2b2b;
+}
+
+.error-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 24px 100px;
+}
+
+.error-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 650px;
+  text-align: center;
+}
+
+.error-image {
+  display: block;
+  width: min(100%, 390px);
+  max-height: 300px;
+  object-fit: contain;
+}
+
+.error-divider {
+  width: 90px;
+  height: 1px;
+  margin: 28px auto 22px;
+  background-color: #b58b52;
+}
+
+.error-code {
+  margin: 0 0 10px;
+  color: #b58b52;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.error-content h1 {
+  margin: 0 0 18px;
+  color: #315b5d;
+  font-family: Georgia, serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.error-message {
+  max-width: 480px;
+  margin: 0 auto;
+  color: #687778;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.error-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 32px;
+  padding: 14px 23px;
+  border-radius: 25px;
+  background-color: #315b5d;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.error-home-link span {
+  font-size: 19px;
+  transition: transform 0.25s ease;
+}
+
+.error-home-link:hover,
+.error-home-link:focus-visible {
+  background-color: #244749;
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.error-home-link:hover span,
+.error-home-link:focus-visible span {
+  transform: translateX(5px);
+}
+
+@media screen and (max-width: 600px) {
+  .error-main {
+    padding: 50px 20px 70px;
+  }
+
+  .error-image {
+    width: min(100%, 290px);
+    max-height: 230px;
+  }
+
+  .error-content h1 {
+    font-size: 34px;
+  }
+
+  .error-message {
+    font-size: 15px;
+  }
+
+  .error-home-link {
+    width: 100%;
+    justify-content: center;
+  }
+}

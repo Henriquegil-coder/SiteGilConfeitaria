@@ -1,76 +1,49 @@
 import { Link } from 'react-router-dom';
 
+import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
-import logo from '../../assets/images/logo.png';
 
 import './Artigos.css';
 
 const artigos = [
   {
     id: 1,
-    categoria: 'Ingredientes',
-    titulo: 'O cuidado começa na escolha',
+    categoria: 'Nossa história',
+    titulo: 'O cuidado por trás de cada criação',
     resumo:
-      'Conheça a importância de escolher bons ingredientes para criar sabores equilibrados e especiais.',
+      'Conheça um pouco mais sobre os valores e as escolhas que fazem parte da história da GIL Confeitaria.',
+    data: '10 de setembro de 2026',
+    autor: 'GIL Confeitaria',
   },
   {
     id: 2,
-    categoria: 'Bastidores',
-    titulo: 'O que existe por trás de cada receita',
+    categoria: 'Produção artesanal',
+    titulo: 'A importância do tempo na confeitaria',
     resumo:
-      'Um olhar sobre os processos, os detalhes e o tempo dedicado à produção artesanal.',
+      'Descubra por que o tempo, a paciência e o cuidado são ingredientes importantes em uma produção artesanal.',
+    data: '8 de setembro de 2026',
+    autor: 'GIL Confeitaria',
   },
   {
     id: 3,
-    categoria: 'Sabores',
-    titulo: 'Memórias que também têm sabor',
+    categoria: 'Artigos',
+    titulo: 'Como escolher um doce para cada ocasião',
     resumo:
-      'Descubra como lembranças e afetos inspiram nossas criações na confeitaria.',
-  },
-  {
-    id: 4,
-    categoria: 'Confeitaria',
-    titulo: 'Entre massas, cremes e coberturas',
-    resumo:
-      'Uma conversa sobre combinações, texturas e possibilidades dentro da confeitaria.',
-  },
-  {
-    id: 5,
-    categoria: 'Histórias',
-    titulo: 'Receitas que atravessam gerações',
-    resumo:
-      'Como o conhecimento passado de pessoa para pessoa mantém viva a essência do feito à mão.',
-  },
-  {
-    id: 6,
-    categoria: 'Dicas da GIL',
-    titulo: 'Pequenos detalhes, grandes diferenças',
-    resumo:
-      'Alguns cuidados que transformam o preparo e a apresentação de uma receita.',
+      'Algumas ideias para escolher doces e sobremesas de acordo com o momento que você deseja celebrar.',
+    data: '5 de setembro de 2026',
+    autor: 'GIL Confeitaria',
   },
 ];
 
 export default function Artigos() {
   return (
     <div className="artigos-page">
-      <header className="blog-simple-header">
-        <Link
-          to="/blog"
-          className="blog-simple-logo-link"
-          aria-label="Voltar para o Blog"
-        >
-          <img
-            src={logo}
-            alt="GIL Confeitaria"
-            className="blog-simple-logo"
-          />
-        </Link>
-      </header>
+      <Header />
 
       <main className="artigos-main">
-        <section className="artigos-introduction">
+        <header className="artigos-introduction">
           <p className="artigos-eyebrow">
-            Caderno de sabores
+            Conteúdos da GIL
           </p>
 
           <h1>Artigos</h1>
@@ -78,46 +51,72 @@ export default function Artigos() {
           <div className="artigos-divider"></div>
 
           <p className="artigos-lead">
-            Histórias, ingredientes e ideias que fazem parte do
-            universo da Gil Confeitaria.
+            Histórias, sabores e descobertas para compartilhar.
           </p>
-        </section>
+
+          <p className="artigos-description">
+            Conheça melhor a GIL Confeitaria, nosso modo de trabalhar
+            e tudo o que inspira nossas criações.
+          </p>
+        </header>
 
         <section
-          className="artigos-grid"
+          className="artigos-list"
           aria-label="Lista de artigos"
         >
           {artigos.map((artigo) => (
-            <article className="artigo-card" key={artigo.id}>
-              <div className="artigo-image-placeholder">
-                <span aria-hidden="true"></span>
+            <article
+              className="artigo-card"
+              key={artigo.id}
+            >
+              <div
+                className="artigo-card-image"
+                aria-hidden="true"
+              >
+                <span>GIL</span>
+                <small>Confeitaria</small>
               </div>
 
-              <div className="artigo-content">
-                <p className="artigo-category">
+              <div className="artigo-card-content">
+                <p className="artigo-card-category">
                   {artigo.categoria}
                 </p>
 
                 <h2>{artigo.titulo}</h2>
 
-                <p className="artigo-summary">
+                <p className="artigo-card-summary">
                   {artigo.resumo}
                 </p>
 
-                <button
-                  type="button"
-                  className="artigo-link"
-                >
-                  Ler artigo
-                  <span aria-hidden="true">→</span>
-                </button>
+                <div className="artigo-card-meta">
+                  <span>{artigo.autor}</span>
+                  <span aria-hidden="true">•</span>
+                  <time>{artigo.data}</time>
+                </div>
+
+                <div className="artigo-card-actions">
+                  <Link
+                    to={`/blog/artigos/visualizar/${artigo.id}`}
+                    className="artigo-read-link"
+                  >
+                    Ler artigo
+                    <span aria-hidden="true">→</span>
+                  </Link>
+
+                  <Link
+                    to={`/blog/artigos/editar/${artigo.id}`}
+                    className="artigo-edit-link"
+                  >
+                    Editar
+                  </Link>
+                </div>
               </div>
             </article>
           ))}
         </section>
       </main>
 
-      <Footer blogPage />
+      <Footer />
     </div>
   );
 }

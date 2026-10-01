@@ -1,0 +1,236 @@
+.redes-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #fdf7f7;
+  color: #2f2b2b;
+}
+
+.redes-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 60px 30px 100px;
+}
+
+.redes-introduction {
+  max-width: 760px;
+  margin: 0 auto 65px;
+  text-align: center;
+}
+
+.redes-eyebrow {
+  margin: 0 0 14px;
+  color: #b58b52;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.redes-introduction h1 {
+  margin: 0;
+  color: #315b5d;
+  font-family: Georgia, serif;
+  font-size: clamp(44px, 7vw, 76px);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.redes-divider {
+  width: 90px;
+  height: 1px;
+  margin: 28px auto 23px;
+  background-color: #b58b52;
+}
+
+.redes-lead {
+  margin: 0 0 14px;
+  color: #315b5d;
+  font-family: 'Allura', cursive;
+  font-size: clamp(32px, 4vw, 50px);
+  line-height: 1.15;
+}
+
+.redes-description {
+  max-width: 610px;
+  margin: 0 auto;
+  color: #687778;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.redes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.rede-card {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 28px;
+  border: 1px solid rgba(49, 91, 93, 0.12);
+  border-radius: 14px;
+  background-color: #ffffff;
+  color: inherit;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(47, 43, 43, 0.04);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.rede-card:hover,
+.rede-card:focus-visible {
+  border-color: rgba(181, 139, 82, 0.65);
+  box-shadow: 0 14px 30px rgba(47, 43, 43, 0.09);
+  outline: none;
+  transform: translateY(-3px);
+}
+
+.rede-symbol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: lowercase;
+}
+
+.rede-symbol-ig {
+  background: linear-gradient(
+    135deg,
+    #f5b541,
+    #e1306c 55%,
+    #833ab4
+  );
+}
+
+.rede-symbol-wa {
+  background-color: #43856f;
+}
+
+.rede-symbol-fb {
+  background-color: #4267a9;
+}
+
+.rede-card-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.rede-card-name {
+  margin-bottom: 5px;
+  color: #315b5d;
+  font-family: Georgia, serif;
+  font-size: 25px;
+  line-height: 1.2;
+}
+
+.rede-card-description {
+  color: #687778;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.rede-card-address {
+  margin-top: 8px;
+  color: #b58b52;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.rede-card-arrow {
+  color: #315b5d;
+  font-size: 27px;
+  line-height: 1;
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.rede-card:hover .rede-card-arrow,
+.rede-card:focus-visible .rede-card-arrow {
+  color: #b58b52;
+  transform: translate(3px, -3px);
+}
+
+.redes-closing {
+  margin-top: 65px;
+  text-align: center;
+}
+
+.redes-closing p {
+  margin: 0;
+  color: #315b5d;
+  font-family: 'Allura', cursive;
+  font-size: clamp(30px, 4vw, 46px);
+}
+
+@media screen and (max-width: 600px) {
+  .redes-main {
+    padding: 35px 20px 65px;
+  }
+
+  .redes-introduction {
+    margin-bottom: 45px;
+  }
+
+  .redes-lead {
+    font-size: 34px;
+  }
+
+  .redes-description {
+    font-size: 15px;
+  }
+
+  .rede-card {
+    grid-template-columns: 52px minmax(0, 1fr) auto;
+    gap: 15px;
+    padding: 20px 16px;
+  }
+
+  .rede-symbol {
+    width: 48px;
+    height: 48px;
+    font-size: 17px;
+  }
+
+  .rede-card-name {
+    font-size: 21px;
+  }
+
+  .rede-card-description {
+    font-size: 13px;
+  }
+
+  .rede-card-address {
+    font-size: 12px;
+  }
+
+  .rede-card-arrow {
+    font-size: 22px;
+  }
+
+  .redes-closing {
+    margin-top: 45px;
+  }
+}
+
