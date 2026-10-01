@@ -5,9 +5,9 @@ import Layout from '../../Components/Layout/Layout';
 
 import './Home.css';
 
-import banner1 from '../../assets/images/banner-principal.png';
-import leftArrowIcon from '../../assets/images/seta-esquerda.svg';
-import rightArrowIcon from '../../assets/images/seta-direita.svg';
+import banner1 from '../../assets/Images/banner1.png';
+import leftArrowIcon from '../../assets/Images/seta-esquerda.svg';
+import rightArrowIcon from '../../assets/Images/seta-direita.svg';
 
 
 export default function Home() {
