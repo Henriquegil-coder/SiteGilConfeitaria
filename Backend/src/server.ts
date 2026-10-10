@@ -3,6 +3,8 @@ import "express-async-errors";
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import { prisma } from "./lib/prisma";
+import { authRouter } from "./routes/auth";
+import { autenticar } from "./middlewares/autenticar";
 
 const app = express();
 
@@ -11,6 +13,12 @@ app.use(express.json());
 
 app.get("/saude", (_req, res) => {
   res.json({ ok: true });
+});
+
+app.use("/auth", authRouter);
+
+app.get("/admin/ping", autenticar, (_req, res) => {
+  res.json({ ok: true, usuarioId: res.locals.usuarioId });
 });
 
 app.get("/produtos", async (_req, res) => {
