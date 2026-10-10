@@ -33,7 +33,7 @@ model Produto {
   nome          String
   descricao     String
   precoCentavos Int
-  imagem        String
+  imagem        String?
   ativo         Boolean    @default(true)
   categoriaId   Int?
   categoria     Categoria? @relation(fields: [categoriaId], references: [id])
@@ -45,6 +45,7 @@ model Artigo {
   id           Int       @id @default(autoincrement())
   titulo       String
   slug         String    @unique
+  categoria    String    @default("Artigos")
   resumo       String
   conteudo     String
   imagemCapa   String?

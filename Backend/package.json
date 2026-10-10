@@ -7,13 +7,13 @@
   "author": "",
   "type": "commonjs",
   "main": "index.js",
-  "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "build": "prisma generate && tsc",
-    "start": "node dist/server.js",
-    "lint": "oxlint",
-    "criar-admin": "ts-node --transpile-only src/scripts/criar-admin.ts"
-  },
+   "scripts": {
+  "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+  "build": "prisma generate && tsc",
+  "start": "node dist/server.js",
+  "criar-admin": "ts-node --transpile-only src/scripts/criar-admin.ts",
+  "criar-categorias": "ts-node --transpile-only src/scripts/criar-categorias.ts"
+},
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",
     "@prisma/client": "^7.10.0",

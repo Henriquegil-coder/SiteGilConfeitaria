@@ -2,8 +2,10 @@ import "dotenv/config";
 import "express-async-errors";
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
-import { prisma } from "./lib/prisma";
 import { authRouter } from "./routes/auth";
+import { categoriasRouter } from "./routes/categorias";
+import { produtosRouter } from "./routes/produtos";
+import { artigosRouter } from "./routes/artigos";
 import { autenticar } from "./middlewares/autenticar";
 
 const app = express();
@@ -16,45 +18,12 @@ app.get("/saude", (_req, res) => {
 });
 
 app.use("/auth", authRouter);
+app.use("/categorias", categoriasRouter);
+app.use("/produtos", produtosRouter);
+app.use("/artigos", artigosRouter);
 
 app.get("/admin/ping", autenticar, (_req, res) => {
   res.json({ ok: true, usuarioId: res.locals.usuarioId });
-});
-
-app.get("/produtos", async (_req, res) => {
-  const produtos = await prisma.produto.findMany({
-    where: { ativo: true },
-    include: { categoria: true },
-    orderBy: { nome: "asc" },
-  });
-  res.json(produtos);
-});
-
-app.get("/artigos", async (_req, res) => {
-  const artigos = await prisma.artigo.findMany({
-    where: { publicado: true },
-    select: {
-      id: true,
-      titulo: true,
-      slug: true,
-      resumo: true,
-      imagemCapa: true,
-      publicadoEm: true,
-    },
-    orderBy: { publicadoEm: "desc" },
-  });
-  res.json(artigos);
-});
-
-app.get("/artigos/:slug", async (req, res) => {
-  const artigo = await prisma.artigo.findFirst({
-    where: { slug: req.params.slug, publicado: true },
-  });
-  if (!artigo) {
-    res.status(404).json({ erro: "Artigo não encontrado" });
-    return;
-  }
-  res.json(artigo);
 });
 
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {

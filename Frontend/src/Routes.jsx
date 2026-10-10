@@ -17,10 +17,8 @@ import Artigos from './Pages/Artigos/Artigos';
 import EditarArtigo from './Pages/Artigos/EditarArtigo';
 import VisualizarArtigo from './Pages/Artigos/VisualizarArtigo';
 
-
-import Cliente from './Pages/Cliente/Cliente';
-import Login from './Pages/Cliente/Login';
-import Cadastro from './Pages/Cliente/Cadastro';
+import AdminLogin from './Pages/Admin/Login';
+import RotaProtegida from './Components/RotaProtegida/RotaProtegida';
 
 import Contato from './Pages/Contato/Contato';
 import PoliticaPrivacidade from './Pages/PoliticaPrivacidade/PoliticaPrivacidade';
@@ -56,14 +54,19 @@ export function AppRoutes() {
         {/* Artigos */}
 
         <Route path="/blog/artigos" element={<Artigos />} />
-        <Route path="/blog/artigos/editar/:id" element={<EditarArtigo />} />
+        <Route
+          path="/blog/artigos/editar/:id"
+          element={
+            <RotaProtegida>
+              <EditarArtigo />
+            </RotaProtegida>
+          }
+        />
         <Route path="/blog/artigos/visualizar/:id" element={<VisualizarArtigo />} />
 
-        {/* Área do cliente */}
+        {/* Administração */}
 
-        <Route path="/area-cliente" element={<Login />} />
-        <Route path="/area-cliente/cadastro" element={<Cadastro />} />
-        <Route path="/area-cliente/painel" element={<Cliente />} />
+        <Route path="/admin" element={<AdminLogin />} />
 
         {/* Páginas institucionais */}
 

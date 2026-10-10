@@ -109,12 +109,7 @@ export default function Header() {
             </ul>
           </div>
 
-          <NavLink
-            to="/area-cliente"
-            className={getNavLinkClass}
-          >
-            Área do cliente
-          </NavLink>
+          
         </div>
 
         <div className="navigation-right">

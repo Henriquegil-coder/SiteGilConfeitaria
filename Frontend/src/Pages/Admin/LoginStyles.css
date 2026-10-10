@@ -208,3 +208,13 @@
     gap: 7px;
   }
 }
+.cliente-login-erro {
+  margin: 0;
+  color: #b3261e;
+  font-size: 0.9rem;
+}
+
+.cliente-login-button:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
