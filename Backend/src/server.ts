@@ -10,6 +10,9 @@ import { autenticar } from "./middlewares/autenticar";
 
 const app = express();
 
+//faz o limite enxergar o IP real do visitante atrás da Vercel
+app.set("trust proxy", 1);
+
 app.use(cors({ origin: process.env.FRONTEND_URL || true }));
 app.use(express.json());
 

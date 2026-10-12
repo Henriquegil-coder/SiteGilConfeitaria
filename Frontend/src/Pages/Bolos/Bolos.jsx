@@ -1,7 +1,11 @@
 import Layout from '../../Components/Layout/Layout';
+import ProdutoFoto from '../../Components/ProdutoFoto/ProdutoFoto';
+import useProdutos from '../../services/useProdutos';
 import './Bolos.css';
 
-const bolos = [
+// Lista exibida enquanto não há produtos cadastrados no banco
+// (ou se o servidor estiver fora do ar).
+const produtosPadrao = [
   {
     id: 1,
     nome: 'Bolo de baunilha',
@@ -35,6 +39,8 @@ const bolos = [
 ];
 
 export default function Bolos() {
+  const produtos = useProdutos('bolos', produtosPadrao);
+
   return (
     <Layout>
       <section className="bolos-page">
@@ -47,16 +53,17 @@ export default function Bolos() {
         </header>
 
         <div className="bolos-grid">
-          {bolos.map((bolo) => (
-            <article className="bolo-card" key={bolo.id}>
-              <div
-                className="bolo-image-placeholder"
-                aria-label={`Imagem de ${bolo.nome}`}
-              ></div>
+          {produtos.map((produto) => (
+            <article className="bolo-card" key={produto.id}>
+              <ProdutoFoto
+                nome={produto.nome}
+                imagem={produto.imagem}
+                classePlaceholder="bolo-image-placeholder"
+              />
 
               <div className="bolo-information">
-                <h2>{bolo.nome}</h2>
-                <p>{bolo.preco}</p>
+                <h2>{produto.nome}</h2>
+                <p>{produto.preco}</p>
               </div>
             </article>
           ))}

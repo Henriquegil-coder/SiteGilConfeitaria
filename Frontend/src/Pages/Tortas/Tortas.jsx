@@ -1,7 +1,11 @@
 import Layout from '../../Components/Layout/Layout';
+import ProdutoFoto from '../../Components/ProdutoFoto/ProdutoFoto';
+import useProdutos from '../../services/useProdutos';
 import './Tortas.css';
 
-const tortas = [
+// Lista exibida enquanto não há produtos cadastrados no banco
+// (ou se o servidor estiver fora do ar).
+const produtosPadrao = [
   {
     id: 1,
     nome: 'Torta Sablée',
@@ -35,6 +39,8 @@ const tortas = [
 ];
 
 export default function Tortas() {
+  const produtos = useProdutos('tortas', produtosPadrao);
+
   return (
     <Layout>
       <section className="tortas-page">
@@ -47,16 +53,17 @@ export default function Tortas() {
         </header>
 
         <div className="tortas-grid">
-          {tortas.map((torta) => (
-            <article className="torta-card" key={torta.id}>
-              <div
-                className="torta-image-placeholder"
-                aria-label={`Imagem de ${torta.nome}`}
-              ></div>
+          {produtos.map((produto) => (
+            <article className="torta-card" key={produto.id}>
+              <ProdutoFoto
+                nome={produto.nome}
+                imagem={produto.imagem}
+                classePlaceholder="torta-image-placeholder"
+              />
 
               <div className="torta-information">
-                <h2>{torta.nome}</h2>
-                <p>{torta.preco}</p>
+                <h2>{produto.nome}</h2>
+                <p>{produto.preco}</p>
               </div>
             </article>
           ))}

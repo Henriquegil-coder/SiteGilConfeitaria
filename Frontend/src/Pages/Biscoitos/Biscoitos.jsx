@@ -1,7 +1,11 @@
 import Layout from '../../Components/Layout/Layout';
+import ProdutoFoto from '../../Components/ProdutoFoto/ProdutoFoto';
+import useProdutos from '../../services/useProdutos';
 import './Biscoitos.css';
 
-const biscoitos = [
+// Lista exibida enquanto não há produtos cadastrados no banco
+// (ou se o servidor estiver fora do ar).
+const produtosPadrao = [
   {
     id: 1,
     nome: 'Biscoito amanteigado',
@@ -35,6 +39,8 @@ const biscoitos = [
 ];
 
 export default function Biscoitos() {
+  const produtos = useProdutos('biscoitos', produtosPadrao);
+
   return (
     <Layout>
       <section className="biscoitos-page">
@@ -47,16 +53,17 @@ export default function Biscoitos() {
         </header>
 
         <div className="biscoitos-grid">
-          {biscoitos.map((biscoito) => (
-            <article className="biscoito-card" key={biscoito.id}>
-              <div
-                className="biscoito-image-placeholder"
-                aria-label={`Imagem de ${biscoito.nome}`}
-              ></div>
+          {produtos.map((produto) => (
+            <article className="biscoito-card" key={produto.id}>
+              <ProdutoFoto
+                nome={produto.nome}
+                imagem={produto.imagem}
+                classePlaceholder="biscoito-image-placeholder"
+              />
 
               <div className="biscoito-information">
-                <h2>{biscoito.nome}</h2>
-                <p>{biscoito.preco}</p>
+                <h2>{produto.nome}</h2>
+                <p>{produto.preco}</p>
               </div>
             </article>
           ))}

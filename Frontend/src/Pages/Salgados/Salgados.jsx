@@ -1,62 +1,69 @@
 import Layout from '../../Components/Layout/Layout';
+import ProdutoFoto from '../../Components/ProdutoFoto/ProdutoFoto';
+import useProdutos from '../../services/useProdutos';
 import './Salgados.css';
 
-const geleias = [
+// Lista exibida enquanto não há produtos cadastrados no banco
+// (ou se o servidor estiver fora do ar).
+const produtosPadrao = [
   {
     id: 1,
-    nome: 'Geleia de morango',
+    nome: 'Nome do produto',
     preco: 'R$ 00,00',
   },
   {
     id: 2,
-    nome: 'Geleia de frutas vermelhas',
+    nome: 'Nome do produto',
     preco: 'R$ 00,00',
   },
   {
     id: 3,
-    nome: 'Geleia de damasco',
+    nome: 'Nome do produto',
     preco: 'R$ 00,00',
   },
   {
     id: 4,
-    nome: 'Geleia de frutas amarelas',
+    nome: 'Nome do produto',
     preco: 'R$ 00,00',
   },
   {
     id: 5,
-    nome: 'Geleia artesanal especial',
+    nome: 'Nome do produto',
     preco: 'R$ 00,00',
   },
   {
     id: 6,
-    nome: 'Geleia da estação',
+    nome: 'Nome do produto',
     preco: 'R$ 00,00',
   },
 ];
 
-export default function Geleias() {
+export default function Salgados() {
+  const produtos = useProdutos('salgados', produtosPadrao);
+
   return (
     <Layout>
       <section className="geleias-page">
         <header className="geleias-header">
-          <h1>Geleias</h1>
+          <h1>Salgados</h1>
 
           <p>
-            Conheça nossas opções de geleias artesanais.
+            Conheça nossas opções de salgados artesanais.
           </p>
         </header>
 
         <div className="geleias-grid">
-          {geleias.map((geleia) => (
-            <article className="geleia-card" key={geleia.id}>
-              <div
-                className="geleia-image-placeholder"
-                aria-label={`Imagem de ${geleia.nome}`}
-              ></div>
+          {produtos.map((produto) => (
+            <article className="geleia-card" key={produto.id}>
+              <ProdutoFoto
+                nome={produto.nome}
+                imagem={produto.imagem}
+                classePlaceholder="geleia-image-placeholder"
+              />
 
               <div className="geleia-information">
-                <h2>{geleia.nome}</h2>
-                <p>{geleia.preco}</p>
+                <h2>{produto.nome}</h2>
+                <p>{produto.preco}</p>
               </div>
             </article>
           ))}

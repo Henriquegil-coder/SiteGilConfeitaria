@@ -1,7 +1,11 @@
 import Layout from '../../Components/Layout/Layout';
+import ProdutoFoto from '../../Components/ProdutoFoto/ProdutoFoto';
+import useProdutos from '../../services/useProdutos';
 import './Geleias.css';
 
-const geleias = [
+// Lista exibida enquanto não há produtos cadastrados no banco
+// (ou se o servidor estiver fora do ar).
+const produtosPadrao = [
   {
     id: 1,
     nome: 'Geleia de morango',
@@ -35,6 +39,8 @@ const geleias = [
 ];
 
 export default function Geleias() {
+  const produtos = useProdutos('geleias', produtosPadrao);
+
   return (
     <Layout>
       <section className="geleias-page">
@@ -47,16 +53,17 @@ export default function Geleias() {
         </header>
 
         <div className="geleias-grid">
-          {geleias.map((geleia) => (
-            <article className="geleia-card" key={geleia.id}>
-              <div
-                className="geleia-image-placeholder"
-                aria-label={`Imagem de ${geleia.nome}`}
-              ></div>
+          {produtos.map((produto) => (
+            <article className="geleia-card" key={produto.id}>
+              <ProdutoFoto
+                nome={produto.nome}
+                imagem={produto.imagem}
+                classePlaceholder="geleia-image-placeholder"
+              />
 
               <div className="geleia-information">
-                <h2>{geleia.nome}</h2>
-                <p>{geleia.preco}</p>
+                <h2>{produto.nome}</h2>
+                <p>{produto.preco}</p>
               </div>
             </article>
           ))}
