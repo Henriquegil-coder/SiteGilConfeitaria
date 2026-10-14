@@ -87,3 +87,75 @@ export function urlImagemProduto(imagem) {
 
   return `/imagens-produtos/${imagem}`;
 }
+
+export class SessaoExpiradaError extends Error {
+  constructor() {
+    super('Sua sessão expirou. Entre novamente.');
+    this.name = 'SessaoExpiradaError';
+  }
+}
+
+// Chamadas que exigem login. Se o token venceu, apaga o login salvo e
+// avisa a tela para voltar ao /admin.
+async function requisicaoAdmin(caminho, opcoes = {}) {
+  if (!API_URL) {
+    throw new Error('Servidor não configurado.');
+  }
+
+  let resposta;
+
+  try {
+    resposta = await fetch(`${API_URL}${caminho}`, {
+      ...opcoes,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${obterToken()}`,
+      },
+    });
+  } catch {
+    throw new Error('Não foi possível conectar ao servidor. Tente novamente.');
+  }
+
+  if (resposta.status === 401) {
+    sair();
+    throw new SessaoExpiradaError();
+  }
+
+  if (resposta.status === 204) {
+    return null;
+  }
+
+  const dados = await resposta.json().catch(() => ({}));
+
+  if (!resposta.ok) {
+    throw new Error(dados.erro || 'Não foi possível concluir a ação.');
+  }
+
+  return dados;
+}
+
+export function listarCategorias() {
+  return requisicaoAdmin('/categorias');
+}
+
+export function listarProdutosAdmin() {
+  return requisicaoAdmin('/produtos/admin/todos');
+}
+
+export function criarProduto(dados) {
+  return requisicaoAdmin('/produtos', {
+    method: 'POST',
+    body: JSON.stringify(dados),
+  });
+}
+
+export function atualizarProduto(id, dados) {
+  return requisicaoAdmin(`/produtos/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(dados),
+  });
+}
+
+export function excluirProduto(id) {
+  return requisicaoAdmin(`/produtos/${id}`, { method: 'DELETE' });
+}

@@ -18,6 +18,7 @@ import EditarArtigo from './Pages/Artigos/EditarArtigo';
 import VisualizarArtigo from './Pages/Artigos/VisualizarArtigo';
 
 import AdminLogin from './Pages/Admin/Login';
+import AdminProdutos from './Pages/Admin/AdminProdutos';
 import RotaProtegida from './Components/RotaProtegida/RotaProtegida';
 
 import Contato from './Pages/Contato/Contato';
@@ -67,6 +68,14 @@ export function AppRoutes() {
         {/* Administração */}
 
         <Route path="/admin" element={<AdminLogin />} />
+        <Route
+          path="/admin/produtos"
+          element={
+            <RotaProtegida>
+              <AdminProdutos />
+            </RotaProtegida>
+          }
+        />
 
         {/* Páginas institucionais */}
 

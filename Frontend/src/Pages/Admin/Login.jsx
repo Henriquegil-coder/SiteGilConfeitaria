@@ -21,7 +21,8 @@ export default function AdminLogin() {
 
     try {
       await entrar(String(dados.get('email')), String(dados.get('senha')));
-      navigate('/blog/artigos');
+      //navigate('/blog/artigos');
+      navigate('/admin/produtos');
     } catch (error) {
       setErro(error.message);
     } finally {

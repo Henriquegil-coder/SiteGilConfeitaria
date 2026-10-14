@@ -1,0 +1,169 @@
+.admin-produtos-topbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-produtos-sair {
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid #315b5d;
+  border-radius: 24px;
+  background-color: transparent;
+  color: #315b5d;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.admin-produtos-sair:hover,
+.admin-produtos-sair:focus-visible {
+  background-color: #315b5d;
+  color: #ffffff;
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.admin-produtos-titulo {
+  margin: 0 0 24px;
+  color: #315b5d;
+  font-family: Georgia, serif;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.admin-produtos-lista-card {
+  margin-top: 32px;
+}
+
+.admin-produtos-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #315b5d;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.admin-produtos-checkbox input {
+  width: 18px;
+  height: 18px;
+  accent-color: #315b5d;
+}
+
+.admin-produtos-erro {
+  margin: 0;
+  padding: 14px 16px;
+  border: 1px solid #e6bcb8;
+  border-radius: 8px;
+  background-color: #fdf0ef;
+  color: #b3261e;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.editar-artigo-save-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.admin-produtos-lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.admin-produtos-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid #e6eeee;
+  font-family: Arial, sans-serif;
+}
+
+.admin-produtos-item:last-child {
+  border-bottom: none;
+}
+
+.admin-produtos-nome {
+  display: block;
+  color: #2f2b2b;
+  font-size: 16px;
+}
+
+.admin-produtos-detalhes {
+  display: block;
+  margin-top: 4px;
+  color: #6d7a7a;
+  font-size: 13px;
+}
+
+.admin-produtos-oculto {
+  margin-left: 10px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background-color: #f3ecdf;
+  color: #8a6a35;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.admin-produtos-botoes {
+  display: flex;
+  flex-shrink: 0;
+  gap: 10px;
+}
+
+.admin-produtos-botao {
+  min-height: 38px;
+  padding: 0 16px;
+  border: 1px solid #315b5d;
+  border-radius: 20px;
+  background-color: #ffffff;
+  color: #315b5d;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.admin-produtos-botao:hover,
+.admin-produtos-botao:focus-visible {
+  background-color: #edf4f4;
+  outline: none;
+}
+
+.admin-produtos-botao-perigo {
+  border-color: #b3261e;
+  color: #b3261e;
+}
+
+.admin-produtos-botao-perigo:hover,
+.admin-produtos-botao-perigo:focus-visible {
+  background-color: #fdf0ef;
+}
+
+@media screen and (max-width: 700px) {
+  .admin-produtos-topbar-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .admin-produtos-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
