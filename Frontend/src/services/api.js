@@ -9,8 +9,30 @@ export function obterToken() {
   return localStorage.getItem(CHAVE_TOKEN);
 }
 
+// Confere se há um login salvo e se ele ainda não venceu.
+// Isto serve só para mostrar ou esconder telas: quem barra alterações
+// de verdade é o Backend, que confere o token em cada pedido.
 export function estaLogado() {
-  return Boolean(obterToken());
+  const token = obterToken();
+
+  if (!token) {
+    return false;
+  }
+
+  try {
+    const parte = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+    const dados = JSON.parse(atob(parte));
+
+    if (dados.exp && dados.exp * 1000 < Date.now()) {
+      sair();
+      return false;
+    }
+
+    return true;
+  } catch {
+    sair();
+    return false;
+  }
 }
 
 export function sair() {
