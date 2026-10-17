@@ -3,43 +3,8 @@ import ProdutoFoto from '../../Components/ProdutoFoto/ProdutoFoto';
 import useProdutos from '../../services/useProdutos';
 import './Bolos.css';
 
-// Lista exibida enquanto não há produtos cadastrados no banco
-// (ou se o servidor estiver fora do ar).
-const produtosPadrao = [
-  {
-    id: 1,
-    nome: 'Bolo de baunilha',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 2,
-    nome: 'Bolo de chocolate',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 3,
-    nome: 'Bolo de frutas',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 4,
-    nome: 'Bolo de laranja',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 5,
-    nome: 'Bolo de brigadeiro',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 6,
-    nome: 'Bolo de morango',
-    preco: 'R$ 00,00',
-  },
-];
-
 export default function Bolos() {
-  const produtos = useProdutos('bolos', produtosPadrao);
+  const { produtos, estado } = useProdutos('bolos');
 
   return (
     <Layout>
@@ -52,22 +17,43 @@ export default function Bolos() {
           </p>
         </header>
 
-        <div className="bolos-grid">
-          {produtos.map((produto) => (
-            <article className="bolo-card" key={produto.id}>
-              <ProdutoFoto
-                nome={produto.nome}
-                imagem={produto.imagem}
-                classePlaceholder="bolo-image-placeholder"
-              />
+        {estado === 'carregando' && (
+          <p className="produtos-status" role="status">
+            Carregando produtos...
+          </p>
+        )}
 
-              <div className="bolo-information">
-                <h2>{produto.nome}</h2>
-                <p>{produto.preco}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+        {estado === 'erro' && (
+          <p className="produtos-status" role="status">
+            Não foi possível carregar os produtos agora. Tente novamente
+            em instantes.
+          </p>
+        )}
+
+        {estado === 'pronto' && produtos.length === 0 && (
+          <p className="produtos-status" role="status">
+            Em breve, novidades por aqui.
+          </p>
+        )}
+
+        {produtos.length > 0 && (
+          <div className="bolos-grid">
+            {produtos.map((produto) => (
+              <article className="bolo-card" key={produto.id}>
+                <ProdutoFoto
+                  nome={produto.nome}
+                  imagem={produto.imagem}
+                  classePlaceholder="bolo-image-placeholder"
+                />
+
+                <div className="bolo-information">
+                  <h2>{produto.nome}</h2>
+                  <p>{produto.preco}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
       </section>
     </Layout>
   );

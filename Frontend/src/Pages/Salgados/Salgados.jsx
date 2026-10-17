@@ -3,43 +3,8 @@ import ProdutoFoto from '../../Components/ProdutoFoto/ProdutoFoto';
 import useProdutos from '../../services/useProdutos';
 import './Salgados.css';
 
-// Lista exibida enquanto não há produtos cadastrados no banco
-// (ou se o servidor estiver fora do ar).
-const produtosPadrao = [
-  {
-    id: 1,
-    nome: 'Nome do produto',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 2,
-    nome: 'Nome do produto',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 3,
-    nome: 'Nome do produto',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 4,
-    nome: 'Nome do produto',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 5,
-    nome: 'Nome do produto',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 6,
-    nome: 'Nome do produto',
-    preco: 'R$ 00,00',
-  },
-];
-
 export default function Salgados() {
-  const produtos = useProdutos('salgados', produtosPadrao);
+  const { produtos, estado } = useProdutos('salgados');
 
   return (
     <Layout>
@@ -52,22 +17,43 @@ export default function Salgados() {
           </p>
         </header>
 
-        <div className="geleias-grid">
-          {produtos.map((produto) => (
-            <article className="geleia-card" key={produto.id}>
-              <ProdutoFoto
-                nome={produto.nome}
-                imagem={produto.imagem}
-                classePlaceholder="geleia-image-placeholder"
-              />
+        {estado === 'carregando' && (
+          <p className="produtos-status" role="status">
+            Carregando produtos...
+          </p>
+        )}
 
-              <div className="geleia-information">
-                <h2>{produto.nome}</h2>
-                <p>{produto.preco}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+        {estado === 'erro' && (
+          <p className="produtos-status" role="status">
+            Não foi possível carregar os produtos agora. Tente novamente
+            em instantes.
+          </p>
+        )}
+
+        {estado === 'pronto' && produtos.length === 0 && (
+          <p className="produtos-status" role="status">
+            Em breve, novidades por aqui.
+          </p>
+        )}
+
+        {produtos.length > 0 && (
+          <div className="geleias-grid">
+            {produtos.map((produto) => (
+              <article className="geleia-card" key={produto.id}>
+                <ProdutoFoto
+                  nome={produto.nome}
+                  imagem={produto.imagem}
+                  classePlaceholder="geleia-image-placeholder"
+                />
+
+                <div className="geleia-information">
+                  <h2>{produto.nome}</h2>
+                  <p>{produto.preco}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
       </section>
     </Layout>
   );

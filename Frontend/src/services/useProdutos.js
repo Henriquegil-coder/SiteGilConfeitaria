@@ -6,29 +6,50 @@ import {
   urlImagemProduto,
 } from './api';
 
-export default function useProdutos(categoria, produtosPadrao) {
-  const [produtos, setProdutos] = useState(produtosPadrao);
+// Guarda a última lista de cada categoria. Assim, ao voltar para uma
+// página já visitada, os produtos aparecem na hora, enquanto a lista
+// é atualizada em segundo plano.
+const guardados = {};
+
+function prepararProdutos(lista) {
+  return lista.map((produto) => ({
+    id: produto.id,
+    nome: produto.nome,
+    preco: formatarPreco(produto.precoCentavos),
+    imagem: urlImagemProduto(produto.imagem),
+  }));
+}
+
+// Devolve { produtos, estado }, com estado 'carregando', 'pronto' ou 'erro'.
+export default function useProdutos(categoria) {
+  const [produtos, setProdutos] = useState(guardados[categoria] || []);
+  const [estado, setEstado] = useState(
+    guardados[categoria] ? 'pronto' : 'carregando'
+  );
 
   useEffect(() => {
     let ativo = true;
 
+    setProdutos(guardados[categoria] || []);
+    setEstado(guardados[categoria] ? 'pronto' : 'carregando');
+
     listarProdutos(categoria)
       .then((lista) => {
-        if (!ativo || lista.length === 0) {
+        const preparados = prepararProdutos(lista);
+
+        guardados[categoria] = preparados;
+
+        if (!ativo) {
           return;
         }
 
-        setProdutos(
-          lista.map((produto) => ({
-            id: produto.id,
-            nome: produto.nome,
-            preco: formatarPreco(produto.precoCentavos),
-            imagem: urlImagemProduto(produto.imagem),
-          }))
-        );
+        setProdutos(preparados);
+        setEstado('pronto');
       })
       .catch(() => {
-        // Se o servidor estiver fora do ar, mantém a lista padrão.
+        if (ativo && !guardados[categoria]) {
+          setEstado('erro');
+        }
       });
 
     return () => {
@@ -36,5 +57,5 @@ export default function useProdutos(categoria, produtosPadrao) {
     };
   }, [categoria]);
 
-  return produtos;
+  return { produtos, estado };
 }

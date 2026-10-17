@@ -3,43 +3,8 @@ import ProdutoFoto from '../../Components/ProdutoFoto/ProdutoFoto';
 import useProdutos from '../../services/useProdutos';
 import './Biscoitos.css';
 
-// Lista exibida enquanto não há produtos cadastrados no banco
-// (ou se o servidor estiver fora do ar).
-const produtosPadrao = [
-  {
-    id: 1,
-    nome: 'Biscoito amanteigado',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 2,
-    nome: 'Biscoito de chocolate',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 3,
-    nome: 'Biscoito de baunilha',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 4,
-    nome: 'Biscoito decorado',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 5,
-    nome: 'Biscoito recheado',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 6,
-    nome: 'Biscoito especial',
-    preco: 'R$ 00,00',
-  },
-];
-
 export default function Biscoitos() {
-  const produtos = useProdutos('biscoitos', produtosPadrao);
+  const { produtos, estado } = useProdutos('biscoitos');
 
   return (
     <Layout>
@@ -52,22 +17,43 @@ export default function Biscoitos() {
           </p>
         </header>
 
-        <div className="biscoitos-grid">
-          {produtos.map((produto) => (
-            <article className="biscoito-card" key={produto.id}>
-              <ProdutoFoto
-                nome={produto.nome}
-                imagem={produto.imagem}
-                classePlaceholder="biscoito-image-placeholder"
-              />
+        {estado === 'carregando' && (
+          <p className="produtos-status" role="status">
+            Carregando produtos...
+          </p>
+        )}
 
-              <div className="biscoito-information">
-                <h2>{produto.nome}</h2>
-                <p>{produto.preco}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+        {estado === 'erro' && (
+          <p className="produtos-status" role="status">
+            Não foi possível carregar os produtos agora. Tente novamente
+            em instantes.
+          </p>
+        )}
+
+        {estado === 'pronto' && produtos.length === 0 && (
+          <p className="produtos-status" role="status">
+            Em breve, novidades por aqui.
+          </p>
+        )}
+
+        {produtos.length > 0 && (
+          <div className="biscoitos-grid">
+            {produtos.map((produto) => (
+              <article className="biscoito-card" key={produto.id}>
+                <ProdutoFoto
+                  nome={produto.nome}
+                  imagem={produto.imagem}
+                  classePlaceholder="biscoito-image-placeholder"
+                />
+
+                <div className="biscoito-information">
+                  <h2>{produto.nome}</h2>
+                  <p>{produto.preco}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
       </section>
     </Layout>
   );

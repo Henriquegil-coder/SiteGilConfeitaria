@@ -3,43 +3,8 @@ import ProdutoFoto from '../../Components/ProdutoFoto/ProdutoFoto';
 import useProdutos from '../../services/useProdutos';
 import './Tortas.css';
 
-// Lista exibida enquanto não há produtos cadastrados no banco
-// (ou se o servidor estiver fora do ar).
-const produtosPadrao = [
-  {
-    id: 1,
-    nome: 'Torta Sablée',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 2,
-    nome: 'Torta de chocolate',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 3,
-    nome: 'Torta de frutas',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 4,
-    nome: 'Torta de limão',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 5,
-    nome: 'Torta de morango',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 6,
-    nome: 'Torta especial',
-    preco: 'R$ 00,00',
-  },
-];
-
 export default function Tortas() {
-  const produtos = useProdutos('tortas', produtosPadrao);
+  const { produtos, estado } = useProdutos('tortas');
 
   return (
     <Layout>
@@ -52,22 +17,43 @@ export default function Tortas() {
           </p>
         </header>
 
-        <div className="tortas-grid">
-          {produtos.map((produto) => (
-            <article className="torta-card" key={produto.id}>
-              <ProdutoFoto
-                nome={produto.nome}
-                imagem={produto.imagem}
-                classePlaceholder="torta-image-placeholder"
-              />
+        {estado === 'carregando' && (
+          <p className="produtos-status" role="status">
+            Carregando produtos...
+          </p>
+        )}
 
-              <div className="torta-information">
-                <h2>{produto.nome}</h2>
-                <p>{produto.preco}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+        {estado === 'erro' && (
+          <p className="produtos-status" role="status">
+            Não foi possível carregar os produtos agora. Tente novamente
+            em instantes.
+          </p>
+        )}
+
+        {estado === 'pronto' && produtos.length === 0 && (
+          <p className="produtos-status" role="status">
+            Em breve, novidades por aqui.
+          </p>
+        )}
+
+        {produtos.length > 0 && (
+          <div className="tortas-grid">
+            {produtos.map((produto) => (
+              <article className="torta-card" key={produto.id}>
+                <ProdutoFoto
+                  nome={produto.nome}
+                  imagem={produto.imagem}
+                  classePlaceholder="torta-image-placeholder"
+                />
+
+                <div className="torta-information">
+                  <h2>{produto.nome}</h2>
+                  <p>{produto.preco}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
       </section>
     </Layout>
   );
