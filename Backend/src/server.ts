@@ -6,11 +6,11 @@ import { authRouter } from "./routes/auth";
 import { categoriasRouter } from "./routes/categorias";
 import { produtosRouter } from "./routes/produtos";
 import { artigosRouter } from "./routes/artigos";
+import { paginasRouter } from "./routes/paginas";
 import { autenticar } from "./middlewares/autenticar";
 
 const app = express();
 
-//faz o limite enxergar o IP real do visitante atrás da Vercel
 app.set("trust proxy", 1);
 
 app.use(cors({ origin: process.env.FRONTEND_URL || true }));
@@ -24,6 +24,7 @@ app.use("/auth", authRouter);
 app.use("/categorias", categoriasRouter);
 app.use("/produtos", produtosRouter);
 app.use("/artigos", artigosRouter);
+app.use("/paginas", paginasRouter);
 
 app.get("/admin/ping", autenticar, (_req, res) => {
   res.json({ ok: true, usuarioId: res.locals.usuarioId });

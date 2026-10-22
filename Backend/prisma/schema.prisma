@@ -1,17 +1,13 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-     provider     = "prisma-client"
-     output       = "../src/generated/prisma"
-     moduleFormat = "cjs"
-   }
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
 
 datasource db {
   provider = "postgresql"
 }
+
 model Usuario {
   id        Int      @id @default(autoincrement())
   nome      String
@@ -36,23 +32,29 @@ model Produto {
   imagem        String?
   ativo         Boolean    @default(true)
   categoriaId   Int?
-  categoria     Categoria? @relation(fields: [categoriaId], references: [id])
   criadoEm      DateTime   @default(now())
   atualizadoEm  DateTime   @updatedAt
+  categoria     Categoria? @relation(fields: [categoriaId], references: [id])
 }
 
 model Artigo {
   id           Int       @id @default(autoincrement())
   titulo       String
   slug         String    @unique
-  categoria    String    @default("Artigos")
   resumo       String
   conteudo     String
   imagemCapa   String?
   publicado    Boolean   @default(false)
   publicadoEm  DateTime?
   autorId      Int
-  autor        Usuario   @relation(fields: [autorId], references: [id])
   criadoEm     DateTime  @default(now())
   atualizadoEm DateTime  @updatedAt
+  categoria    String    @default("Artigos")
+  autor        Usuario   @relation(fields: [autorId], references: [id])
+  autorNome    String    @default("GIL Confeitaria")
+}
+model PaginaSite {
+  id      Int     @id @default(autoincrement())
+  chave   String  @unique
+  visivel Boolean @default(true)
 }

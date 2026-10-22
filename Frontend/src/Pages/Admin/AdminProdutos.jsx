@@ -218,6 +218,13 @@ export default function AdminProdutos() {
 
           <div className="admin-produtos-topbar-actions">
             <Link
+              to="/admin/paginas"
+              className="editar-artigo-back-link"
+            >
+              Páginas do site
+            </Link>
+
+            <Link
               to="/produtos"
               className="editar-artigo-back-link"
             >

@@ -181,3 +181,107 @@ export function atualizarProduto(id, dados) {
 export function excluirProduto(id) {
   return requisicaoAdmin(`/produtos/${id}`, { method: 'DELETE' });
 }
+
+export class NaoEncontradoError extends Error {
+  constructor() {
+    super('Conteúdo não encontrado.');
+    this.name = 'NaoEncontradoError';
+  }
+}
+
+// Chamadas públicas (não exigem login).
+async function requisicaoPublica(caminho) {
+  if (!API_URL) {
+    throw new Error('Servidor não configurado.');
+  }
+
+  let resposta;
+
+  try {
+    resposta = await fetch(`${API_URL}${caminho}`);
+  } catch {
+    throw new Error('Não foi possível conectar ao servidor. Tente novamente.');
+  }
+
+  if (resposta.status === 404) {
+    throw new NaoEncontradoError();
+  }
+
+  if (!resposta.ok) {
+    throw new Error('Não foi possível carregar o conteúdo.');
+  }
+
+  return resposta.json();
+}
+
+export function listarArtigos() {
+  return requisicaoPublica('/artigos');
+}
+
+export function obterArtigo(slug) {
+  return requisicaoPublica(`/artigos/${encodeURIComponent(slug)}`);
+}
+
+export function listarArtigosAdmin() {
+  return requisicaoAdmin('/artigos/admin/todos');
+}
+
+export function obterArtigoAdmin(id) {
+  return requisicaoAdmin(`/artigos/admin/${id}`);
+}
+
+export function criarArtigo(dados) {
+  return requisicaoAdmin('/artigos', {
+    method: 'POST',
+    body: JSON.stringify(dados),
+  });
+}
+
+export function atualizarArtigo(id, dados) {
+  return requisicaoAdmin(`/artigos/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(dados),
+  });
+}
+
+export function excluirArtigo(id) {
+  return requisicaoAdmin(`/artigos/${id}`, { method: 'DELETE' });
+}
+
+// "2026-09-10T12:00:00Z" -> "10 de setembro de 2026"
+export function formatarData(data) {
+  if (!data) {
+    return '';
+  }
+
+  return new Date(data).toLocaleDateString('pt-BR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+}
+
+// As imagens dos artigos ficam na pasta public/imagens-blog do Frontend.
+// O banco guarda só o nome do arquivo (ex.: "capa-historia.jpg").
+export function urlImagemBlog(imagem) {
+  if (!imagem) {
+    return null;
+  }
+
+  if (imagem.startsWith('http')) {
+    return imagem;
+  }
+
+  return `/imagens-blog/${imagem}`;
+}
+
+export function listarPaginas() {
+  return requisicaoPublica('/paginas');
+}
+
+export function alterarPagina(chave, visivel) {
+  return requisicaoAdmin(`/paginas/${chave}`, {
+    method: 'PUT',
+    body: JSON.stringify({ visivel }),
+  });
+}
