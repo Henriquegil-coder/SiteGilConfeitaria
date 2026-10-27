@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import Footer from '../../Components/Footer/Footer';
-import logo from '../../assets/images/logo.png';
+import logo from '../../assets/Images/logo.png';
 
 import './ProducaoArtesanal.css';
 

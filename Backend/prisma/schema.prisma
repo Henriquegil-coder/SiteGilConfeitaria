@@ -1,0 +1,60 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Usuario {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  email     String   @unique
+  senhaHash String
+  criadoEm  DateTime @default(now())
+  artigos   Artigo[]
+}
+
+model Categoria {
+  id       Int       @id @default(autoincrement())
+  nome     String    @unique
+  slug     String    @unique
+  produtos Produto[]
+}
+
+model Produto {
+  id            Int        @id @default(autoincrement())
+  nome          String
+  descricao     String
+  precoCentavos Int
+  imagem        String?
+  ativo         Boolean    @default(true)
+  categoriaId   Int?
+  criadoEm      DateTime   @default(now())
+  atualizadoEm  DateTime   @updatedAt
+  categoria     Categoria? @relation(fields: [categoriaId], references: [id])
+}
+
+model Artigo {
+  id           Int       @id @default(autoincrement())
+  titulo       String
+  slug         String    @unique
+  resumo       String
+  conteudo     String
+  imagemCapa   String?
+  publicado    Boolean   @default(false)
+  publicadoEm  DateTime?
+  autorId      Int
+  criadoEm     DateTime  @default(now())
+  atualizadoEm DateTime  @updatedAt
+  categoria    String    @default("Artigos")
+  autor        Usuario   @relation(fields: [autorId], references: [id])
+  autorNome    String    @default("GIL Confeitaria")
+}
+model PaginaSite {
+  id      Int     @id @default(autoincrement())
+  chave   String  @unique
+  visivel Boolean @default(true)
+}

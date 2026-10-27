@@ -5,10 +5,18 @@ import Layout from '../../Components/Layout/Layout';
 
 import './Home.css';
 
-import banner1 from '../../assets/images/banner-principal.png';
-import leftArrowIcon from '../../assets/images/seta-esquerda.svg';
-import rightArrowIcon from '../../assets/images/seta-direita.svg';
+import banner1 from '../../assets/Images/banner-principal.png';
+import leftArrowIcon from '../../assets/Images/seta-esquerda.svg';
+import rightArrowIcon from '../../assets/Images/seta-direita.svg';
 
+<meta name="description" 
+content="Gil Confeitaria - Na página inicial você encontra os
+ melhores doces e sobremesas da região de Bauru e região 
+dentre eles madeleines, muffins, toratas de de massa sableé, 
+recheios de cremes, aerado de frutas, biscoitos amanteigados,
+bisoitos recheados, cremes de pistache, bolos caseiros, 
+bolos de chocolate, red velvet, pão-de-ló, recehios de frutas vermelhas, frutas amarelas, frutas negras
+entre muitos outros."></meta>
 
 export default function Home() {
   const banners = [banner1];

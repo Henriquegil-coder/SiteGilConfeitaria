@@ -1,29 +1,35 @@
 import { useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
-import headerImage from '../../assets/images/logo.png';
+import headerImage from '../../assets/Images/logo.png';
+import { usePaginas } from '../../services/paginas';
 
 import './Header.css';
 
 const categorias = [
   {
     nome: 'Bolos',
+    chave: 'bolos',
     caminho: '/produtos/bolos',
   },
   {
     nome: 'Tortas',
+    chave: 'tortas',
     caminho: '/produtos/tortas',
   },
   {
     nome: 'Biscoitos',
+    chave: 'biscoitos',
     caminho: '/produtos/biscoitos',
   },
   {
     nome: 'Geleias',
+    chave: 'geleias',
     caminho: '/produtos/geleias',
   },
   {
     nome: 'Salgados',
+    chave: 'salgados',
     caminho: '/produtos/salgados',
   },
 ];
@@ -37,6 +43,11 @@ function getNavLinkClass({ isActive }) {
 export default function Header() {
   const [menuProdutosAberto, setMenuProdutosAberto] = useState(false);
   const location = useLocation();
+  const { estaVisivel } = usePaginas();
+
+  const categoriasVisiveis = categorias.filter((categoria) =>
+    estaVisivel(categoria.chave)
+  );
 
   const estaNaAreaDeProdutos =
     location.pathname.startsWith('/produtos');
@@ -91,7 +102,7 @@ export default function Header() {
               id="products-submenu"
               className="products-submenu"
             >
-              {categorias.map((categoria) => (
+              {categoriasVisiveis.map((categoria) => (
                 <li key={categoria.caminho}>
                   <NavLink
                     to={categoria.caminho}
@@ -108,29 +119,26 @@ export default function Header() {
               ))}
             </ul>
           </div>
-
-          <NavLink
-            to="/area-cliente"
-            className={getNavLinkClass}
-          >
-            Área do cliente
-          </NavLink>
         </div>
 
         <div className="navigation-right">
-          <NavLink
-            to="/contato"
-            className={getNavLinkClass}
-          >
-            Contato
-          </NavLink>
+          {estaVisivel('contato') && (
+            <NavLink
+              to="/contato"
+              className={getNavLinkClass}
+            >
+              Contato
+            </NavLink>
+          )}
 
-          <NavLink
-            to="/blog"
-            className={getNavLinkClass}
-          >
-            Blog
-          </NavLink>
+          {estaVisivel('blog') && (
+            <NavLink
+              to="/blog"
+              className={getNavLinkClass}
+            >
+              Blog
+            </NavLink>
+          )}
         </div>
       </nav>
     </header>

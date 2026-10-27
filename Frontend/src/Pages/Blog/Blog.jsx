@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Footer from '../../Components/Footer/Footer';
+import { usePaginas } from '../../services/paginas';
 
-import logoG from '../../assets/images/blog-g.svg';
-import logoEspatula from '../../assets/images/blog-espatula.svg';
-import logoL from '../../assets/images/blog-l.svg';
+import logoG from '../../assets/Images/blog-g.svg';
+import logoEspatula from '../../assets/Images/blog-espatula.svg';
+import logoL from '../../assets/Images/blog-l.svg';
 
 import './Blog.css';
 
@@ -13,6 +14,7 @@ import './Blog.css';
 const blogSections = [
   {
     id: 'historia',
+    chave: 'nossa-historia',
     label: 'Nossa história',
     caminho: '/blog/nossa-historia',
     imagem: logoG,
@@ -20,6 +22,7 @@ const blogSections = [
   },
   {
     id: 'producao',
+    chave: 'producao-artesanal',
     label: 'Produção artesanal',
     caminho: '/blog/producao-artesanal',
     imagem: logoEspatula,
@@ -27,6 +30,7 @@ const blogSections = [
   },
   {
     id: 'artigos',
+    chave: 'artigos',
     label: 'Artigos',
     caminho: '/blog/artigos',
     imagem: logoL,
@@ -35,22 +39,35 @@ const blogSections = [
 ];
 
 export default function Blog() {
-  const [selectedSection, setSelectedSection] = useState('producao');
+  const { estaVisivel } = usePaginas();
+  const [secaoEmDestaque, setSecaoEmDestaque] = useState(null);
+
+  const secoesVisiveis = blogSections.filter((section) =>
+    estaVisivel(section.chave)
+  );
+
+  // Sem o mouse em cima de nenhuma seção, destaca "Produção artesanal"
+  // (ou a primeira que estiver visível).
+  const secaoPadrao =
+    secoesVisiveis.find((section) => section.id === 'producao') ||
+    secoesVisiveis[0];
+
+  const selectedSection = secaoEmDestaque || secaoPadrao?.id;
 
   const selectedLabel =
-    blogSections.find((section) => section.id === selectedSection)?.label ||
-    'Produção artesanal';
+    secoesVisiveis.find((section) => section.id === selectedSection)?.label ||
+    '';
 
   function handleMouseEnter(sectionId) {
-    setSelectedSection(sectionId);
+    setSecaoEmDestaque(sectionId);
   }
 
   function handleFocus(sectionId) {
-    setSelectedSection(sectionId);
+    setSecaoEmDestaque(sectionId);
   }
 
   function resetSelection() {
-    setSelectedSection('producao');
+    setSecaoEmDestaque(null);
   }
 
   return (
@@ -61,7 +78,7 @@ export default function Blog() {
           aria-label="Seções do Blog"
         >
           <div className="blog-logo-navigation">
-            {blogSections.map((section) => (
+            {secoesVisiveis.map((section) => (
               <Link
                 key={section.id}
                 to={section.caminho}
@@ -91,4 +108,3 @@ export default function Blog() {
     </div>
   );
 }
-

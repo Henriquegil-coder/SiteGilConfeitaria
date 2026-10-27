@@ -17,10 +17,11 @@ import Artigos from './Pages/Artigos/Artigos';
 import EditarArtigo from './Pages/Artigos/EditarArtigo';
 import VisualizarArtigo from './Pages/Artigos/VisualizarArtigo';
 
-
-import Cliente from './Pages/Cliente/Cliente';
-import Login from './Pages/Cliente/Login';
-import Cadastro from './Pages/Cliente/Cadastro';
+import AdminLogin from './Pages/Admin/Login';
+import AdminProdutos from './Pages/Admin/AdminProdutos';
+import AdminPaginas from './Pages/Admin/AdminPaginas';
+import RotaProtegida from './Components/RotaProtegida/RotaProtegida';
+import RotaVisivel from './Components/RotaVisivel/RotaVisivel';
 
 import Contato from './Pages/Contato/Contato';
 import PoliticaPrivacidade from './Pages/PoliticaPrivacidade/PoliticaPrivacidade';
@@ -41,36 +42,157 @@ export function AppRoutes() {
         {/* Produtos */}
 
         <Route path="/produtos" element={<Produtos />} />
-        <Route path="/produtos/bolos" element={<Bolos />} />
-        <Route path="/produtos/tortas" element={<Tortas />} />
-        <Route path="/produtos/biscoitos" element={<Biscoitos />} />
-        <Route path="/produtos/geleias" element={<Geleias />} />
-        <Route path="/produtos/salgados" element={<Salgados />} />
+        <Route
+          path="/produtos/bolos"
+          element={
+            <RotaVisivel chave="bolos">
+              <Bolos />
+            </RotaVisivel>
+          }
+        />
+        <Route
+          path="/produtos/tortas"
+          element={
+            <RotaVisivel chave="tortas">
+              <Tortas />
+            </RotaVisivel>
+          }
+        />
+        <Route
+          path="/produtos/biscoitos"
+          element={
+            <RotaVisivel chave="biscoitos">
+              <Biscoitos />
+            </RotaVisivel>
+          }
+        />
+        <Route
+          path="/produtos/geleias"
+          element={
+            <RotaVisivel chave="geleias">
+              <Geleias />
+            </RotaVisivel>
+          }
+        />
+        <Route
+          path="/produtos/salgados"
+          element={
+            <RotaVisivel chave="salgados">
+              <Salgados />
+            </RotaVisivel>
+          }
+        />
 
         {/* Blog */}
 
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/nossa-historia" element={<NossaHistoria />} />
-        <Route path="/blog/producao-artesanal" element={<ProducaoArtesanal />} />
+        <Route
+          path="/blog"
+          element={
+            <RotaVisivel chave="blog">
+              <Blog />
+            </RotaVisivel>
+          }
+        />
+        <Route
+          path="/blog/nossa-historia"
+          element={
+            <RotaVisivel chave="nossa-historia">
+              <NossaHistoria />
+            </RotaVisivel>
+          }
+        />
+        <Route
+          path="/blog/producao-artesanal"
+          element={
+            <RotaVisivel chave="producao-artesanal">
+              <ProducaoArtesanal />
+            </RotaVisivel>
+          }
+        />
 
         {/* Artigos */}
 
-        <Route path="/blog/artigos" element={<Artigos />} />
-        <Route path="/blog/artigos/editar/:id" element={<EditarArtigo />} />
-        <Route path="/blog/artigos/visualizar/:id" element={<VisualizarArtigo />} />
+        <Route
+          path="/blog/artigos"
+          element={
+            <RotaVisivel chave="artigos">
+              <Artigos />
+            </RotaVisivel>
+          }
+        />
+        <Route
+          path="/blog/artigos/novo"
+          element={
+            <RotaProtegida>
+              <EditarArtigo />
+            </RotaProtegida>
+          }
+        />
+        <Route
+          path="/blog/artigos/editar/:id"
+          element={
+            <RotaProtegida>
+              <EditarArtigo />
+            </RotaProtegida>
+          }
+        />
+        <Route
+          path="/blog/artigos/visualizar/:slug"
+          element={
+            <RotaVisivel chave="artigos">
+              <VisualizarArtigo />
+            </RotaVisivel>
+          }
+        />
 
-        {/* Área do cliente */}
+        {/* Administração */}
 
-        <Route path="/area-cliente" element={<Login />} />
-        <Route path="/area-cliente/cadastro" element={<Cadastro />} />
-        <Route path="/area-cliente/painel" element={<Cliente />} />
+        <Route path="/admin" element={<AdminLogin />} />
+        <Route
+          path="/admin/produtos"
+          element={
+            <RotaProtegida>
+              <AdminProdutos />
+            </RotaProtegida>
+          }
+        />
+
+        <Route
+          path="/admin/paginas"
+          element={
+            <RotaProtegida>
+              <AdminPaginas />
+            </RotaProtegida>
+          }
+        />
 
         {/* Páginas institucionais */}
 
-        <Route path="/contato" element={<Contato />} />
+        <Route
+          path="/contato"
+          element={
+            <RotaVisivel chave="contato">
+              <Contato />
+            </RotaVisivel>
+          }
+        />
         <Route path="/politica-de-privacidade" element={<PoliticaPrivacidade />} />
-        <Route path="/trabalhe-conosco" element={<TrabalheConosco />} />
-        <Route path="/redes-sociais" element={<RedesSociais />} />
+        <Route
+          path="/trabalhe-conosco"
+          element={
+            <RotaVisivel chave="trabalhe-conosco">
+              <TrabalheConosco />
+            </RotaVisivel>
+          }
+        />
+        <Route
+          path="/redes-sociais"
+          element={
+            <RotaVisivel chave="redes-sociais">
+              <RedesSociais />
+            </RotaVisivel>
+          }
+        />
 
         {/* Página 404 — deve ser sempre a última rota */}
 
