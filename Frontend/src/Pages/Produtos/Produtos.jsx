@@ -1,92 +1,69 @@
+import { Link } from 'react-router-dom';
+
 import Layout from '../../Components/Layout/Layout';
-import './Produtos.css';
+import useProdutos from '../../services/useProdutos';
+import { categorias } from '../../data/produtos';
 
-const categorias = [
-  'Bolos',
-  'Tortas',
-  'Biscoitos',
-  'Geleias',
-  'Salgados',
-];
+import '../Categoria/Categoria.css';
 
-const produtos = [
-  {
-    id: 1,
-    nome: 'Bolo de baunilha',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 2,
-    nome: 'Bolo de chocolate',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 3,
-    nome: 'Bolo de frutas',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 4,
-    nome: 'Torta especial',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 5,
-    nome: 'Bolo de laranja',
-    preco: 'R$ 00,00',
-  },
-  {
-    id: 6,
-    nome: 'Brownie',
-    preco: 'R$ 00,00',
-  },
-];
+// Cardápio completo: todas as categorias, uma abaixo da outra.
+function SecaoCategoria({ categoria }) {
+  const { produtos } = useProdutos(categoria.slug);
+
+  if (produtos.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="produtos-secao" aria-labelledby={categoria.slug}>
+      <h2 id={categoria.slug} className="produtos-secao-titulo">
+        <Link to={`/produtos/${categoria.slug}`}>{categoria.nome}</Link>
+      </h2>
+
+      <div className="categoria-grade">
+        {produtos.map((produto) => (
+          <article className="produto-card" key={produto.id}>
+            <div className="produto-card-foto">
+              {produto.imagem ? (
+                <img src={produto.imagem} alt={produto.nome} loading="lazy" />
+              ) : (
+                <span className="produto-card-sem-foto">Foto em breve</span>
+              )}
+            </div>
+
+            <div className="produto-card-corpo">
+              <h3 className="produto-card-nome">{produto.nome}</h3>
+              <p className="produto-card-descricao">{produto.descricao}</p>
+              <p className="produto-card-preco">{produto.preco}</p>
+              <a
+                className="gil-btn"
+                href={produto.encomendar}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Encomendar pelo WhatsApp
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 export default function Produtos() {
   return (
     <Layout>
-      <section className="produtos-page">
-        <div className="produtos-header">
-          <h1>Produtos</h1>
-          <p>
-            Conheça nossas opções de bolos, tortas e doces artesanais.
-          </p>
-        </div>
+      <div className="categoria">
+        <header className="categoria-topo">
+          <p className="categoria-rotulo">Sob encomenda</p>
+          <h1>Cardápio</h1>
+        </header>
 
-        <div className="produtos-content">
-          <aside className="produtos-sidebar">
-            <h2>Categorias</h2>
-
-            <nav aria-label="Categorias de produtos">
-              {categorias.map((categoria) => (
-                <button
-                  type="button"
-                  className="categoria-button"
-                  key={categoria}
-                >
-                  {categoria}
-                </button>
-              ))}
-            </nav>
-          </aside>
-
-          <div className="produtos-lista">
-            {produtos.map((produto) => (
-              <article className="produto-card" key={produto.id}>
-                <div
-                  className="produto-imagem-placeholder"
-                  aria-label={`Imagem de ${produto.nome}`}
-                ></div>
-
-                <div className="produto-informacoes">
-                  <h2>{produto.nome}</h2>
-                  <p>{produto.preco}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+        {categorias.map((categoria) => (
+          <SecaoCategoria key={categoria.slug} categoria={categoria} />
+        ))}
+      </div>
     </Layout>
   );
 }

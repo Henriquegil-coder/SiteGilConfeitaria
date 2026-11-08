@@ -1,61 +1,44 @@
-import { useEffect, useState } from 'react';
+import { produtos as cardapio, WHATSAPP } from '../data/produtos';
 
-import {
-  formatarPreco,
-  listarProdutos,
-  urlImagemProduto,
-} from './api';
+// 9000 -> "R$ 90,00". Preço 0 vira "a consultar" (regra do manual da marca).
+export function formatarPreco(centavos) {
+  if (!centavos || centavos <= 0) {
+    return 'a consultar';
+  }
 
-// Guarda a última lista de cada categoria. Assim, ao voltar para uma
-// página já visitada, os produtos aparecem na hora, enquanto a lista
-// é atualizada em segundo plano.
-const guardados = {};
-
-function prepararProdutos(lista) {
-  return lista.map((produto) => ({
-    id: produto.id,
-    nome: produto.nome,
-    preco: formatarPreco(produto.precoCentavos),
-    imagem: urlImagemProduto(produto.imagem),
-  }));
+  return (centavos / 100).toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
 }
 
-// Devolve { produtos, estado }, com estado 'carregando', 'pronto' ou 'erro'.
+// Link que abre o WhatsApp com a mensagem de encomenda já escrita.
+export function linkEncomenda(nomeProduto) {
+  const mensagem = nomeProduto
+    ? `Olá! Quero encomendar: ${nomeProduto}.`
+    : 'Olá! Quero fazer uma encomenda.';
+
+  return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
+}
+
+function prepararProduto(produto) {
+  return {
+    id: produto.id,
+    nome: produto.nome,
+    descricao: produto.descricao,
+    preco: formatarPreco(produto.precoCentavos),
+    imagem: produto.imagem ? `/imagens-produtos/${produto.imagem}` : null,
+    encomendar: linkEncomenda(produto.nome),
+  };
+}
+
+// Devolve { produtos, estado } como antes, para as páginas não mudarem.
+// Agora os dados vêm do arquivo src/data/produtos.js, sem servidor,
+// então o estado já nasce 'pronto'.
 export default function useProdutos(categoria) {
-  const [produtos, setProdutos] = useState(guardados[categoria] || []);
-  const [estado, setEstado] = useState(
-    guardados[categoria] ? 'pronto' : 'carregando'
-  );
+  const lista = categoria
+    ? cardapio.filter((produto) => produto.categoria === categoria)
+    : cardapio;
 
-  useEffect(() => {
-    let ativo = true;
-
-    setProdutos(guardados[categoria] || []);
-    setEstado(guardados[categoria] ? 'pronto' : 'carregando');
-
-    listarProdutos(categoria)
-      .then((lista) => {
-        const preparados = prepararProdutos(lista);
-
-        guardados[categoria] = preparados;
-
-        if (!ativo) {
-          return;
-        }
-
-        setProdutos(preparados);
-        setEstado('pronto');
-      })
-      .catch(() => {
-        if (ativo && !guardados[categoria]) {
-          setEstado('erro');
-        }
-      });
-
-    return () => {
-      ativo = false;
-    };
-  }, [categoria]);
-
-  return { produtos, estado };
+  return { produtos: lista.map(prepararProduto), estado: 'pronto' };
 }

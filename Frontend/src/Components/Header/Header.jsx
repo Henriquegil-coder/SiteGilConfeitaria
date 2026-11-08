@@ -5,28 +5,12 @@ import headerImage from '../../assets/Images/logo.png';
 
 import './Header.css';
 
-const categorias = [
-  {
-    nome: 'Bolos',
-    caminho: '/produtos/bolos',
-  },
-  {
-    nome: 'Tortas',
-    caminho: '/produtos/tortas',
-  },
-  {
-    nome: 'Biscoitos',
-    caminho: '/produtos/biscoitos',
-  },
-  {
-    nome: 'Geleias',
-    caminho: '/produtos/geleias',
-  },
-  {
-    nome: 'Salgados',
-    caminho: '/produtos/salgados',
-  },
-];
+import { categorias as cardapio } from '../../data/produtos';
+
+const categorias = cardapio.map((categoria) => ({
+  nome: categoria.nome,
+  caminho: `/produtos/${categoria.slug}`,
+}));
 
 function getNavLinkClass({ isActive }) {
   return isActive
@@ -54,7 +38,7 @@ export default function Header() {
       <Link to="/" className="site-logo-link">
         <img
           src={headerImage}
-          alt="GIL Confeitaria"
+          alt="Gil Confeitaria"
           className="site-logo"
         />
       </Link>

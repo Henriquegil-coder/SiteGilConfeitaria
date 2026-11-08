@@ -1,0 +1,117 @@
+/* Página de categoria (Bolos, Tortas, Muffins...) com o visual da marca */
+
+.categoria {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--espaco-8) var(--espaco-6);
+}
+
+.categoria-topo {
+  margin-bottom: var(--espaco-7);
+  text-align: center;
+}
+
+.categoria-rotulo {
+  margin-bottom: var(--espaco-2);
+  color: var(--vinho);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.categoria-grade {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--espaco-6);
+}
+
+/* Card de produto */
+
+.produto-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--raio-md);
+  background: var(--fundo-elevado);
+  box-shadow: var(--sombra-card);
+}
+
+.produto-card-foto {
+  aspect-ratio: 4 / 3;
+  background: var(--assinatura);
+}
+
+.produto-card-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Sem foto: bloco azul-água com aviso discreto */
+.produto-card-sem-foto {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  color: var(--on-assinatura);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.produto-card-corpo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--espaco-3);
+  padding: var(--espaco-5);
+}
+
+.produto-card-corpo h2 {
+  font-size: 28px;
+  line-height: 34px;
+}
+
+.produto-card-descricao {
+  flex: 1;
+  color: var(--texto-suave);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.produto-card-preco {
+  color: var(--preco);
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.produto-card .gil-btn {
+  width: 100%;
+  margin-top: var(--espaco-2);
+}
+
+/* Tablet e celular */
+
+@media (max-width: 900px) {
+  .categoria-grade {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .categoria {
+    padding: var(--espaco-7) var(--espaco-4);
+  }
+
+  .categoria-grade {
+    grid-template-columns: 1fr;
+    gap: var(--espaco-5);
+  }
+}

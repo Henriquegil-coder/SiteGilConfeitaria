@@ -1,8 +1,41 @@
+/* Rodapé na combinação oficial 1: vinho escuro + off-white */
+
 .site-footer {
   width: 100%;
   margin-top: auto;
-  padding: 30px 20px;
-  background-color: #b2d8d8;
+  padding: var(--espaco-8) var(--espaco-4) var(--espaco-6);
+  background-color: var(--vinho-escuro);
+  color: var(--offwhite);
+}
+
+.footer-encomenda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaco-5);
+  margin-bottom: var(--espaco-7);
+  text-align: center;
+}
+
+/* A frase da marca, no estilo assinatura-frase */
+.footer-frase {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 40px;
+}
+
+/* No fundo escuro o botão vira azul-água com texto preto (vinho sumiria) */
+.footer-botao {
+  border-color: var(--azul-agua);
+  background: var(--azul-agua);
+  color: var(--preto);
+}
+
+.footer-botao:hover {
+  border-color: var(--azul-claro);
+  background: var(--azul-claro);
 }
 
 .footer-navigation {
@@ -10,27 +43,39 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 60px;
-  max-width: 1300px;
+  gap: var(--espaco-6);
+  max-width: 1200px;
   margin: 0 auto;
+  padding-top: var(--espaco-6);
+  border-top: 1px solid rgba(247, 244, 239, 0.2);
 }
 
 .footer-navigation a {
-  color: #333333;
-  font-family: Arial, sans-serif;
+  color: var(--offwhite);
+  font-family: var(--font-sans);
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  transition: color 0.2s ease;
 }
 
 .footer-navigation a:hover {
-  color: #ffffff;
+  color: var(--azul-agua);
+}
+
+.site-footer :focus-visible {
+  outline-color: var(--azul-agua);
+}
+
+.footer-assinatura {
+  margin-top: var(--espaco-5);
+  color: #CDBFC3;
+  font-size: 14px;
+  text-align: center;
 }
 
 @media screen and (max-width: 768px) {
   .footer-navigation {
     flex-direction: column;
-    gap: 16px;
+    gap: var(--espaco-4);
   }
 }

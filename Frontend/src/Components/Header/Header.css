@@ -1,6 +1,8 @@
+/* Cabeçalho: logo sobre off-white e menu na faixa azul-água (cor assinatura) */
+
 .site-header {
   width: 100%;
-  background-color: #fdf7f7;
+  background-color: var(--fundo);
 }
 
 .site-logo-link {
@@ -25,7 +27,7 @@
   align-items: center;
   gap: 24px;
   padding: 15px 40px;
-  background-color: #b2d8d8;
+  background-color: var(--assinatura);
 }
 
 .navigation-left,
@@ -42,13 +44,13 @@
   gap: 7px;
   padding: 8px 12px;
   border: none;
-  border-radius: 4px;
-  color: #333333;
+  border-radius: var(--raio-sm);
+  color: var(--on-assinatura);
   background-color: transparent;
   cursor: pointer;
-  font-family: Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
   transition:
     background-color 0.2s ease,
@@ -59,16 +61,12 @@
 .header-nav-link:focus-visible,
 .products-menu-trigger:hover,
 .products-menu-trigger:focus-visible {
-  color: #ffffff;
-  background-color: rgba(0, 0, 0, 0.12);
-  outline: none;
+  background-color: rgba(0, 0, 0, 0.08);
 }
 
 .header-nav-link.active,
 .products-menu-trigger.active {
-  color: #ffffff;
-  background-color: rgba(0, 0, 0, 0.22);
-  font-weight: 700;
+  background-color: var(--fundo);
 }
 
 .products-menu {
@@ -96,8 +94,8 @@
   margin: 0;
   padding: 8px;
   border-radius: 0 0 6px 6px;
-  background-color: #b2d8d8;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  background-color: var(--assinatura);
+  box-shadow: var(--sombra-card);
   list-style: none;
   opacity: 0;
   pointer-events: none;
@@ -127,9 +125,9 @@
 .submenu-link {
   display: block;
   padding: 10px 12px;
-  border-radius: 4px;
-  color: #333333;
-  font-family: Arial, sans-serif;
+  border-radius: var(--raio-sm);
+  color: var(--on-assinatura);
+  font-family: var(--font-sans);
   font-size: 14px;
   text-decoration: none;
   transition:
@@ -140,9 +138,7 @@
 .submenu-link:hover,
 .submenu-link:focus-visible,
 .submenu-link.active {
-  color: #ffffff;
-  background-color: rgba(0, 0, 0, 0.18);
-  outline: none;
+  background-color: var(--fundo);
 }
 
 @media screen and (max-width: 768px) {
@@ -172,7 +168,7 @@
     margin-top: 8px;
     padding: 0;
     overflow: hidden;
-    border-radius: 4px;
+    border-radius: var(--raio-sm);
     box-shadow: none;
     opacity: 1;
     pointer-events: none;
