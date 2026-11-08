@@ -43,27 +43,7 @@ export function AppRoutes() {
         {/* Artigos */}
 
         <Route path="/blog/artigos" element={<Artigos />} />
-        <Route
-          path="/blog/artigos/editar/:id"
-          element={
-            <RotaProtegida>
-              <EditarArtigo />
-            </RotaProtegida>
-          }
-        />
         <Route path="/blog/artigos/visualizar/:id" element={<VisualizarArtigo />} />
-
-        {/* Administração */}
-
-        <Route path="/admin" element={<AdminLogin />} />
-        <Route
-          path="/admin/produtos"
-          element={
-            <RotaProtegida>
-              <AdminProdutos />
-            </RotaProtegida>
-          }
-        />
 
         {/* Páginas institucionais */}
 
