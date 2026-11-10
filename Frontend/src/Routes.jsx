@@ -4,6 +4,7 @@ import Home from './Pages/Home/Home';
 
 import Produtos from './Pages/Produtos/Produtos';
 import Categoria from './Pages/Categoria/Categoria';
+import Cardapio from './Pages/Cardapio/Cardapio';
 
 import Blog from './Pages/Blog/Blog';
 import NossaHistoria from './Pages/NossaHistoria/NossaHistoria';
@@ -31,6 +32,7 @@ export function AppRoutes() {
         {/* Produtos */}
 
         <Route path="/produtos" element={<Produtos />} />
+        <Route path="/cardapio" element={<Cardapio />} />
         {/* Uma página para todas as categorias do cardápio (src/data/produtos.js) */}
         <Route path="/produtos/:slug" element={<Categoria />} />
 

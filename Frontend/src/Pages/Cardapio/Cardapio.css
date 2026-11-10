@@ -1,0 +1,160 @@
+/* Página /cardapio: só as duas páginas, sobre a estampa desfocada */
+
+.cardapio {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--fundo);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaco-5);
+  padding: var(--espaco-8) var(--espaco-6) var(--espaco-6);
+}
+
+/* Estampa de arabesco (vinho claro sobre off-white), desfocada na hora.
+   Fica um pouco maior que a tela (inset negativo) para o desfoque
+   não deixar as bordas claras. */
+.cardapio-fundo {
+  position: absolute;
+  inset: -24px;
+  z-index: 0;
+  background-image: url('/cardapio/estampa-arabesco.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(6px);
+}
+
+/* Título só para leitores de tela e Google */
+.cardapio-titulo-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.cardapio-fechar {
+  position: fixed;
+  top: var(--espaco-5);
+  right: var(--espaco-5);
+  z-index: 3;
+  display: flex;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: var(--raio-pill);
+  background: rgba(247, 244, 239, 0.92);
+  color: var(--texto);
+  box-shadow: var(--sombra-card);
+  cursor: pointer;
+}
+
+/* Computador: lado a lado, do maior tamanho que couber na altura */
+.cardapio-paginas {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: var(--espaco-7);
+  width: 100%;
+}
+
+.cardapio-pagina {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+}
+
+.cardapio-pagina img {
+  display: block;
+  width: auto;
+  height: min(78svh, calc((100vw - 160px) / 2 * 1.414));
+  max-width: none;
+  border-radius: 4px;
+  box-shadow: 0 12px 40px rgba(50, 22, 34, 0.28);
+}
+
+.cardapio-acoes {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-5);
+}
+
+.cardapio-baixar {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-2);
+  min-height: 44px;
+  padding: 0 var(--espaco-4);
+  border-radius: var(--raio-sm);
+  background: rgba(247, 244, 239, 0.92);
+  color: var(--link);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Página ampliada em tela cheia */
+.cardapio-ampliada {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: auto;
+  background: rgba(50, 22, 34, 0.92);
+  touch-action: pan-x pan-y pinch-zoom;
+}
+
+.cardapio-ampliada img {
+  display: block;
+  width: min(100%, 1100px);
+  height: auto;
+  max-width: none;
+  margin: 0 auto;
+}
+
+/* ---------- Tablet e celular: uma página embaixo da outra ---------- */
+@media (max-width: 900px) {
+  .cardapio {
+    justify-content: flex-start;
+    padding: 80px var(--espaco-4) var(--espaco-6);
+  }
+
+  .cardapio-fechar {
+    top: var(--espaco-3);
+    right: var(--espaco-4);
+  }
+
+  .cardapio-paginas {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espaco-5);
+  }
+
+  .cardapio-pagina {
+    width: min(100%, 560px);
+  }
+
+  .cardapio-pagina img {
+    width: 100%;
+    height: auto;
+  }
+
+  .cardapio-acoes {
+    flex-direction: column;
+    width: min(100%, 560px);
+    gap: var(--espaco-3);
+  }
+
+  .cardapio-encomendar {
+    width: 100%;
+  }
+}

@@ -125,9 +125,9 @@ export default function Home() {
           >
             Encomendar pelo WhatsApp
           </a>
-          <a className="gil-btn gil-btn--secundario" href="#cardapio">
+          <Link className="gil-btn gil-btn--secundario" to="/cardapio">
             Ver o cardápio
-          </a>
+          </Link>
         </div>
       </section>
 
