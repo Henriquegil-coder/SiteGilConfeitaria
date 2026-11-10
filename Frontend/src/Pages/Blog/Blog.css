@@ -131,80 +131,77 @@
   opacity: 0.55;
 }
 
-/* Tablets */
-@media screen and (max-width: 1100px) {
-  .blog-main {
-    padding: 20px 20px 110px;
-  }
-
-  .blog-logo-navigation {
-    gap: 8px;
-    min-height: 600px;
-  }
-
-  .blog-logo-option {
-    width: 250px;
-    height: 520px;
-  }
-
-  /* G e L continuam maiores */
-  .blog-option-historia .blog-logo-element,
-  .blog-option-artigos .blog-logo-element {
-    width: 270px;
-    height: 470px;
-  }
-
-  /* Espátula mantém seu tamanho proporcional */
-  .blog-option-producao .blog-logo-element {
-    width: 145px;
-    height: 480px;
-  }
-
-  .blog-option-label {
-    bottom: -45px;
-  }
+/* Legenda sob cada elemento: só em telas de toque (abaixo) */
+.blog-logo-legenda {
+  display: none;
 }
 
-/* Celulares */
-@media screen and (max-width: 700px) {
+/* ---------- Tablets e celulares ----------
+   Os três elementos continuam lado a lado, formando "GiL",
+   e encolhem juntos para caber na largura da tela.
+   As alturas dos SVGs são iguais (cerca de 700), e a soma das
+   larguras dá 2,24 vezes a altura; daí a conta abaixo. */
+@media screen and (max-width: 1100px) {
   .blog-main {
-    padding: 30px 20px 90px;
+    padding: 32px 16px 64px;
   }
 
   .blog-logo-navigation {
-    flex-direction: column;
-    gap: 20px;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 8px;
     min-height: auto;
-    padding-bottom: 60px;
   }
 
   .blog-logo-option {
-    width: min(100%, 330px);
-    height: 250px;
+    flex-direction: column;
+    gap: 12px;
+    width: auto;
+    height: auto;
+    padding: 4px;
   }
 
-  /* G e L */
-  .blog-option-historia .blog-logo-element,
-  .blog-option-artigos .blog-logo-element {
-    width: 240px;
-    height: 210px;
+  .blog-logo-element {
+    width: auto;
+    height: min(440px, calc((100vw - 64px) / 2.3));
   }
 
-  /* Espátula */
-  .blog-option-producao .blog-logo-element {
-    width: 115px;
-    height: 210px;
+  /* Sem mouse não há "passar por cima": cada elemento mostra o próprio nome */
+  .blog-logo-legenda {
+    display: block;
+    max-width: 120px;
+    color: var(--texto);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 18px;
+    text-align: center;
   }
 
   .blog-option-label {
-    bottom: -35px;
-    font-size: 25px;
+    display: none;
   }
 
-  /* Em telas de toque, mantemos os três elementos visíveis */
+  .blog-logo-option.is-selected {
+    transform: none;
+  }
+
+  .blog-logo-option.is-selected .blog-logo-element {
+    transform: none;
+    filter: none;
+  }
+
   .blog-logo-navigation:has(.blog-logo-option.is-selected)
     .blog-logo-option:not(.is-selected)
     .blog-logo-element {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .blog-logo-legenda {
+    max-width: 90px;
+    font-size: 12px;
+    line-height: 16px;
   }
 }

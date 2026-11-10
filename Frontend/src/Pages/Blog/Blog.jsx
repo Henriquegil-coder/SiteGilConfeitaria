@@ -77,6 +77,9 @@ export default function Blog() {
                   alt={section.alt}
                   className="blog-logo-element"
                 />
+
+                {/* Nome visível só em tablet e celular (ver Blog.css) */}
+                <span className="blog-logo-legenda">{section.label}</span>
               </Link>
             ))}
 

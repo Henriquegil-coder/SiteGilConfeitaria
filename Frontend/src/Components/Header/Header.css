@@ -1,207 +1,241 @@
-@font-face {
-  font-family: 'Allura';
-  src: url('../../assets/Fonts/Allura-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+/* Cabeçalho: barra azul-água fixa no topo, com Início e menu */
 
-.blog-page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: #fdf7f7;
-  color: #2f2b2b;
-}
-
-.blog-main {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 30px 30px 130px;
-}
-
-.blog-entrance {
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
   width: 100%;
-  max-width: 1600px;
+  background-color: var(--assinatura);
 }
 
-.blog-logo-navigation {
-  position: relative;
+.site-navigation {
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  /* Elementos mais próximos */
-  gap: clamp(10px, 3vw, 55px);
-
-  min-height: 720px;
+  justify-content: space-between;
+  gap: var(--espaco-5);
+  max-width: 1200px;
+  min-height: 60px;
+  margin: 0 auto;
+  padding: 0 var(--espaco-6);
 }
 
-/* Área clicável de cada elemento */
-.blog-logo-option {
-  position: relative;
-  z-index: 1;
-  display: flex;
+/* Links comuns e botão "Produtos" */
+.header-inicio,
+.header-nav-link,
+.products-menu-trigger {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 330px;
-  height: 620px;
-  padding: 20px;
-  color: inherit;
+  gap: var(--espaco-2);
+  min-height: 44px;
+  padding: 0 var(--espaco-3);
+  border: none;
+  border-radius: var(--raio-sm);
+  background-color: transparent;
+  color: var(--on-assinatura);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
   text-decoration: none;
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
+  cursor: pointer;
 }
 
-/* Elementos SVG */
-.blog-logo-element {
-  display: block;
+.header-inicio:hover,
+.header-nav-link:hover,
+.products-menu-trigger:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.header-inicio.active,
+.header-nav-link.active,
+.products-menu-trigger.active {
+  background-color: var(--fundo);
+}
+
+.header-links {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-4);
+}
+
+/* Espátula da marca no lugar do ícone de casa */
+.header-inicio-icone {
   width: auto;
-  object-fit: contain;
-  transform-origin: center;
-  transition:
-    transform 0.3s ease,
-    filter 0.3s ease,
-    opacity 0.3s ease;
+  height: 28px;
 }
 
-/* Todos partem da mesma altura visual */
-.blog-logo-element {
-  display: block;
-  width: auto;
-  height: clamp(440px, 48vw, 620px);
-  object-fit: contain;
-  transform-origin: center;
-  transition:
-    transform 0.3s ease,
-    filter 0.3s ease,
-    opacity 0.3s ease;
-}
-
-/* G e L ficam visualmente maiores */
-.blog-option-historia .blog-logo-element,
-.blog-option-artigos .blog-logo-element {
-  transform: scale(1.28);
-}
-
-/* A espátula permanece como referência */
-.blog-option-producao .blog-logo-element {
-  transform: scale(1);
-}
-
-
-/* Palavra única, centralizada abaixo da espátula */
-.blog-option-label {
-  position: absolute;
-  bottom: -50px;
-  left: 50%;
-  z-index: 3;
-  width: max-content;
-  max-width: 90%;
-  margin: 0;
-  color: #000000;
-  font-family: 'Allura', cursive;
-  font-size: clamp(44px, 4vw, 68px);
-  font-weight: 400;
-  line-height: 1;
-  text-align: center;
-  transform: translateX(-50%);
-  transition:
-    color 0.3s ease,
-    opacity 0.3s ease;
-}
-
-/* Elemento selecionado */
-.blog-logo-option.is-selected {
-  transform: translateY(-5px);
-}
-
-.blog-logo-option.is-selected .blog-logo-element {
-  transform: scale(1.04);
-  filter: drop-shadow(0 16px 12px rgba(47, 43, 43, 0.22));
-}
-
-/* Elementos não selecionados ficam com 55% de opacidade */
-.blog-logo-navigation:has(.blog-logo-option.is-selected)
-  .blog-logo-option:not(.is-selected)
-  .blog-logo-element {
-  opacity: 0.55;
-}
-
-/* Legenda sob cada elemento: só em telas de toque (abaixo) */
-.blog-logo-legenda {
+/* Três tracinhos: escondido no computador */
+.header-menu-botao {
   display: none;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: var(--raio-sm);
+  background: transparent;
+  color: var(--on-assinatura);
+  cursor: pointer;
 }
 
-/* ---------- Tablets e celulares ----------
-   Os três elementos continuam lado a lado, formando "GiL",
-   e encolhem juntos para caber na largura da tela.
-   As alturas dos SVGs são iguais (cerca de 700), e a soma das
-   larguras dá 2,24 vezes a altura; daí a conta abaixo. */
-@media screen and (max-width: 1100px) {
-  .blog-main {
-    padding: 32px 16px 64px;
+/* Submenu de produtos (computador: abre ao passar o mouse) */
+.products-menu {
+  position: relative;
+}
+
+.products-menu-arrow {
+  font-size: 14px;
+  transition: transform 0.2s ease;
+}
+
+.products-menu.is-open .products-menu-arrow {
+  transform: rotate(180deg);
+}
+
+.products-submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  margin: 0;
+  padding: var(--espaco-2);
+  border-radius: 0 0 var(--raio-md) var(--raio-md);
+  background-color: var(--assinatura);
+  box-shadow: var(--sombra-card);
+  list-style: none;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.products-menu:hover .products-submenu,
+.products-menu:focus-within .products-submenu,
+.products-menu.is-open .products-submenu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.submenu-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--espaco-3);
+  border-radius: var(--raio-sm);
+  color: var(--on-assinatura);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.submenu-link:hover,
+.submenu-link.active {
+  background-color: var(--fundo);
+}
+
+/* Botão "voltar ao topo": aparece depois de rolar */
+.voltar-topo {
+  position: fixed;
+  right: var(--espaco-4);
+  bottom: var(--espaco-4);
+  z-index: 40;
+  display: flex;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: var(--raio-pill);
+  background: var(--acao);
+  color: var(--on-acao);
+  box-shadow: var(--sombra-card);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.voltar-topo.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.voltar-topo:hover {
+  background: var(--vinho-escuro);
+}
+
+/* ---------- Celular e tablet ---------- */
+
+@media (max-width: 768px) {
+  .site-navigation {
+    position: relative;
+    min-height: 56px;
+    padding: 0 var(--espaco-2) 0 var(--espaco-2);
   }
 
-  .blog-logo-navigation {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 8px;
-    min-height: auto;
+  .header-menu-botao {
+    display: flex;
   }
 
-  .blog-logo-option {
+  /* O menu vira um painel que desce abaixo da barra */
+  .header-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
     flex-direction: column;
-    gap: 12px;
-    width: auto;
-    height: auto;
-    padding: 4px;
+    align-items: stretch;
+    gap: var(--espaco-1);
+    max-height: calc(100svh - 56px);
+    overflow-y: auto;
+    padding: var(--espaco-2) var(--espaco-4) var(--espaco-5);
+    background-color: var(--assinatura);
+    box-shadow: var(--sombra-card);
   }
 
-  .blog-logo-element {
-    width: auto;
-    height: min(440px, calc((100vw - 64px) / 2.3));
+  .header-links.is-open {
+    display: flex;
   }
 
-  /* Sem mouse não há "passar por cima": cada elemento mostra o próprio nome */
-  .blog-logo-legenda {
-    display: block;
-    max-width: 120px;
-    color: var(--texto);
-    font-family: var(--font-sans);
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 18px;
-    text-align: center;
+  .header-nav-link,
+  .products-menu-trigger {
+    width: 100%;
+    justify-content: space-between;
+    min-height: 48px;
+    font-size: 16px;
   }
 
-  .blog-option-label {
+  /* No celular o submenu abre dentro do painel, ao tocar */
+  .products-submenu {
+    position: static;
+    display: none;
+    min-width: 0;
+    padding: 0 0 0 var(--espaco-4);
+    box-shadow: none;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .products-menu:hover .products-submenu,
+  .products-menu:focus-within .products-submenu {
     display: none;
   }
 
-  .blog-logo-option.is-selected {
-    transform: none;
-  }
-
-  .blog-logo-option.is-selected .blog-logo-element {
-    transform: none;
-    filter: none;
-  }
-
-  .blog-logo-navigation:has(.blog-logo-option.is-selected)
-    .blog-logo-option:not(.is-selected)
-    .blog-logo-element {
-    opacity: 1;
+  .products-menu.is-open .products-submenu {
+    display: block;
   }
 }
 
-@media screen and (max-width: 420px) {
-  .blog-logo-legenda {
-    max-width: 90px;
-    font-size: 12px;
-    line-height: 16px;
+@media (prefers-reduced-motion: reduce) {
+  .products-submenu,
+  .voltar-topo,
+  .products-menu-arrow {
+    transition: none;
   }
 }

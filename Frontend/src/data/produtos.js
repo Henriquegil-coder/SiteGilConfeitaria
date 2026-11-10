@@ -11,6 +11,7 @@ export const categorias = [
   { slug: 'muffins', nome: 'Muffins' },
   { slug: 'madeleines', nome: 'Madeleines' },
   { slug: 'petit-four', nome: 'Petit four' },
+  { slug: 'salgados', nome: 'Salgados' },
 ];
 
 export const produtos = [
@@ -159,5 +160,30 @@ export const produtos = [
     precoCentavos: 0,
     imagem: null,
   },
-];
 
+  // Salgados (descrições provisórias: revisar)
+  {
+    id: 'torta-presunto-queijo',
+    categoria: 'salgados',
+    nome: 'Torta de presunto e queijo',
+    descricao: 'Recheio de presunto, queijo, tomate e azeitona.',
+    precoCentavos: 0,
+    imagem: null,
+  },
+  {
+    id: 'folhado-presunto-queijo',
+    categoria: 'salgados',
+    nome: 'Folhado de presunto e queijo',
+    descricao: 'Massa folhada, no formato de croissant.',
+    precoCentavos: 0,
+    imagem: null,
+  },
+  {
+    id: 'folhado-queijo',
+    categoria: 'salgados',
+    nome: 'Folhado de queijo',
+    descricao: 'Massa folhada, no formato de croissant.',
+    precoCentavos: 0,
+    imagem: null,
+  },
+];
