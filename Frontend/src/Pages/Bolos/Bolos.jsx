@@ -1,60 +1,96 @@
-import Layout from '../../Components/Layout/Layout';
-import ProdutoFoto from '../../Components/ProdutoFoto/ProdutoFoto';
-import useProdutos from '../../services/useProdutos';
-import './Bolos.css';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-export default function Bolos() {
-  const { produtos, estado } = useProdutos('bolos');
+import Footer from '../../Components/Footer/Footer';
+
+import logoG from '../../assets/Images/blog-g.svg';
+import logoEspatula from '../../assets/Images/blog-espatula.svg';
+import logoL from '../../assets/Images/blog-l.svg';
+
+import './Blog.css';
+
+
+const blogSections = [
+  {
+    id: 'historia',
+    label: 'Nossa história',
+    caminho: '/blog/nossa-historia',
+    imagem: logoG,
+    alt: 'Letra G — Nossa história',
+  },
+  {
+    id: 'producao',
+    label: 'Produção artesanal',
+    caminho: '/blog/producao-artesanal',
+    imagem: logoEspatula,
+    alt: 'Espátula — Produção artesanal',
+  },
+  {
+    id: 'artigos',
+    label: 'Artigos',
+    caminho: '/blog/artigos',
+    imagem: logoL,
+    alt: 'Letra L — Artigos',
+  },
+];
+
+export default function Blog() {
+  const [selectedSection, setSelectedSection] = useState('producao');
+
+  const selectedLabel =
+    blogSections.find((section) => section.id === selectedSection)?.label ||
+    'Produção artesanal';
+
+  function handleMouseEnter(sectionId) {
+    setSelectedSection(sectionId);
+  }
+
+  function handleFocus(sectionId) {
+    setSelectedSection(sectionId);
+  }
+
+  function resetSelection() {
+    setSelectedSection('producao');
+  }
 
   return (
-    <Layout>
-      <section className="bolos-page">
-        <header className="bolos-header">
-          <h1>Bolos</h1>
-
-          <p>
-            Conheça nossas opções de bolos artesanais.
-          </p>
-        </header>
-
-        {estado === 'carregando' && (
-          <p className="produtos-status" role="status">
-            Carregando produtos...
-          </p>
-        )}
-
-        {estado === 'erro' && (
-          <p className="produtos-status" role="status">
-            Não foi possível carregar os produtos agora. Tente novamente
-            em instantes.
-          </p>
-        )}
-
-        {estado === 'pronto' && produtos.length === 0 && (
-          <p className="produtos-status" role="status">
-            Em breve, novidades por aqui.
-          </p>
-        )}
-
-        {produtos.length > 0 && (
-          <div className="bolos-grid">
-            {produtos.map((produto) => (
-              <article className="bolo-card" key={produto.id}>
-                <ProdutoFoto
-                  nome={produto.nome}
-                  imagem={produto.imagem}
-                  classePlaceholder="bolo-image-placeholder"
+    <div className="blog-page">
+      <main className="blog-main">
+        <section
+          className="blog-entrance"
+          aria-label="Seções do Blog"
+        >
+          <div className="blog-logo-navigation">
+            {blogSections.map((section) => (
+              <Link
+                key={section.id}
+                to={section.caminho}
+                className={`blog-logo-option ${selectedSection === section.id ? 'is-selected' : ''
+                  }`}
+                onMouseEnter={() => handleMouseEnter(section.id)}
+                onMouseLeave={resetSelection}
+                onFocus={() => handleFocus(section.id)}
+                onBlur={resetSelection}
+              >
+                <img
+                  src={section.imagem}
+                  alt={section.alt}
+                  className="blog-logo-element"
                 />
 
-                <div className="bolo-information">
-                  <h2>{produto.nome}</h2>
-                  <p>{produto.preco}</p>
-                </div>
-              </article>
+                {/* Nome visível só em tablet e celular (ver Blog.css) */}
+                <span className="blog-logo-legenda">{section.label}</span>
+              </Link>
             ))}
+
+            <p className="blog-option-label">
+              {selectedLabel}
+            </p>
           </div>
-        )}
-      </section>
-    </Layout>
+        </section>
+      </main>
+
+      <Footer blogPage />
+    </div>
   );
 }

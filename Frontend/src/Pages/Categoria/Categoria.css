@@ -1,117 +1,241 @@
-/* Página de categoria (Bolos, Tortas, Muffins...) com o visual da marca */
+/* Cabeçalho: barra azul-água fixa no topo, com Início e menu */
 
-.categoria {
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
   width: 100%;
+  background-color: var(--assinatura);
+}
+
+.site-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-5);
   max-width: 1200px;
+  min-height: 60px;
   margin: 0 auto;
-  padding: var(--espaco-8) var(--espaco-6);
+  padding: 0 var(--espaco-6);
 }
 
-.categoria-topo {
-  margin-bottom: var(--espaco-7);
-  text-align: center;
-}
-
-.categoria-rotulo {
-  margin-bottom: var(--espaco-2);
-  color: var(--vinho);
-  font-size: 13px;
+/* Links comuns e botão "Produtos" */
+.header-inicio,
+.header-nav-link,
+.products-menu-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-2);
+  min-height: 44px;
+  padding: 0 var(--espaco-3);
+  border: none;
+  border-radius: var(--raio-sm);
+  background-color: transparent;
+  color: var(--on-assinatura);
+  font-family: var(--font-sans);
+  font-size: 15px;
   font-weight: 600;
-  line-height: 18px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.categoria-grade {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--espaco-6);
+.header-inicio:hover,
+.header-nav-link:hover,
+.products-menu-trigger:hover {
+  background-color: rgba(0, 0, 0, 0.08);
 }
 
-/* Card de produto */
+.header-inicio.active,
+.header-nav-link.active,
+.products-menu-trigger.active {
+  background-color: var(--fundo);
+}
 
-.produto-card {
+.header-links {
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border-radius: var(--raio-md);
-  background: var(--fundo-elevado);
-  box-shadow: var(--sombra-card);
+  align-items: center;
+  gap: var(--espaco-4);
 }
 
-.produto-card-foto {
-  aspect-ratio: 4 / 3;
-  background: var(--assinatura);
+/* Espátula da marca no lugar do ícone de casa */
+.header-inicio-icone {
+  width: auto;
+  height: 28px;
 }
 
-.produto-card-foto img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Sem foto: bloco azul-água com aviso discreto */
-.produto-card-sem-foto {
-  display: flex;
-  width: 100%;
-  height: 100%;
+/* Três tracinhos: escondido no computador */
+.header-menu-botao {
+  display: none;
+  width: 48px;
+  height: 48px;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: var(--raio-sm);
+  background: transparent;
   color: var(--on-assinatura);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  cursor: pointer;
 }
 
-.produto-card-corpo {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: var(--espaco-3);
-  padding: var(--espaco-5);
+/* Submenu de produtos (computador: abre ao passar o mouse) */
+.products-menu {
+  position: relative;
 }
 
-.produto-card-corpo h2 {
-  font-size: 28px;
-  line-height: 34px;
-}
-
-.produto-card-descricao {
-  flex: 1;
-  color: var(--texto-suave);
+.products-menu-arrow {
   font-size: 14px;
-  line-height: 22px;
+  transition: transform 0.2s ease;
 }
 
-.produto-card-preco {
-  color: var(--preco);
-  font-family: var(--font-display);
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 32px;
+.products-menu.is-open .products-menu-arrow {
+  transform: rotate(180deg);
 }
 
-.produto-card .gil-btn {
-  width: 100%;
-  margin-top: var(--espaco-2);
+.products-submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  margin: 0;
+  padding: var(--espaco-2);
+  border-radius: 0 0 var(--raio-md) var(--raio-md);
+  background-color: var(--assinatura);
+  box-shadow: var(--sombra-card);
+  list-style: none;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-/* Tablet e celular */
+.products-menu:hover .products-submenu,
+.products-menu:focus-within .products-submenu,
+.products-menu.is-open .products-submenu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
 
-@media (max-width: 900px) {
-  .categoria-grade {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+.submenu-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--espaco-3);
+  border-radius: var(--raio-sm);
+  color: var(--on-assinatura);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.submenu-link:hover,
+.submenu-link.active {
+  background-color: var(--fundo);
+}
+
+/* Botão "voltar ao topo": aparece depois de rolar */
+.voltar-topo {
+  position: fixed;
+  right: var(--espaco-4);
+  bottom: var(--espaco-4);
+  z-index: 40;
+  display: flex;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: var(--raio-pill);
+  background: var(--acao);
+  color: var(--on-acao);
+  box-shadow: var(--sombra-card);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.voltar-topo.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.voltar-topo:hover {
+  background: var(--vinho-escuro);
+}
+
+/* ---------- Celular e tablet ---------- */
+
+@media (max-width: 768px) {
+  .site-navigation {
+    position: relative;
+    min-height: 56px;
+    padding: 0 var(--espaco-2) 0 var(--espaco-2);
+  }
+
+  .header-menu-botao {
+    display: flex;
+  }
+
+  /* O menu vira um painel que desce abaixo da barra */
+  .header-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--espaco-1);
+    max-height: calc(100svh - 56px);
+    overflow-y: auto;
+    padding: var(--espaco-2) var(--espaco-4) var(--espaco-5);
+    background-color: var(--assinatura);
+    box-shadow: var(--sombra-card);
+  }
+
+  .header-links.is-open {
+    display: flex;
+  }
+
+  .header-nav-link,
+  .products-menu-trigger {
+    width: 100%;
+    justify-content: space-between;
+    min-height: 48px;
+    font-size: 16px;
+  }
+
+  /* No celular o submenu abre dentro do painel, ao tocar */
+  .products-submenu {
+    position: static;
+    display: none;
+    min-width: 0;
+    padding: 0 0 0 var(--espaco-4);
+    box-shadow: none;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .products-menu:hover .products-submenu,
+  .products-menu:focus-within .products-submenu {
+    display: none;
+  }
+
+  .products-menu.is-open .products-submenu {
+    display: block;
   }
 }
 
-@media (max-width: 600px) {
-  .categoria {
-    padding: var(--espaco-7) var(--espaco-4);
-  }
-
-  .categoria-grade {
-    grid-template-columns: 1fr;
-    gap: var(--espaco-5);
+@media (prefers-reduced-motion: reduce) {
+  .products-submenu,
+  .voltar-topo,
+  .products-menu-arrow {
+    transition: none;
   }
 }

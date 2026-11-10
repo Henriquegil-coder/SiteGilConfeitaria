@@ -1,9 +1,94 @@
 /* Página inicial */
 
-.home-banner img {
+/* Banner em carrossel: todos os banners na mesma proporção */
+.home-banner {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3000 / 940;
+  background: var(--fundo);
+}
+
+.home-banner-trilho {
+  display: flex;
+  height: 100%;
+  transition: transform 0.6s ease;
+}
+
+.home-banner-trilho img {
+  flex: 0 0 100%;
   width: 100%;
-  max-height: 420px;
+  height: 100%;
+  max-width: none;
   object-fit: cover;
+}
+
+/* Setas de espátula em botão redondo off-white */
+.home-banner-seta {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  width: 56px;
+  height: 56px;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--raio-pill);
+  background: rgba(247, 244, 239, 0.85);
+  box-shadow: var(--sombra-card);
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.home-banner-seta:hover {
+  background: var(--fundo);
+}
+
+.home-banner-seta img {
+  width: 100%;
+}
+
+.home-banner-seta--voltar { left: var(--espaco-6); }
+.home-banner-seta--avancar { right: var(--espaco-6); }
+
+/* Marcadores (um ponto por banner) */
+.home-banner-pontos {
+  position: absolute;
+  bottom: var(--espaco-4);
+  left: 50%;
+  display: flex;
+  gap: var(--espaco-2);
+  transform: translateX(-50%);
+}
+
+.home-banner-pontos button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 1px solid var(--texto);
+  border-radius: var(--raio-pill);
+  background: transparent;
+  cursor: pointer;
+}
+
+.home-banner-pontos button.ativo {
+  background: var(--texto);
+}
+
+/* Quem prefere menos movimento não vê a animação de deslizar */
+@media (prefers-reduced-motion: reduce) {
+  .home-banner-trilho { transition: none; }
+}
+
+@media (max-width: 600px) {
+  .home-banner-seta {
+    width: 40px;
+    height: 40px;
+    padding: 6px;
+  }
+
+  .home-banner-seta--voltar { left: var(--espaco-2); }
+  .home-banner-seta--avancar { right: var(--espaco-2); }
 }
 
 .home-intro {
@@ -82,4 +167,49 @@
 /* Foco visível sobre o azul-água */
 .home-cardapio :focus-visible {
   outline-color: var(--preto);
+}
+
+/* ---------- Celular: primeira tela completa ---------- */
+@media (max-width: 600px) {
+  /* Banner recortado pelo centro: o logo aparece cerca de 2x maior */
+  .home-banner {
+    aspect-ratio: 16 / 10;
+  }
+
+  /* Apresentação ocupa o resto da tela, descontando barra (56px)
+     e banner (62,5% da largura); o conteúdo fica centralizado */
+  .home-intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100svh - 56px - 62.5vw);
+    padding: var(--espaco-4) var(--espaco-4);
+  }
+
+  .home-intro .categoria-rotulo {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  .home-intro h1 {
+    margin-bottom: var(--espaco-3);
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .home-intro-texto {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  /* Botões um embaixo do outro, largura total */
+  .home-intro-botoes {
+    flex-direction: column;
+    gap: var(--espaco-3);
+    margin-top: var(--espaco-4);
+  }
+
+  .home-intro-botoes .gil-btn {
+    width: 100%;
+  }
 }
