@@ -57,8 +57,8 @@ export default function Contato() {
 
                 <div>
                   <h3>E-mail</h3>
-                  <a href="mailto:contato@gilconfeitaria.com.br">
-                    contato@gilconfeitaria.com.br
+                  <a href="mailto:gil_confeitaria@hotmail.com">
+                    gil_confeitaria@hotmail.com
                   </a>
                 </div>
               </div>
@@ -73,8 +73,8 @@ export default function Contato() {
 
                 <div>
                   <h3>Telefone</h3>
-                  <a href="tel:+5500000000000">
-                    (00) 00000-0000
+                  <a href="tel:+5514000000000">
+                    (14) 99618-5488
                   </a>
                 </div>
               </div>
