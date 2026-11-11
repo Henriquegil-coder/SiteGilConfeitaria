@@ -70,7 +70,7 @@ export const produtos = [
     descricao:
       'Massa francesa assada, recheada com creme de limão, de maracujá ou ganache.',
     precoCentavos: 0,
-    imagem: null,
+    imagem: 'tarteSablee.jpg',
   },
 
   // Muffins
@@ -88,7 +88,7 @@ export const produtos = [
     nome: 'Muffin de chocolate',
     descricao: 'Chocolate meio amargo, de sabor marcante.',
     precoCentavos: 800,
-    imagem: null,
+    imagem: 'muffins.jpg',
   },
   {
     id: 'muffin-frutas-vermelhas',
@@ -150,7 +150,7 @@ export const produtos = [
     nome: 'Biscoitos amanteigados',
     descricao: 'Massa leve, aromatizada com laranja ou limão.',
     precoCentavos: 500,
-    imagem: null,
+    imagem: 'biscoitosAmanteigados.jpg',
   },
   {
     id: 'bolachas-sablee',
