@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import Layout from '../../Components/Layout/Layout';
 import useProdutos, { linkEncomenda } from '../../services/useProdutos';
-import { categorias } from '../../data/produtos';
 
 import banner1 from '../../assets/Images/banner-principal.png';
 // As setas são espátulas. O arquivo "seta-direita" tem a ponta para a
@@ -159,17 +158,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="cardapio" className="home-cardapio" aria-labelledby="cardapio-titulo">
-        <h2 id="cardapio-titulo" className="home-titulo">Cardápio</h2>
-
-        <ul className="home-categorias">
-          {categorias.map((categoria) => (
-            <li key={categoria.slug}>
-              <Link to={`/produtos/${categoria.slug}`}>{categoria.nome}</Link>
-            </li>
-          ))}
-        </ul>
-      </section>
     </Layout>
   );
 }

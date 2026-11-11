@@ -125,50 +125,6 @@
   line-height: 34px;
 }
 
-/* Cardápio: categorias em faixa azul-água */
-.home-cardapio {
-  padding: var(--espaco-8) var(--espaco-4);
-  background: var(--assinatura);
-}
-
-.home-categorias {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--espaco-4);
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
-}
-
-.home-categorias a {
-  display: inline-block;
-  padding: var(--espaco-4) var(--espaco-6);
-  border-radius: var(--raio-md);
-  background: var(--fundo);
-  color: var(--texto);
-  font-family: var(--font-display);
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 34px;
-  text-decoration: none;
-}
-
-.home-categorias a:hover {
-  background: var(--fundo-elevado);
-  box-shadow: var(--sombra-card);
-}
-
-.home-cardapio .home-titulo {
-  color: var(--on-assinatura);
-}
-
-/* Foco visível sobre o azul-água */
-.home-cardapio :focus-visible {
-  outline-color: var(--preto);
-}
-
 /* ---------- Celular: primeira tela completa ---------- */
 @media (max-width: 600px) {
   /* Banner recortado pelo centro: o logo aparece cerca de 2x maior */
