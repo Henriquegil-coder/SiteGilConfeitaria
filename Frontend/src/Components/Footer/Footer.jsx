@@ -7,7 +7,7 @@ import logoBeeh from '../../assets/Images/beeh-design-logo.svg';
 import './Footer.css';
 
 // Endereço do site da Beeh Design (troque quando o site estiver no ar)
-const SITE_BEEH = 'https://COLOQUE-O-ENDERECO-AQUI';
+const SITE_BEEH = 'https://beehdesign.vercel.app/';
 
 export default function Footer({ blogPage = false }) {
   return (
