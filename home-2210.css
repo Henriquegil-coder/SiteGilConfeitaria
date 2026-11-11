@@ -1,0 +1,338 @@
+/* =========================================
+   ESTILOS GLOBAIS DA HOME (TELA CHEIA)
+   ========================================= */
+body {
+  background-color: #fdf7f7; /* <-- COR DO FUNDO GERAL ÚNICO */
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.confeitaria-home {
+  font-family: 'Georgia', serif;
+  color: #2c2c2c;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent; /* Remove qualquer fundo próprio, herdando o global */
+}
+
+.confeitaria-main-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* --- Header Customizado (Logo) --- */
+.confeitaria-header-custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  background-color: transparent;
+}
+
+.header-img {
+  max-height: 110px;
+  width: auto;
+  display: block;
+  cursor: pointer;
+}
+
+/* --- Barra de Menu (Sem faixa colorida) --- */
+.confeitaria-menu-bar {
+  background-color: transparent; /* Removida a faixa colorida */
+  padding: 15px 0;
+  width: 100%;
+}
+
+.menu-container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-left, .menu-right {
+  display: flex;
+  gap: 40px;
+}
+
+.confeitaria-menu-bar a {
+  text-decoration: none;
+  color: #333333;
+  font-family: 'Arial', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.confeitaria-menu-bar a:hover {
+  color: #ffffff; /* Tom interativo combinando com o tema */
+}
+
+/* --- Carrossel / Banner --- */
+.confeitaria-banner-custom {
+  width: 100%;
+  position: relative;
+  margin: 15px 0 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.banner-image-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-img-responsive {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Setas do Carrossel */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+
+.carousel-arrow:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.arrow-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display: block;
+}
+
+.left-arrow {
+  left: 40px;
+  transform: translateY(-50%) scaleX(-1);
+}
+
+.right-arrow {
+  right: 40px;
+  transform: translateY(-50%) scaleX(-1);
+}
+
+/* --- Seção de Destaques (Grid de Produtos) --- */
+.confeitaria-destaques {
+  width: 100%;
+  padding: 0 40px;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.cards-grid {
+  width: 100%;
+  max-width: 1300px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.card {
+  background: transparent; /* Removido o fundo branco quadrado */
+  border: none; /* Removidas as bordas duras */
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-img-placeholder {
+  width: 100%;
+  height: 250px;
+  background-color: rgba(0, 0, 0, 0.04); /* Fundo mais suave e integrado */
+  border-radius: 8px; /* Cantos levemente arredondados para leveza */
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.card-img-placeholder::before,
+.card-img-placeholder::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  transform: rotate(45deg);
+}
+.card-img-placeholder::after {
+  transform: rotate(-45deg);
+}
+
+.card-title {
+  font-family: 'Arial', sans-serif;
+  color: #555555;
+  font-size: 15px;
+  font-weight: 400;
+  text-align: left;
+  width: 100%;
+}
+
+/* --- Rodapé (Sem faixa colorida) --- */
+.confeitaria-footer-custom {
+  background-color: transparent; /* Removida a faixa colorida do rodapé */
+  color: #7a3030;
+  text-align: center;
+  padding: 40px 20px;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  width: 100%;
+  margin-top: auto;
+}
+.confeitaria-menu-bar {
+  background-color: rgba(1, 209, 224, 0.233); /* Um leve toque translúcido */
+  padding: 15px 0;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.footer-links {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.footer-links span {
+  cursor: pointer;
+  background-color: transparent; /* Removida a faixa colorida do rodapé */
+  color: #333333;
+}
+.footer-links span:hover {
+  text-decoration: underline;
+  background-color: transparent; /* Removida a faixa colorida do rodapé */
+  color: #333333;
+}
+
+
+/* =========================================
+   MEDIA QUERIES (RESPONSIVIDADE)
+   ========================================= */
+
+@media screen and (max-width: 1024px) {
+  .menu-container, .confeitaria-destaques, .footer-links {
+    padding: 0 20px;
+  }
+  
+  .menu-left, .menu-right {
+    gap: 20px;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header-img {
+    max-height: 80px; 
+  }
+
+  .menu-container {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .menu-left, .menu-right {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .confeitaria-banner-custom {
+    margin: 10px 0 20px 0;
+  }
+
+  .banner-img-responsive {
+    max-height: 220px;
+  }
+
+  .left-arrow {
+    left: 10px;
+  }
+
+  .right-arrow {
+    right: 10px;
+  }
+
+  .arrow-icon {
+    width: 25px;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .card-img-placeholder {
+    height: 200px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 15px;
+  }
+}

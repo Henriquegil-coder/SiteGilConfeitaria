@@ -1,0 +1,161 @@
+/* Página de categoria (Bolos, Tortas, Muffins...) com o visual da marca */
+
+.categoria {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--espaco-8) var(--espaco-6);
+}
+
+.categoria-topo {
+  margin-bottom: var(--espaco-7);
+  text-align: center;
+}
+
+.categoria-rotulo {
+  margin-bottom: var(--espaco-2);
+  color: var(--vinho);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Produtos sempre centralizados: os cards têm largura fixa e
+   uma fileira incompleta (1 ou 2 produtos) fica no meio da tela */
+.categoria-grade {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espaco-6);
+}
+
+.categoria-grade > .produto-card {
+  flex: 0 1 340px;
+}
+
+/* Card de produto */
+
+.produto-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--raio-md);
+  background: var(--fundo-elevado);
+  box-shadow: var(--sombra-card);
+}
+
+/* Moldura fixa 4:3: toda foto ocupa o mesmo espaço, seja qual for o
+   tamanho original. A imagem é recortada para preencher (object-fit). */
+.produto-card-foto {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--assinatura);
+}
+
+.produto-card-foto img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Sem foto: bloco azul-água com aviso discreto */
+.produto-card-sem-foto {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  color: var(--on-assinatura);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.produto-card-corpo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--espaco-3);
+  padding: var(--espaco-5);
+}
+
+.produto-card-corpo h2 {
+  font-size: 28px;
+  line-height: 34px;
+}
+
+.produto-card-descricao {
+  flex: 1;
+  color: var(--texto-suave);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.produto-card-preco {
+  color: var(--preco);
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.produto-card .gil-btn {
+  width: 100%;
+  margin-top: var(--espaco-2);
+}
+
+/* Cardápio completo (/produtos): uma seção por categoria */
+
+.produtos-secao + .produtos-secao {
+  margin-top: var(--espaco-8);
+}
+
+.produtos-secao-titulo {
+  margin-bottom: var(--espaco-6);
+  text-align: center;
+}
+
+.produtos-secao-titulo a {
+  color: var(--texto);
+  text-decoration: none;
+}
+
+.produto-card-nome {
+  font-size: 28px;
+  line-height: 34px;
+}
+
+/* Tablet e celular */
+
+@media (max-width: 900px) {
+  .categoria-grade {
+    gap: var(--espaco-5);
+  }
+
+  .categoria-grade > .produto-card {
+    flex-basis: 320px;
+  }
+}
+
+@media (max-width: 600px) {
+  .categoria {
+    padding: var(--espaco-7) var(--espaco-4);
+  }
+
+  /* Celular: um card por linha, centralizado e sem esticar demais */
+  .categoria-grade > .produto-card {
+    flex-basis: 100%;
+    max-width: 480px;
+  }
+}

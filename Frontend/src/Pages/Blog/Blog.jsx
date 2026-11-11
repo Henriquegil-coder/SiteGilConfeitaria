@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 import Footer from '../../Components/Footer/Footer';
 
-import logoG from '../../assets/images/blog-g.svg';
-import logoEspatula from '../../assets/images/blog-espatula.svg';
-import logoL from '../../assets/images/blog-l.svg';
+import logoG from '../../assets/Images/blog-g.svg';
+import logoEspatula from '../../assets/Images/blog-espatula.svg';
+import logoL from '../../assets/Images/blog-l.svg';
 
 import './Blog.css';
 
@@ -77,6 +77,9 @@ export default function Blog() {
                   alt={section.alt}
                   className="blog-logo-element"
                 />
+
+                {/* Nome visível só em tablet e celular (ver Blog.css) */}
+                <span className="blog-logo-legenda">{section.label}</span>
               </Link>
             ))}
 
@@ -91,4 +94,3 @@ export default function Blog() {
     </div>
   );
 }
-

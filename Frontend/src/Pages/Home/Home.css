@@ -1,338 +1,183 @@
-/* =========================================
-   ESTILOS GLOBAIS DA HOME (TELA CHEIA)
-   ========================================= */
-body {
-  background-color: #fdf7f7; /* <-- COR DO FUNDO GERAL ÚNICO */
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-}
+/* Página inicial */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body, #root {
-  width: 100%;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-.confeitaria-home {
-  font-family: 'Georgia', serif;
-  color: #2c2c2c;
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: transparent; /* Remove qualquer fundo próprio, herdando o global */
-}
-
-.confeitaria-main-content {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-/* --- Header Customizado (Logo) --- */
-.confeitaria-header-custom {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  width: 100%;
-  background-color: transparent;
-}
-
-.header-img {
-  max-height: 110px;
-  width: auto;
-  display: block;
-  cursor: pointer;
-}
-
-/* --- Barra de Menu (Sem faixa colorida) --- */
-.confeitaria-menu-bar {
-  background-color: transparent; /* Removida a faixa colorida */
-  padding: 15px 0;
-  width: 100%;
-}
-
-.menu-container {
-  width: 100%;
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 0 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.menu-left, .menu-right {
-  display: flex;
-  gap: 40px;
-}
-
-.confeitaria-menu-bar a {
-  text-decoration: none;
-  color: #333333;
-  font-family: 'Arial', sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  transition: color 0.2s;
-}
-
-.confeitaria-menu-bar a:hover {
-  color: #ffffff; /* Tom interativo combinando com o tema */
-}
-
-/* --- Carrossel / Banner --- */
-.confeitaria-banner-custom {
-  width: 100%;
+/* Banner em carrossel: todos os banners na mesma proporção */
+.home-banner {
   position: relative;
-  margin: 15px 0 40px 0;
+  overflow: hidden;
+  aspect-ratio: 3000 / 940;
+  background: var(--fundo);
+}
+
+.home-banner-trilho {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent;
+  height: 100%;
+  transition: transform 0.6s ease;
 }
 
-.banner-image-container {
+.home-banner-trilho img {
+  flex: 0 0 100%;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
 }
 
-.banner-img-responsive {
-  width: 100%;
-  max-height: 400px;
-  object-fit: contain;
-  display: block;
-}
-
-/* Setas do Carrossel */
-.carousel-arrow {
+/* Setas de espátula em botão redondo off-white */
+.home-banner-seta {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.7);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 10;
   display: flex;
+  width: 56px;
+  height: 56px;
+  padding: 10px;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  transition: all 0.2s ease;
+  border: none;
+  border-radius: var(--raio-pill);
+  background: rgba(247, 244, 239, 0.85);
+  box-shadow: var(--sombra-card);
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
-.carousel-arrow:hover {
-  background-color: rgba(255, 255, 255, 0.95);
-  transform: translateY(-50%) scale(1.08);
+.home-banner-seta:hover {
+  background: var(--fundo);
 }
 
-.arrow-icon {
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
+.home-banner-seta img {
+  width: 100%;
+}
+
+.home-banner-seta--voltar { left: var(--espaco-6); }
+.home-banner-seta--avancar { right: var(--espaco-6); }
+
+/* Marcadores (um ponto por banner) */
+.home-banner-pontos {
+  position: absolute;
+  bottom: var(--espaco-4);
+  left: 50%;
+  display: flex;
+  gap: var(--espaco-2);
+  transform: translateX(-50%);
+}
+
+.home-banner-pontos button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 1px solid var(--texto);
+  border-radius: var(--raio-pill);
+  background: transparent;
+  cursor: pointer;
+}
+
+.home-banner-pontos button.ativo {
+  background: var(--texto);
+}
+
+/* Quem prefere menos movimento não vê a animação de deslizar */
+@media (prefers-reduced-motion: reduce) {
+  .home-banner-trilho { transition: none; }
+}
+
+@media (max-width: 600px) {
+  .home-banner-seta {
+    width: 40px;
+    height: 40px;
+    padding: 6px;
+  }
+
+  .home-banner-seta--voltar { left: var(--espaco-2); }
+  .home-banner-seta--avancar { right: var(--espaco-2); }
+}
+
+/* Quebra de linha controlada no título e no texto de apresentação */
+.home-intro-linha {
   display: block;
 }
 
-.left-arrow {
-  left: 40px;
-  transform: translateY(-50%) scaleX(-1);
+/* Em telas largas, cada linha fica inteira (sem quebrar no meio) */
+@media (min-width: 601px) {
+  .home-intro-linha {
+    white-space: nowrap;
+  }
 }
 
-.right-arrow {
-  right: 40px;
-  transform: translateY(-50%) scaleX(-1);
-}
-
-/* --- Seção de Destaques (Grid de Produtos) --- */
-.confeitaria-destaques {
-  width: 100%;
-  padding: 0 40px;
-  text-align: center;
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  background-color: transparent;
-}
-
-.cards-grid {
-  width: 100%;
-  max-width: 1300px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  margin-bottom: 60px;
-}
-
-.card {
-  background: transparent; /* Removido o fundo branco quadrado */
-  border: none; /* Removidas as bordas duras */
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.card-img-placeholder {
-  width: 100%;
-  height: 250px;
-  background-color: rgba(0, 0, 0, 0.04); /* Fundo mais suave e integrado */
-  border-radius: 8px; /* Cantos levemente arredondados para leveza */
-  margin-bottom: 15px;
-  position: relative;
-}
-
-.card-img-placeholder::before,
-.card-img-placeholder::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 2px;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.5);
-  transform: rotate(45deg);
-}
-.card-img-placeholder::after {
-  transform: rotate(-45deg);
-}
-
-.card-title {
-  font-family: 'Arial', sans-serif;
-  color: #555555;
-  font-size: 15px;
-  font-weight: 400;
-  text-align: left;
-  width: 100%;
-}
-
-/* --- Rodapé (Sem faixa colorida) --- */
-.confeitaria-footer-custom {
-  background-color: transparent; /* Removida a faixa colorida do rodapé */
-  color: #7a3030;
-  text-align: center;
-  padding: 40px 20px;
-  font-family: 'Arial', sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  width: 100%;
-  margin-top: auto;
-}
-.confeitaria-menu-bar {
-  background-color: rgba(1, 209, 224, 0.233); /* Um leve toque translúcido */
-  padding: 15px 0;
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-}
-
-.footer-links {
-  width: 100%;
-  max-width: 1300px;
+.home-intro {
+  max-width: 960px;
   margin: 0 auto;
+  padding: var(--espaco-8) var(--espaco-4) 0;
+  text-align: center;
+}
+
+.home-intro h1 {
+  margin-bottom: var(--espaco-5);
+}
+
+.home-intro-texto {
+  color: var(--texto-suave);
+}
+
+.home-intro-botoes {
   display: flex;
-  justify-content: center;
-  gap: 80px;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espaco-4);
+  margin-top: var(--espaco-6);
 }
 
-.footer-links span {
-  cursor: pointer;
-  background-color: transparent; /* Removida a faixa colorida do rodapé */
-  color: #333333;
-}
-.footer-links span:hover {
-  text-decoration: underline;
-  background-color: transparent; /* Removida a faixa colorida do rodapé */
-  color: #333333;
+.home-titulo {
+  margin-bottom: var(--espaco-6);
+  text-align: center;
 }
 
-
-/* =========================================
-   MEDIA QUERIES (RESPONSIVIDADE)
-   ========================================= */
-
-@media screen and (max-width: 1024px) {
-  .menu-container, .confeitaria-destaques, .footer-links {
-    padding: 0 20px;
-  }
-  
-  .menu-left, .menu-right {
-    gap: 20px;
-  }
-
-  .cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
+/* No card da home o nome é h3; mesmo tamanho do card da categoria */
+.produto-card-corpo h3 {
+  font-size: 28px;
+  line-height: 34px;
 }
 
-@media screen and (max-width: 768px) {
-  .header-img {
-    max-height: 80px; 
+/* ---------- Celular: primeira tela completa ---------- */
+@media (max-width: 600px) {
+  /* Banner recortado pelo centro: o logo aparece cerca de 2x maior */
+  .home-banner {
+    aspect-ratio: 16 / 10;
   }
 
-  .menu-container {
+  /* Apresentação ocupa o resto da tela, descontando barra (56px)
+     banner (62,5% da largura) e faixa de categorias (61px) */
+  .home-intro {
+    display: flex;
     flex-direction: column;
-    gap: 15px;
-    text-align: center;
-    padding: 10px;
+    justify-content: center;
+    min-height: calc(100svh - 56px - 62.5vw - 61px);
+    padding: var(--espaco-4) var(--espaco-4);
   }
 
-  .menu-left, .menu-right {
+  .home-intro .categoria-rotulo {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  .home-intro h1 {
+    margin-bottom: var(--espaco-3);
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .home-intro-texto {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  /* Botões um embaixo do outro, largura total */
+  .home-intro-botoes {
     flex-direction: column;
-    gap: 10px;
+    gap: var(--espaco-3);
+    margin-top: var(--espaco-4);
   }
 
-  .confeitaria-banner-custom {
-    margin: 10px 0 20px 0;
-  }
-
-  .banner-img-responsive {
-    max-height: 220px;
-  }
-
-  .left-arrow {
-    left: 10px;
-  }
-
-  .right-arrow {
-    right: 10px;
-  }
-
-  .arrow-icon {
-    width: 25px;
-  }
-
-  .cards-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .card-img-placeholder {
-    height: 200px;
-  }
-
-  .footer-links {
-    flex-direction: column;
-    gap: 15px;
+  .home-intro-botoes .gil-btn {
+    width: 100%;
   }
 }

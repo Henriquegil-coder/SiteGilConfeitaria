@@ -3,24 +3,15 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home/Home';
 
 import Produtos from './Pages/Produtos/Produtos';
-import Bolos from './Pages/Bolos/Bolos';
-import Tortas from './Pages/Tortas/Tortas';
-import Biscoitos from './Pages/Biscoitos/Biscoitos';
-import Geleias from './Pages/Geleias/Geleias';
-import Salgados from './Pages/Salgados/Salgados';
+import Categoria from './Pages/Categoria/Categoria';
+import Cardapio from './Pages/Cardapio/Cardapio';
 
 import Blog from './Pages/Blog/Blog';
 import NossaHistoria from './Pages/NossaHistoria/NossaHistoria';
 import ProducaoArtesanal from './Pages/ProducaoArtesanal/ProducaoArtesanal';
 
 import Artigos from './Pages/Artigos/Artigos';
-import EditarArtigo from './Pages/Artigos/EditarArtigo';
 import VisualizarArtigo from './Pages/Artigos/VisualizarArtigo';
-
-
-import Cliente from './Pages/Cliente/Cliente';
-import Login from './Pages/Cliente/Login';
-import Cadastro from './Pages/Cliente/Cadastro';
 
 import Contato from './Pages/Contato/Contato';
 import PoliticaPrivacidade from './Pages/PoliticaPrivacidade/PoliticaPrivacidade';
@@ -41,11 +32,9 @@ export function AppRoutes() {
         {/* Produtos */}
 
         <Route path="/produtos" element={<Produtos />} />
-        <Route path="/produtos/bolos" element={<Bolos />} />
-        <Route path="/produtos/tortas" element={<Tortas />} />
-        <Route path="/produtos/biscoitos" element={<Biscoitos />} />
-        <Route path="/produtos/geleias" element={<Geleias />} />
-        <Route path="/produtos/salgados" element={<Salgados />} />
+        <Route path="/cardapio" element={<Cardapio />} />
+        {/* Uma página para todas as categorias do cardápio (src/data/produtos.js) */}
+        <Route path="/produtos/:slug" element={<Categoria />} />
 
         {/* Blog */}
 
@@ -56,14 +45,7 @@ export function AppRoutes() {
         {/* Artigos */}
 
         <Route path="/blog/artigos" element={<Artigos />} />
-        <Route path="/blog/artigos/editar/:id" element={<EditarArtigo />} />
         <Route path="/blog/artigos/visualizar/:id" element={<VisualizarArtigo />} />
-
-        {/* Área do cliente */}
-
-        <Route path="/area-cliente" element={<Login />} />
-        <Route path="/area-cliente/cadastro" element={<Cadastro />} />
-        <Route path="/area-cliente/painel" element={<Cliente />} />
 
         {/* Páginas institucionais */}
 

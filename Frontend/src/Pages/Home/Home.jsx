@@ -2,127 +2,179 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Layout from '../../Components/Layout/Layout';
+import CategoriasFaixa from '../../Components/CategoriasFaixa/CategoriasFaixa';
+import useProdutos, { linkEncomenda } from '../../services/useProdutos';
 
+import banner1 from '../../assets/Images/banner-principal.png';
+// As setas são espátulas. O arquivo "seta-direita" tem a ponta para a
+// esquerda, e vice-versa; por isso os nomes aparecem trocados abaixo.
+import setaVoltar from '../../assets/Images/seta-direita.svg';
+import setaAvancar from '../../assets/Images/seta-esquerda.svg';
+
+// Reaproveita o card de produto da página de categoria
+import '../Categoria/Categoria.css';
 import './Home.css';
 
-import banner1 from '../../assets/images/banner-principal.png';
-import leftArrowIcon from '../../assets/images/seta-esquerda.svg';
-import rightArrowIcon from '../../assets/images/seta-direita.svg';
+// Banners do topo. Para incluir um novo: coloque a imagem em
+// src/assets/Images, importe-a aqui em cima e acrescente na lista.
+// Formato sugerido: 3000 x 940 px, como o banner-principal.
+const banners = [
+  { imagem: banner1, texto: 'GiL Confeitaria' },
+];
 
+const INTERVALO = 5000; // troca a cada 5 segundos
 
 export default function Home() {
-  const banners = [banner1];
+  const { produtos } = useProdutos();
+  const [atual, setAtual] = useState(0);
+  const [pausado, setPausado] = useState(false);
+  const temVarios = banners.length > 1;
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // Destaques: todos os produtos que já têm foto.
+  // O Bolo dezesseis de maio fica sempre na 2ª posição: no computador,
+  // no meio da primeira fileira de 3; no celular, entre dois produtos.
+  const comFoto = produtos.filter((produto) => produto.imagem);
+  const estrela = comFoto.find((produto) => produto.id === 'bolo-dezesseis-de-maio');
+  const outros = comFoto.filter((produto) => produto !== estrela);
+  const destaques = estrela
+    ? [outros[0], estrela, ...outros.slice(1)].filter(Boolean)
+    : comFoto;
 
+  function voltar() {
+    setAtual((i) => (i === 0 ? banners.length - 1 : i - 1));
+  }
+
+  function avancar() {
+    setAtual((i) => (i === banners.length - 1 ? 0 : i + 1));
+  }
+
+  // Troca sozinho, mas para enquanto o mouse está em cima
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) =>
-        prevIndex === banners.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 4000);
+    if (!temVarios || pausado) {
+      return undefined;
+    }
 
+    const timer = setInterval(avancar, INTERVALO);
     return () => clearInterval(timer);
-  }, [banners.length]);
-
-  function prevSlide() {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? banners.length - 1 : prevIndex - 1
-    );
-  }
-
-  function nextSlide() {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === banners.length - 1 ? 0 : prevIndex + 1
-    );
-  }
+  }, [temVarios, pausado]);
 
   return (
     <Layout>
-      <section className="confeitaria-banner-custom">
-        <button
-          type="button"
-          className="carousel-arrow left-arrow"
-          onClick={prevSlide}
-          aria-label="Banner anterior"
-        >
-          <img
-            src={leftArrowIcon}
-            alt=""
-            className="arrow-icon"
-          />
-        </button>
-
-        <div className="banner-image-container">
-          <img
-            src={banners[currentIndex]}
-            alt="Banner da GIL Confeitaria"
-            className="banner-img-responsive"
-          />
-        </div>
-
-        <button
-          type="button"
-          className="carousel-arrow right-arrow"
-          onClick={nextSlide}
-          aria-label="Próximo banner"
-        >
-          <img
-            src={rightArrowIcon}
-            alt=""
-            className="arrow-icon"
-          />
-        </button>
-      </section>
-
       <section
-        className="confeitaria-destaques"
-        aria-label="Produtos em destaque"
+        className="home-banner"
+        aria-roledescription="carrossel"
+        aria-label="Destaques da GiL Confeitaria"
+        onMouseEnter={() => setPausado(true)}
+        onMouseLeave={() => setPausado(false)}
       >
-        <div className="cards-grid">
-          <Link to="/produtos" className="card">
-            <div className="card-img-placeholder"></div>
-            <p className="card-title">
-              Nome do produto - R$ 00,00
-            </p>
-          </Link>
+        <div className="home-banner-trilho" style={{ transform: `translateX(-${atual * 100}%)` }}>
+          {banners.map((item, i) => (
+            <img
+              key={i}
+              src={item.imagem}
+              alt={item.texto}
+              aria-hidden={i !== atual}
+            />
+          ))}
+        </div>
 
-          <Link to="/produtos" className="card">
-            <div className="card-img-placeholder"></div>
-            <p className="card-title">
-              Nome do produto - R$ 00,00
-            </p>
-          </Link>
+        {/* Setas e marcadores só aparecem com 2 banners ou mais */}
+        {temVarios && (
+          <>
+            <button
+              type="button"
+              className="home-banner-seta home-banner-seta--voltar"
+              onClick={voltar}
+              aria-label="Banner anterior"
+            >
+              <img src={setaVoltar} alt="" />
+            </button>
 
-          <Link to="/produtos" className="card">
-            <div className="card-img-placeholder"></div>
-            <p className="card-title">
-              Nome do produto - R$ 00,00
-            </p>
-          </Link>
+            <button
+              type="button"
+              className="home-banner-seta home-banner-seta--avancar"
+              onClick={avancar}
+              aria-label="Próximo banner"
+            >
+              <img src={setaAvancar} alt="" />
+            </button>
 
-          <Link to="/produtos" className="card">
-            <div className="card-img-placeholder"></div>
-            <p className="card-title">
-              Nome do produto - R$ 00,00
-            </p>
-          </Link>
+            <div className="home-banner-pontos">
+              {banners.map((item, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  className={i === atual ? 'ativo' : ''}
+                  onClick={() => setAtual(i)}
+                  aria-label={`Ir para o banner ${i + 1}`}
+                  aria-current={i === atual}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </section>
 
-          <Link to="/produtos" className="card">
-            <div className="card-img-placeholder"></div>
-            <p className="card-title">
-              Nome do produto - R$ 00,00
-            </p>
-          </Link>
+      {/* Faixa com todas as categorias, logo abaixo do banner */}
+      <CategoriasFaixa />
 
-          <Link to="/produtos" className="card">
-            <div className="card-img-placeholder"></div>
-            <p className="card-title">
-              Nome do produto - R$ 00,00
-            </p>
+      <section className="home-intro">
+        <p className="categoria-rotulo">Confeitaria artesanal sob encomenda</p>
+        <h1>
+          Doces feitos à mão
+          <span className="home-intro-linha">para todos os seus momentos</span>
+        </h1>
+        <p className="home-intro-texto">
+          Bolos, tortas, muffins, madeleines e petit four, preparados um a um
+          desde 2017.
+          <span className="home-intro-linha">
+            Escolha no cardápio e encomende pelo WhatsApp.
+          </span>
+        </p>
+
+        <div className="home-intro-botoes">
+          <a
+            className="gil-btn"
+            href={linkEncomenda()}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Encomendar pelo WhatsApp
+          </a>
+          <Link className="gil-btn gil-btn--secundario" to="/cardapio">
+            Ver o cardápio
           </Link>
         </div>
       </section>
+
+      <section className="categoria home-destaques" aria-labelledby="destaques">
+        <h2 id="destaques" className="home-titulo">Destaques</h2>
+
+        <div className="categoria-grade">
+          {destaques.map((produto) => (
+            <article className="produto-card" key={produto.id}>
+              <div className="produto-card-foto">
+                <img src={produto.imagem} alt={produto.nome} loading="lazy" />
+              </div>
+
+              <div className="produto-card-corpo">
+                <h3>{produto.nome}</h3>
+                <p className="produto-card-descricao">{produto.descricao}</p>
+                <p className="produto-card-preco">{produto.preco}</p>
+                <a
+                  className="gil-btn"
+                  href={produto.encomendar}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Encomendar pelo WhatsApp
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
     </Layout>
   );
 }

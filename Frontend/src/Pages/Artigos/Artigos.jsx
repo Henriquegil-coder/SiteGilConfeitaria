@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer';
+import { estaLogado } from '../../services/api';
 
 import './Artigos.css';
 
@@ -36,6 +37,8 @@ const artigos = [
 ];
 
 export default function Artigos() {
+  const administrador = estaLogado();
+
   return (
     <div className="artigos-page">
       <Header />
@@ -103,12 +106,14 @@ export default function Artigos() {
                     <span aria-hidden="true">→</span>
                   </Link>
 
-                  <Link
-                    to={`/blog/artigos/editar/${artigo.id}`}
-                    className="artigo-edit-link"
-                  >
-                    Editar
-                  </Link>
+                  {administrador && (
+                    <Link
+                      to={`/blog/artigos/editar/${artigo.id}`}
+                      className="artigo-edit-link"
+                    >
+                      Editar
+                    </Link>
+                  )}
                 </div>
               </div>
             </article>

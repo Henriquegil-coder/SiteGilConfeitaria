@@ -1,0 +1,177 @@
+/* Faixa de categorias: fica presa logo abaixo da barra do topo
+   enquanto a pessoa rola, para trocar de categoria sem voltar */
+
+.faixa-categorias {
+  position: sticky;
+  top: 60px; /* altura da barra do topo no computador */
+  z-index: 30;
+  border-bottom: 1px solid var(--borda);
+  background: var(--fundo-elevado);
+}
+
+.faixa-lista {
+  display: flex;
+  justify-content: center;
+  gap: var(--espaco-2);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--espaco-3) var(--espaco-4);
+  list-style: none;
+}
+
+.faixa-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--espaco-5);
+  border-radius: var(--raio-pill);
+  color: var(--texto);
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.faixa-link:hover {
+  background: var(--assinatura);
+}
+
+/* Categoria da página atual */
+.faixa-link.ativo {
+  background: var(--assinatura);
+  color: var(--on-assinatura);
+}
+
+/* Tablet: se não couber, a faixa desliza para o lado */
+@media (max-width: 900px) {
+  .faixa-lista {
+    justify-content: flex-start;
+    overflow-x: auto;
+    scroll-padding-inline: var(--espaco-4);
+    scrollbar-width: none;
+  }
+
+  .faixa-lista::-webkit-scrollbar {
+    display: none;
+  }
+
+  .faixa-link {
+    padding: 0 var(--espaco-4);
+    font-size: 22px;
+  }
+}
+
+/* Celular: faixa mais baixa; o item cortado na borda mostra que dá para deslizar */
+@media (max-width: 768px) {
+  .faixa-categorias {
+    top: 56px; /* altura da barra do topo no celular */
+  }
+}
+
+@media (max-width: 600px) {
+  .faixa-lista {
+    gap: 0;
+    padding: var(--espaco-2);
+  }
+
+  .faixa-link {
+    padding: 0 var(--espaco-3);
+    font-size: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faixa-link {
+    transition: none;
+  }
+}/* Faixa de categorias: fica presa logo abaixo da barra do topo
+   enquanto a pessoa rola, para trocar de categoria sem voltar */
+
+.faixa-categorias {
+  position: sticky;
+  top: 60px; /* altura da barra do topo no computador */
+  z-index: 30;
+  border-bottom: 1px solid var(--borda);
+  background: var(--fundo-elevado);
+}
+
+.faixa-lista {
+  display: flex;
+  justify-content: center;
+  gap: var(--espaco-2);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--espaco-3) var(--espaco-4);
+  list-style: none;
+}
+
+.faixa-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--espaco-5);
+  border-radius: var(--raio-pill);
+  color: var(--texto);
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.faixa-link:hover {
+  background: var(--assinatura);
+}
+
+/* Categoria da página atual */
+.faixa-link.ativo {
+  background: var(--assinatura);
+  color: var(--on-assinatura);
+}
+
+/* Tablet: se não couber, a faixa desliza para o lado */
+@media (max-width: 900px) {
+  .faixa-lista {
+    justify-content: flex-start;
+    overflow-x: auto;
+    scroll-padding-inline: var(--espaco-4);
+    scrollbar-width: none;
+  }
+
+  .faixa-lista::-webkit-scrollbar {
+    display: none;
+  }
+
+  .faixa-link {
+    padding: 0 var(--espaco-4);
+    font-size: 22px;
+  }
+}
+
+/* Celular: faixa mais baixa; o item cortado na borda mostra que dá para deslizar */
+@media (max-width: 768px) {
+  .faixa-categorias {
+    top: 56px; /* altura da barra do topo no celular */
+  }
+}
+
+@media (max-width: 600px) {
+  .faixa-lista {
+    gap: 0;
+    padding: var(--espaco-2);
+  }
+
+  .faixa-link {
+    padding: 0 var(--espaco-3);
+    font-size: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faixa-link {
+    transition: none;
+  }
+}
