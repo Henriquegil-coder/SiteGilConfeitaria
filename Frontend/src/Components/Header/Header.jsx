@@ -1,16 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
-import { categorias as cardapio } from '../../data/produtos';
-
 import './Header.css';
 
 import espatula from '../../assets/Images/blog-espatula.svg';
-
-const categorias = cardapio.map((categoria) => ({
-  nome: categoria.nome,
-  caminho: `/produtos/${categoria.slug}`,
-}));
 
 function classeDoLink({ isActive }) {
   return isActive ? 'header-nav-link active' : 'header-nav-link';
@@ -42,17 +35,14 @@ function IconeTopo() {
 
 export default function Header() {
   const [menuAberto, setMenuAberto] = useState(false);
-  const [produtosAberto, setProdutosAberto] = useState(false);
   const [mostrarTopo, setMostrarTopo] = useState(false);
   const location = useLocation();
 
-  const naAreaDeProdutos = location.pathname.startsWith('/produtos');
   const naHome = location.pathname === '/';
 
   // Ao trocar de página: fecha o menu e volta ao topo
   useEffect(() => {
     setMenuAberto(false);
-    setProdutosAberto(false);
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
@@ -100,38 +90,6 @@ export default function Header() {
             id="menu-principal"
             className={`header-links ${menuAberto ? 'is-open' : ''}`}
           >
-            <div
-              className={`products-menu ${produtosAberto ? 'is-open' : ''}`}
-              onMouseEnter={() => setProdutosAberto(true)}
-              onMouseLeave={() => setProdutosAberto(false)}
-            >
-              <button
-                type="button"
-                className={`products-menu-trigger ${naAreaDeProdutos ? 'active' : ''}`}
-                aria-expanded={produtosAberto}
-                aria-controls="products-submenu"
-                onClick={() => setProdutosAberto((aberto) => !aberto)}
-              >
-                Produtos
-                <span className="products-menu-arrow" aria-hidden="true">▾</span>
-              </button>
-
-              <ul id="products-submenu" className="products-submenu">
-                <li>
-                  <NavLink to="/produtos" end className="submenu-link">
-                    Cardápio completo
-                  </NavLink>
-                </li>
-                {categorias.map((categoria) => (
-                  <li key={categoria.caminho}>
-                    <NavLink to={categoria.caminho} className="submenu-link">
-                      {categoria.nome}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
             <NavLink to="/contato" className={classeDoLink}>
               Contato
             </NavLink>

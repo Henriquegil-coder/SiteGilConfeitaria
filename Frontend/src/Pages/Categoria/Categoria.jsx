@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import Layout from '../../Components/Layout/Layout';
+import CategoriasFaixa from '../../Components/CategoriasFaixa/CategoriasFaixa';
 import NaoEncontrada from '../Error/NaoEncontrada';
 import useProdutos from '../../services/useProdutos';
 import { categorias } from '../../data/produtos';
@@ -20,6 +21,8 @@ export default function Categoria() {
 
   return (
     <Layout>
+      <CategoriasFaixa />
+
       <section className="categoria">
         <header className="categoria-topo">
           <p className="categoria-rotulo">Sob encomenda</p>

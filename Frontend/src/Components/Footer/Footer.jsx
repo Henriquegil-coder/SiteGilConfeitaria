@@ -2,7 +2,12 @@ import { Link } from 'react-router-dom';
 
 import { linkEncomenda } from '../../services/useProdutos';
 
+import logoBeeh from '../../assets/Images/beeh-design-logo.svg';
+
 import './Footer.css';
+
+// Endereço do site da Beeh Design (troque quando o site estiver no ar)
+const SITE_BEEH = 'https://COLOQUE-O-ENDERECO-AQUI';
 
 export default function Footer({ blogPage = false }) {
   return (
@@ -39,6 +44,18 @@ export default function Footer({ blogPage = false }) {
       <p className="footer-assinatura">
         GiL Confeitaria · desde 2017
       </p>
+
+      {/* Crédito de quem fez o site, com link para a Beeh Design */}
+      <a
+        className="footer-credito"
+        href={SITE_BEEH}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Powered by Beeh Design (abre em nova aba)"
+      >
+        <span className="footer-credito-texto">Powered by</span>
+        <img src={logoBeeh} alt="" width="128" height="97" />
+      </a>
     </footer>
   );
 }

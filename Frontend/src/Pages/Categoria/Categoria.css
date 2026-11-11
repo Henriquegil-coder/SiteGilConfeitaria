@@ -22,10 +22,17 @@
   text-transform: uppercase;
 }
 
+/* Produtos sempre centralizados: os cards têm largura fixa e
+   uma fileira incompleta (1 ou 2 produtos) fica no meio da tela */
 .categoria-grade {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--espaco-6);
+}
+
+.categoria-grade > .produto-card {
+  flex: 0 1 340px;
 }
 
 /* Card de produto */
@@ -116,6 +123,7 @@
 
 .produtos-secao-titulo {
   margin-bottom: var(--espaco-6);
+  text-align: center;
 }
 
 .produtos-secao-titulo a {
@@ -132,7 +140,11 @@
 
 @media (max-width: 900px) {
   .categoria-grade {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--espaco-5);
+  }
+
+  .categoria-grade > .produto-card {
+    flex-basis: 320px;
   }
 }
 
@@ -141,8 +153,9 @@
     padding: var(--espaco-7) var(--espaco-4);
   }
 
-  .categoria-grade {
-    grid-template-columns: 1fr;
-    gap: var(--espaco-5);
+  /* Celular: um card por linha, centralizado e sem esticar demais */
+  .categoria-grade > .produto-card {
+    flex-basis: 100%;
+    max-width: 480px;
   }
 }

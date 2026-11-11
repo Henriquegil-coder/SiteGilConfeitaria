@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import Layout from '../../Components/Layout/Layout';
+import CategoriasFaixa from '../../Components/CategoriasFaixa/CategoriasFaixa';
 import useProdutos from '../../services/useProdutos';
 import { categorias } from '../../data/produtos';
 
@@ -54,6 +55,8 @@ function SecaoCategoria({ categoria }) {
 export default function Produtos() {
   return (
     <Layout>
+      <CategoriasFaixa />
+
       <div className="categoria">
         <header className="categoria-topo">
           <p className="categoria-rotulo">Sob encomenda</p>

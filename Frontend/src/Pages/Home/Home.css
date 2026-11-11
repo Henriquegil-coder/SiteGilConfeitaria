@@ -91,8 +91,20 @@
   .home-banner-seta--avancar { right: var(--espaco-2); }
 }
 
+/* Quebra de linha controlada no título e no texto de apresentação */
+.home-intro-linha {
+  display: block;
+}
+
+/* Em telas largas, cada linha fica inteira (sem quebrar no meio) */
+@media (min-width: 601px) {
+  .home-intro-linha {
+    white-space: nowrap;
+  }
+}
+
 .home-intro {
-  max-width: 760px;
+  max-width: 960px;
   margin: 0 auto;
   padding: var(--espaco-8) var(--espaco-4) 0;
   text-align: center;
@@ -133,12 +145,12 @@
   }
 
   /* Apresentação ocupa o resto da tela, descontando barra (56px)
-     e banner (62,5% da largura); o conteúdo fica centralizado */
+     banner (62,5% da largura) e faixa de categorias (61px) */
   .home-intro {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: calc(100svh - 56px - 62.5vw);
+    min-height: calc(100svh - 56px - 62.5vw - 61px);
     padding: var(--espaco-4) var(--espaco-4);
   }
 
@@ -149,13 +161,13 @@
 
   .home-intro h1 {
     margin-bottom: var(--espaco-3);
-    font-size: 32px;
-    line-height: 36px;
+    font-size: 28px;
+    line-height: 32px;
   }
 
   .home-intro-texto {
-    font-size: 14px;
-    line-height: 22px;
+    font-size: 13px;
+    line-height: 20px;
   }
 
   /* Botões um embaixo do outro, largura total */

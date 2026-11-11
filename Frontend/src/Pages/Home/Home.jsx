@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Layout from '../../Components/Layout/Layout';
+import CategoriasFaixa from '../../Components/CategoriasFaixa/CategoriasFaixa';
 import useProdutos, { linkEncomenda } from '../../services/useProdutos';
 
 import banner1 from '../../assets/Images/banner-principal.png';
@@ -29,8 +30,15 @@ export default function Home() {
   const [pausado, setPausado] = useState(false);
   const temVarios = banners.length > 1;
 
-  // Destaques: os 6 primeiros produtos que já têm foto
-  const destaques = produtos.filter((produto) => produto.imagem).slice(0, 6);
+  // Destaques: todos os produtos que já têm foto.
+  // O Bolo dezesseis de maio fica sempre na 2ª posição: no computador,
+  // no meio da primeira fileira de 3; no celular, entre dois produtos.
+  const comFoto = produtos.filter((produto) => produto.imagem);
+  const estrela = comFoto.find((produto) => produto.id === 'bolo-dezesseis-de-maio');
+  const outros = comFoto.filter((produto) => produto !== estrela);
+  const destaques = estrela
+    ? [outros[0], estrela, ...outros.slice(1)].filter(Boolean)
+    : comFoto;
 
   function voltar() {
     setAtual((i) => (i === 0 ? banners.length - 1 : i - 1));
@@ -107,12 +115,21 @@ export default function Home() {
         )}
       </section>
 
+      {/* Faixa com todas as categorias, logo abaixo do banner */}
+      <CategoriasFaixa />
+
       <section className="home-intro">
         <p className="categoria-rotulo">Confeitaria artesanal sob encomenda</p>
-        <h1>Doces feitos à mão, para os seus momentos</h1>
+        <h1>
+          Doces feitos à mão
+          <span className="home-intro-linha">para todos os seus momentos</span>
+        </h1>
         <p className="home-intro-texto">
           Bolos, tortas, muffins, madeleines e petit four, preparados um a um
-          desde 2017. Escolha no cardápio e encomende pelo WhatsApp.
+          desde 2017.
+          <span className="home-intro-linha">
+            Escolha no cardápio e encomende pelo WhatsApp.
+          </span>
         </p>
 
         <div className="home-intro-botoes">

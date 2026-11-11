@@ -73,6 +73,39 @@
   text-align: center;
 }
 
+/* Crédito "Powered by Beeh Design": discreto, no fim do rodapé.
+   Logo principal (brasão) em papel, no mínimo da marca: 128px. */
+.footer-credito {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  align-items: center;
+  gap: var(--espaco-2);
+  margin: var(--espaco-6) auto 0;
+  padding: var(--espaco-2) var(--espaco-3);
+  border-radius: var(--raio-sm);
+  color: #CDBFC3;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.footer-credito:hover {
+  opacity: 1;
+}
+
+.footer-credito-texto {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+.footer-credito img {
+  display: block;
+  width: 128px;
+  height: auto;
+}
+
 @media screen and (max-width: 768px) {
   .footer-navigation {
     flex-direction: column;
